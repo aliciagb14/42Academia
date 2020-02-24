@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:52:03 by agonzale          #+#    #+#             */
-/*   Updated: 2020/02/20 11:19:02 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:15:46 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,16 @@ int             atoi(const char *str);
 char			*itoa(int n);
 
 /*estructuras*/
-typedef struct s_flags
+/*typedef struct s_flags
 {
     int     minus; //-
     int     plus; //+
     int     space; // ' '
     int     zero; //0
     int     comod; // #
-}               t_flags;
+}               t_flags;*/
 
-typedef struct  s_princp
-{
+typedef struct  s_princp {
     int         width; //ancho
     int         precision; //numeros tras la coma
     int         cnt; //cuenta %s, %c, %f....
@@ -43,7 +42,7 @@ typedef struct  s_princp
     char        *format;
     void        *data;
     va_list     args;
-    struct      s_flags;
+   // struct      s_flags;
 }               t_list;
 
 /*

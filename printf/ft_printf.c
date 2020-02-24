@@ -6,147 +6,90 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 09:59:31 by agonzale          #+#    #+#             */
-/*   Updated: 2020/02/20 11:19:28 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:37:15 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-/*
-int     ft_num(t_list * hola)
+void	ft_putchar(char c)
 {
-    if((hola-> num_0) > 0)
-    {
-        if (hola-> prec > hola->len_str)
-            hola-> num_0 = hola-> prec - hola-> len_str;
-        else
-            hola-> num_0 = hola-> len_str;
-    }
-
-    if ((hola-> num_esp) > 0)
-    {
-        if (hola-> width > hola-> prec)
-         hola-> num_esp = hola-> width - hola-> prec;
-        else
-         hola-> num_esp <= 0;
-    }
+	write(1, &c, 1);
 }
 
-static int printfspecifier(t_list * format)
+void	ft_putstr(char *s)
 {
-    char specifier;
-    if (specifier == "%")
-        return (strchr('%', va_arg()))
-    else if(strchr == 'd' || strchr == 'i')
+	unsigned int i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s, 1);
+		i++;
+	}
 }
 
-static char specifier(char **line, s_flags p)
+void case_c(t_list * l, const char *line, char next)
 {
-    char d;
-    char i;
-    char c;
-    char e;
-    char g;
-    char f;
-    char o;
-    char s;
-    char u;
-    char x;
-    char percent;
-
-    p->percent = '%';
-    specifier(*line, p);
-    if (*line)
-    {
-        if (*line == p->percent) //inicio cadena
-        {
-            line++;
-        }
-        else if ((*line == d) || (*line == i))
-            return (va_arg(list, int));
-        else if(*line == c)
-            return (va_arg(list, char));
-    }
+    next = (char)va_arg(l->args, int);
+    ft_putchar(next);
+    l->cnt++;
+    //l->data = ft_putchar(next);
 }
 
-char ischar(char **line)
+/*char *case_s(va_list args, t_list * l, const char *line, char *str)
 {
-    int i;
-    int c;
-
-    i = 0;
-    while(*line)
-    {
-        if(*line == (char *)c)
-            return (c);
-    }
+    str = (char *)va_arg(args, int);
+    l->cnt++;
+    l->data = ft_putstr(str);
 }
-
-int     scprinter(t_list specialcar, va_list adios)
-{
-    char **line;
-    if(*line)
-    {
-        if (*line == "\\")
-            ischar('\');
-        else if (*line == "\"")
-            ischar('"');
-        else if (*line = "\,")
-            ischar(',');
-    }
-}*/
-void ft_putchar(char c)
-{
-    write (1, 'c', 1);
-}
-char case_c(va_list args, t_list * p, const char *line, char c)
-{
-    int i;
-    char saver[100];
-    saver[i] = (char)va_arg(args, int);
-    p->cnt++;
-    i++;
-    ft_putchar(c);
-}
-
+*/
 int     ft_printf(const char *line, ...)
 {
-    t_list *p;
-    va_list args;
+    t_list *l;
+    if (!(l = malloc(sizeof(t_list))))
+        return (0);
     unsigned int i;
-    unsigned int j;
-    char c;
-    char saver[100];
+    char next;
+    char *str;
 
     i = 0;
-    j = 0;
-    va_start(args, line);
-    while (*line)
+    va_start(l->args, line);
+    while (line[i])
     {
-        if(line[i] == '%')
+        if (line[i] == '%')
         {
             i++;
-            if((line[i]) == 'c')
-                case_c(args, p, line, c);
+            if (line[i] == 'c')
+                case_c(l, line, next);
+           /* else if(line[i] == 's')
+                case_s(args, l, line, str);*/
         }
         else
         {
-            ft_putchar(c);
             i++;
-            p->cnt++;
+            /*
+            imprimir el espacio y seguir imprimiendo lo que haya de string
+            hasta llegar al caracter nulo. l->cnt++ cada vez que avanza 1 pos*/
+            l->cnt++;
         }
         i++;
+       // return (next);
     }
-    va_end(args);
-    return (saver[i]);
+    return (l->cnt);
+    va_end(l->args);
 }
 
 int     main(void)
 {
-    //  CHAR
+    //CHAR
     char c = 'a';
-    ft_printf("%c hola", c);
-    printf("%c hola", c);
+   // ft_printf("%c\n", c);
+   // printf("%c\n", c);
+
+    //STRING
+  //  char s[4] = "hola";
+    printf("%d\n", ft_printf("%c buenosdias", c));
+    printf("%d\n", printf("%c buenosdias", c));
     return (0);
 }
