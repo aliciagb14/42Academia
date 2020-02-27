@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int             atoi(const char *str)
+int         atoi(const char *str)
 {
     int		i;
 	int		neg;

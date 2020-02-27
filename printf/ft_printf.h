@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:52:03 by agonzale          #+#    #+#             */
-/*   Updated: 2020/02/24 18:15:46 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/02/27 16:00:58 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,32 @@
 
 /*funciones*/
 int             ft_printf(const char *, ...);
+//void			ft_putchar(char c, t_list * l);
+//void 			case_c(t_list * l, const char *line, char next);
+//void			princp_c(const char *line, t_list *l);
 int             atoi(const char *str);
 char			*itoa(int n);
 
+
 /*estructuras*/
-/*typedef struct s_flags
+/*
+typedef struct s_flags
 {
     int     minus; //-
-    int     plus; //+
-    int     space; // ' '
+	int     space; // ' '
     int     zero; //0
-    int     comod; // #
-}               t_flags;*/
-
+}               t_flags;
+*/
 typedef struct  s_princp {
     int         width; //ancho
     int         precision; //numeros tras la coma
     int         cnt; //cuenta %s, %c, %f....
+	int			pos; // es un contador (igual que i)
     int         len_str;
     char        *format;
     void        *data;
     va_list     args;
-   // struct      s_flags;
+   //	struct      s_flags;
 }               t_list;
 
 /*
