@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:16:36 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/02 15:37:25 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:54:27 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,21 @@ void ft_width(t_list *l, const char *line, int number)
 
 	c = (l->flags.zero) ? '0' : ' ';
 	//si es distinto a 0, es decir flag - o nada
-	while (line[l->pos] != '0')
+	if (l->width > l->len)
 	{
-		if (l->width > l->len)
-			write(1, ' ', 1);
-		/*segun el caso que sea hace lo que tiene que hacer*/
-		else
+		difference = l->width - l->len;
+		if (number < 0) //escribe -
+			write(1, '-', 1);
+		while (difference > 0)
 		{
-			difference = l->width - l->len;
-			if (number < 0)
-				write(1, '-', 1);
-			else
-			{
-				//justificado a la derecha
-				while (difference > 0)
-				{
-					write(1, &c, 1);
-					difference--;
-				}
-			}
+			write(1, &c, 1); //escribe 0 si flags.0 si encuentra flags.0 si no -
+			difference--; //la diferencia es uno menor
 		}
+		//escribe ya todo junto, si es neg -   7; printf("%5d", -7)
+	}	
+	/*segun el caso que sea hace lo que tiene que hacer*/
+	else
+	{
+		
 	}
 }

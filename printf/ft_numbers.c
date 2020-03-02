@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 08:42:55 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/02 15:14:32 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/02 16:57:11 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_isspace(int c)
 	c == '\r' || c == ' ') ? TRUE : FALSE;
 }
 
-int		ft_atoi(const char *str)
+int		ft_atoi(char *str)
 {
 	int			i;
 	int			sign;
@@ -44,7 +44,7 @@ int		ft_atoi(const char *str)
 	return (number * sign);
 }
 
-static int		getsize(int nb)
+static int		ft_getsize_itoa(int nb)
 {
 	long int len;
 
@@ -61,14 +61,14 @@ static int		getsize(int nb)
 	return (len);
 }
 
-static void		init_var(long int *i, long int *a, long int *len, int n)
+static void		ft_init_var_itoa(long int *i, long int *a, long int *len, int n)
 {
-	*len = getsize(n);
+	*len = ft_getsize_itoa(n);
 	*i = 0;
 	*a = (long int)n;
 }
 
-char			*itoa(int n)
+char			*ft_itoa(int n)
 {
 	long int		len;
 	long int		i;
@@ -76,7 +76,7 @@ char			*itoa(int n)
 	long int		j;
 	char			*s;
 
-	init_var(&i, &a, &len, n);
+	ft_init_var_itoa(&i, &a, &len, n);
 	if (!(s = malloc(sizeof(char) * len + 1)))
 		return (0);
 	if (a == 0)

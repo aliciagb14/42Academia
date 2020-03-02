@@ -6,13 +6,13 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:52:15 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/02 15:36:04 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/02 16:00:11 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void 	ft_inicialize(t_list *l)
+void		ft_initialize(t_list *l)
 {
 	l->width = 0;
 	l->precision = 0;

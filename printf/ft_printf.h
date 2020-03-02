@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:52:03 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/02 15:29:38 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/02 16:57:10 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-/*funciones*/
-int             ft_printf(const char *, ...);
-int             atoi(const char *str);
-char			*itoa(int n);
-void 			ft_inicialize(t_list *l);
-
-
 /*estructuras*/
 typedef struct s_flags
 {
     int     minus;	// -
 	int     space;	// ' '
     int     zero;	// 0
+	//ACUERDATE DEL *
 }               t_flags;
 
 typedef struct  s_princp {
@@ -45,6 +39,14 @@ typedef struct  s_princp {
     va_list     args;
    	t_flags		flags;
 }               t_list;
+
+/*funciones*/
+void 			ft_initialize(t_list *l);
+int             ft_printf(const char *, ...);
+int             ft_atoi(char *str);
+char			*ft_itoa(int n);
+static int		ft_getsize_itoa(int nb);
+static void		ft_init_var_itoa(long int *i, long int *a, long int *len, int n);
 
 /*
 void va_start(va_list ap, last) -> inicializa lista
