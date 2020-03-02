@@ -6,9 +6,20 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 09:52:15 by agonzale          #+#    #+#             */
-/*   Updated: 2020/02/27 16:01:03 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:36:04 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+void 	ft_inicialize(t_list *l)
+{
+	l->width = 0;
+	l->precision = 0;
+	l->cnt = 0;
+	l->pos = 0;
+	l->len = 0;
+	l->flags.zero = 0;
+	l->flags.space = FALSE;
+	l->flags.minus = FALSE;
+}

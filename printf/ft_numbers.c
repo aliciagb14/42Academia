@@ -1,44 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_numbers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 08:42:55 by agonzale          #+#    #+#             */
-/*   Updated: 2020/02/11 08:55:11 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:14:32 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int         atoi(const char *str)
+int		ft_isspace(int c)
 {
-    int		i;
-	int		neg;
-	int		sign;
-	int		a;
+	return (c == '\t' || c == '\n' || c == '\v' || c == '\f' ||
+	c == '\r' || c == ' ') ? TRUE : FALSE;
+}
+
+int		ft_atoi(const char *str)
+{
+	int			i;
+	int			sign;
+	long int	number;
+	char		*string;
 
 	i = 0;
-	neg = 1;
-	a = 0;
-	sign = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' ||
-			str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+	sign = 1;
+	number = 0;
+	string = (char*)str;
+	while (ft_isspace(str[i]))
 		i++;
-	while (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			neg = -neg;
-		i++;
-		sign++;
-	}
+	if (str[i] == '+' || str[i] == '-')
+		sign *= (str[i++] == '-') ? -1 : 1;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		a = a * 10 + ((int)(str[i]) - '0');
+		if (number == 0)
+			number = str[i] - 48;
+		else
+			number = number * 10 + str[i] - 48;
 		i++;
 	}
-	return (sign > 1) ? 0 : a * neg;
+	return (number * sign);
 }
 
 static int		getsize(int nb)
