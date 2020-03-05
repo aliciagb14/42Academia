@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:52:03 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/02 16:57:10 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/05 08:10:20 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,22 @@ typedef struct  s_princp {
    	t_flags		flags;
 }               t_list;
 
-/*funciones*/
-void 			ft_initialize(t_list *l);
-int             ft_printf(const char *, ...);
-int             ft_atoi(char *str);
-char			*ft_itoa(int n);
-static int		ft_getsize_itoa(int nb);
-static void		ft_init_var_itoa(long int *i, long int *a, long int *len, int n);
+					/*funciones*/
+//ft_specifier
+void ft_isspecifier(t_list *l);
+//ft_numbers
+void	ft_putnbr(int number, t_list *l);
+int		ft_get_size_num(t_list *l, int number);
+int		ft_atoi(char *str);
+int		ft_isspace(int c);
+//ft_case_c
+void	ft_putchar(char c, t_list *l);
+void 	ft_case_c(t_list * l, const char *line, char next);
+void	princp_c(const char *line, t_list *l);
+//FLAGS
+void 	ft_first_flags(const char *line, t_list *l);
+void 	ft_width(t_list *l, const char *line, int number);
+
 
 /*
 void va_start(va_list ap, last) -> inicializa lista

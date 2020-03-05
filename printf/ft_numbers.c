@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 08:42:55 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/02 16:57:11 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/05 07:57:38 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,54 +44,33 @@ int		ft_atoi(char *str)
 	return (number * sign);
 }
 
-static int		ft_getsize_itoa(int nb)
+int		ft_get_size_num(t_list *l, int number)
 {
-	long int len;
-
-	len = 0;
-	if (nb < 0)
-		len++;
-	if (nb == 0)
-		len = 1;
-	while (nb != 0)
+	l->len = 0;
+	if (number < 0)
+		l->len++;
+	if (number == 0)
+		l->len = 1;
+	while (number != 0)
 	{
-		len++;
-		nb = nb / 10;
+		l->len++;
+		number /= 10;
 	}
-	return (len);
+	return (l->len);
 }
 
-static void		ft_init_var_itoa(long int *i, long int *a, long int *len, int n)
+void	ft_putnbr(int number, t_list *l)
 {
-	*len = ft_getsize_itoa(n);
-	*i = 0;
-	*a = (long int)n;
-}
-
-char			*ft_itoa(int n)
-{
-	long int		len;
-	long int		i;
-	long int		a;
-	long int		j;
-	char			*s;
-
-	ft_init_var_itoa(&i, &a, &len, n);
-	if (!(s = malloc(sizeof(char) * len + 1)))
-		return (0);
-	if (a == 0)
-		s[0] = '0';
-	if (a < 0)
+	if (number < 0)
 	{
-		s[0] = '-';
-		a = -a;
+		number = -number;
+		ft_putchar('-', l);
 	}
-	while (a != 0)
+	if (number > 9)
 	{
-		j = a % 10;
-		s[len - (++i)] = j + '0';
-		a = a / 10;
+		ft_putnbr(number / 10, l);
+		ft_putchar(number % 10 + 48, l);
 	}
-	s[len] = '\0';
-	return (s);
+	else
+		ft_putchar(number + 48, l);
 }
