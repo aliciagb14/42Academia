@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 08:42:55 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/02 16:57:11 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:34:45 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_isspace(int c)
 	c == '\r' || c == ' ') ? TRUE : FALSE;
 }
 
-int		ft_atoi(char *str)
+int		ft_atoi(char *str, t_list *l)
 {
 	int			i;
 	int			sign;
@@ -29,69 +29,37 @@ int		ft_atoi(char *str)
 	sign = 1;
 	number = 0;
 	string = (char*)str;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-		sign *= (str[i++] == '-') ? -1 : 1;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (ft_isspace(str[l->pos]))
+		l->pos++;
+	if (str[l->pos] == '+' || str[l->pos] == '-')
+		sign *= (str[l->pos++] == '-') ? -1 : 1;
+	while (str[l->pos] >= '0' && str[l->pos] <= '9')
 	{
 		if (number == 0)
-			number = str[i] - 48;
+			number = str[l->pos] - 48;
 		else
-			number = number * 10 + str[i] - 48;
-		i++;
+			number = number * 10 + str[l->pos] - 48;
+		l->pos++;
 	}
 	return (number * sign);
 }
 
-static int		ft_getsize_itoa(int nb)
+int		ft_get_size_num(t_list *l, int number)
 {
-	long int len;
-
-	len = 0;
-	if (nb < 0)
-		len++;
-	if (nb == 0)
-		len = 1;
-	while (nb != 0)
+	l->len = 0;
+	if (number < 0)
+		l->len++;
+	if (number == 0)
+		l->len = 1;
+	while (number != 0)
 	{
-		len++;
-		nb = nb / 10;
+		l->len++;
+		number /= 10;
 	}
-	return (len);
+	return (l->len);
 }
 
-static void		ft_init_var_itoa(long int *i, long int *a, long int *len, int n)
+int		ft_isnumber(char c)
 {
-	*len = ft_getsize_itoa(n);
-	*i = 0;
-	*a = (long int)n;
-}
-
-char			*ft_itoa(int n)
-{
-	long int		len;
-	long int		i;
-	long int		a;
-	long int		j;
-	char			*s;
-
-	ft_init_var_itoa(&i, &a, &len, n);
-	if (!(s = malloc(sizeof(char) * len + 1)))
-		return (0);
-	if (a == 0)
-		s[0] = '0';
-	if (a < 0)
-	{
-		s[0] = '-';
-		a = -a;
-	}
-	while (a != 0)
-	{
-		j = a % 10;
-		s[len - (++i)] = j + '0';
-		a = a / 10;
-	}
-	s[len] = '\0';
-	return (s);
+	return (c >= '0' && c <= '9') ? TRUE : FALSE;
 }

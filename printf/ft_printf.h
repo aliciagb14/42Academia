@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:52:03 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/02 16:57:10 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:36:11 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_flags
     int     minus;	// -
 	int     space;	// ' '
     int     zero;	// 0
-	//ACUERDATE DEL *
+	int		ast;	// *
 }               t_flags;
 
 typedef struct  s_princp {
@@ -40,13 +40,26 @@ typedef struct  s_princp {
    	t_flags		flags;
 }               t_list;
 
-/*funciones*/
-void 			ft_initialize(t_list *l);
-int             ft_printf(const char *, ...);
-int             ft_atoi(char *str);
-char			*ft_itoa(int n);
-static int		ft_getsize_itoa(int nb);
-static void		ft_init_var_itoa(long int *i, long int *a, long int *len, int n);
+					/*funciones*/
+void	ft_initialize(t_list *l);
+//ft_specifier
+void	ft_specifier(t_list *l, const char *line);
+int		ft_isspecifier(char c);
+//ft_numbers
+void	ft_putnbr(int number, t_list *l);
+int		ft_get_size_num(t_list *l, int number);
+int		ft_atoi(char *str, t_list *l);
+int		ft_isspace(int c);
+int		ft_isnumber(char c);
+//ft_cases
+void	ft_putchar(char c, t_list *l);
+void 	ft_case_c(t_list * l);
+void 	ft_case_s(t_list *l);
+void	ft_case_d(t_list *l);
+//FLAGS
+int 	ft_first_flags(char *line, t_list *l);
+void 	ft_saver_width(t_list *l, const char *line, int number);
+
 
 /*
 void va_start(va_list ap, last) -> inicializa lista

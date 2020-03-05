@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:16:36 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/02 15:54:27 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:36:15 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,47 @@
 Controla si hay - o 0, no se pueden combinar los dos.
 encuentra flag: si lo almacena bn devuelve 1, si no 0
 */
-void ft_first_flags(const char *line, t_list *l)
+
+int ft_first_flags(char *line, t_list *l)
 {
-	if (line[l->pos] == '-' || line[l->pos] == '0')
+	int number;
+	while (!ft_isspecifier(*line))
 	{
 		if (line[l->pos] == '-')
-			return (TRUE);
+			l->flags.minus = TRUE;
 		else if (line[l->pos] == '0')
-			return (TRUE);
+			l->flags.zero = TRUE;
+		else if (line[l->pos] == '*')
+			l->flags.ast = TRUE;
+		else if (ft_isnumber(line[l->pos]))
+		{
+			l->width = ft_atoi(&(line[l->pos]), l); //guardo en width el numero antes que hay antes de la d
+			l->len = ft_get_size_num(l, number); //guardo en len la long del numero que me pasen por parametro
+			ft_saver_width(l, line, number);
+		}
 	}
 }
 
-void ft_width(t_list *l, const char *line, int number)
+void ft_saver_width(t_list *l, const char *line, int number)
 {
 	int difference;
-	char c;
 
-	c = (l->flags.zero) ? '0' : ' ';
-	//si es distinto a 0, es decir flag - o nada
-	if (l->width > l->len)
+	while (line[l->pos] == 'c' || line[l->pos] == 's' ||
+		line[l->pos] == 'p' || line[l->pos] == 'd')
 	{
-		difference = l->width - l->len;
-		if (number < 0) //escribe -
-			write(1, '-', 1);
-		while (difference > 0)
+		if (l->width > l->len)
 		{
-			write(1, &c, 1); //escribe 0 si flags.0 si encuentra flags.0 si no -
-			difference--; //la diferencia es uno menor
+			difference = l->width - l->len;
+			if (number < 0) //escribe -
+				ft_putchar('-', l);
+			while (difference > 0)
+			{
+				if (l->flags.zero)
+					ft_putchar('0', l);
+				else
+					ft_putchar(' ', l);
+				difference--;
+			}
 		}
-		//escribe ya todo junto, si es neg -   7; printf("%5d", -7)
-	}	
-	/*segun el caso que sea hace lo que tiene que hacer*/
-	else
-	{
-		
 	}
 }

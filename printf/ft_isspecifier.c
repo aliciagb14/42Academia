@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_case_c.c                                        :+:      :+:    :+:   */
+/*   ft_isspecifier.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 08:04:40 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/05 08:35:47 by agonzale         ###   ########.fr       */
+/*   Created: 2020/03/05 08:07:16 by agonzale          #+#    #+#             */
+/*   Updated: 2020/03/05 12:16:28 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c, t_list *l)
+int			ft_isspecifier(char c)
 {
-	write(1, &c, 1);
-	l->cnt++;
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' ||
+			c == 'u' || c == 'x' || c == 'X' || c == '%')
+		return (1);
+	else
+		return (0);
 }
 
-void	ft_case_c(t_list *l)
+void		ft_specifier(t_list *l, const char *line)
 {
-	char next;
-	next = (char)va_arg(l->args, int);
-	ft_putchar(next, l);
+	if (line[l->pos] == 'c')
+		ft_case_c(l);
+	else if (line[l->pos] == 's')
+		ft_case_s(l);
+	else if (line[l->pos] == 'd')
+		ft_case_d(l);
 }
