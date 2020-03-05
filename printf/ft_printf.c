@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 09:59:31 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/05 16:32:06 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:47:38 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int		main(void)
 	return (0);*/
 
     //STRING
-	/*char s[5] = {'H','O','L','A','\0'};
+	char s[5] = {'H','O','L','A','\0'};
 	int x;
 	x = printf("hh98%sbuenosdias", s);
 	printf("%d\n", x);
 	x = ft_printf("hh98%sbuenosdias", s);
 	printf("%d\n", x);
-	return (0);*/
+	return (0);
 
 	//INT %D
 	/*m = 789990 printf("%d\n", printf("%5d", m)) --> 789990

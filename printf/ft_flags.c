@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 10:16:36 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/05 16:36:15 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:42:57 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void ft_saver_width(t_list *l, const char *line, int number)
 		if (l->width > l->len)
 		{
 			difference = l->width - l->len;
-			if (number < 0) //escribe -
+			//escribe -
+			if (number < 0)
 				ft_putchar('-', l);
 			while (difference > 0)
 			{
