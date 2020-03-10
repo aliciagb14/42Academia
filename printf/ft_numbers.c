@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 08:42:55 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/05 16:46:51 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/10 09:25:51 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int		ft_atoi(char *str, t_list *l)
 	i = 0;
 	sign = 1;
 	number = 0;
-	string = (char*)str;
 	while (ft_isspace(str[l->pos]))
 		l->pos++;
 	if (str[l->pos] == '+' || str[l->pos] == '-')

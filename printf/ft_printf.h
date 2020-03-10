@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:52:03 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/05 16:47:00 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/10 12:53:26 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_flags
     int     minus;	// -
 	int     space;	// ' '
     int     zero;	// 0
-	int		ast;	// *
 }               t_flags;
 
 typedef struct  s_princp {
@@ -57,8 +56,11 @@ void 	ft_case_c(t_list * l);
 void 	ft_case_s(t_list *l);
 void	ft_case_d(t_list *l);
 //FLAGS
-int 	ft_first_flags(char *line, t_list *l);
-void 	ft_saver_width(t_list *l, const char *line, int number);
+int 	ft_saver_flags(t_list *l, char *line);
+void	ft_printer_spaces(t_list *l, const char *line);
+void	ft_printer_minus(t_list *l, const char *line);
+void	ft_printer_zero(t_list *l, const char *line);
+void	ft_printer_thing(t_list *l, const char *line);
 
 
 /*

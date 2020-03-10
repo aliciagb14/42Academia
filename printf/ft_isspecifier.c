@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 08:07:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/05 12:16:28 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/03/10 10:20:29 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int			ft_isspecifier(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' ||
 			c == 'u' || c == 'x' || c == 'X' || c == '%')
-		return (1);
+		return (TRUE);
 	else
-		return (0);
+		return (FALSE);
 }
 
 void		ft_specifier(t_list *l, const char *line)
