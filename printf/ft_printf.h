@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 15:52:03 by agonzale          #+#    #+#             */
-/*   Updated: 2020/03/10 12:53:26 by agonzale         ###   ########.fr       */
+/*   Created: 2020/03/11 22:48:00 by agonzale          #+#    #+#             */
+/*   Updated: 2020/04/08 12:42:39 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ void	ft_initialize(t_list *l);
 void	ft_specifier(t_list *l, const char *line);
 int		ft_isspecifier(char c);
 //ft_numbers
-void	ft_putnbr(int number, t_list *l);
+void	ft_putnbr(t_list *l, int number);
 int		ft_get_size_num(t_list *l, int number);
 int		ft_atoi(char *str, t_list *l);
+int		ft_count_nb(int number);
+void	ft_putnum(char *str, int number, int len);
+char	*ft_itoa(int number);
 int		ft_isspace(int c);
 int		ft_isnumber(char c);
 //ft_cases
@@ -57,12 +60,15 @@ void 	ft_case_s(t_list *l);
 void	ft_case_d(t_list *l);
 //FLAGS
 int 	ft_saver_flags(t_list *l, char *line);
-void	ft_printer_spaces(t_list *l, const char *line);
-void	ft_printer_minus(t_list *l, const char *line);
-void	ft_printer_zero(t_list *l, const char *line);
-void	ft_printer_thing(t_list *l, const char *line);
-
-
+void	ft_printer_int(t_list *l, const char *line);
+void    ft_printer_zero(t_list *l, int number, int size);
+void    ft_printer_spaces(t_list *l, int number, int size);
+void    ft_printer_minus(t_list *l, int number);
+void    ft_printer_character(t_list *l, const char *line);
+void    ft_case_width(t_list *l, const char *line, int number, int size);
+void    ft_case_zero_width(t_list *l, const char *line, int number, int size);
+void    ft_case_width_prec(t_list *l, const char *line, int number, int size);
+void    ft_case_zero_width_prec(t_list *l, const char *line, int number, int size);
 /*
 void va_start(va_list ap, last) -> inicializa lista
 void va_arg(va_list ap, type) -> devuelve sig argumento de lista
