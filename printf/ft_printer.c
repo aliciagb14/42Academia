@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/21 13:41:35 by agonzale          #+#    #+#             */
-/*   Updated: 2020/04/08 11:14:38 by agonzale         ###   ########.fr       */
+/*   Created: 2020/07/23 12:46:54 by user42            #+#    #+#             */
+/*   Updated: 2020/08/18 11:08:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void ft_printer_zero(t_list *l, int number, int size)
 	}
 }
 
-void ft_printer_spaces(t_list *l, int number, int size)
+void ft_printer_spaces(t_list *l, int size, const char *line)
 {
 	while (size > 0)
 	{

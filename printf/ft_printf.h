@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/11 22:48:00 by agonzale          #+#    #+#             */
-/*   Updated: 2020/04/08 12:42:39 by agonzale         ###   ########.fr       */
+/*   Created: 2020/07/23 12:50:08 by user42            #+#    #+#             */
+/*   Updated: 2020/08/18 11:13:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ int		ft_isnumber(char c);
 //ft_cases
 void	ft_putchar(char c, t_list *l);
 void 	ft_case_c(t_list * l);
+void    ft_printer_char(t_list *l, const char *line);
 void 	ft_case_s(t_list *l);
 void	ft_case_d(t_list *l);
 //FLAGS
-int 	ft_saver_flags(t_list *l, char *line);
+int     ft_saver_flags(t_list *l, char *line);
 void	ft_printer_int(t_list *l, const char *line);
 void    ft_printer_zero(t_list *l, int number, int size);
-void    ft_printer_spaces(t_list *l, int number, int size);
+void    ft_printer_spaces(t_list *l, int size, const char *line);
 void    ft_printer_minus(t_list *l, int number);
 void    ft_printer_character(t_list *l, const char *line);
 void    ft_case_width(t_list *l, const char *line, int number, int size);

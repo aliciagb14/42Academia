@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_case_d.c                                        :+:      :+:    :+:   */
+/*   ft_case_s.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/23 12:40:09 by user42            #+#    #+#             */
-/*   Updated: 2020/08/18 10:34:43 by user42           ###   ########.fr       */
+/*   Created: 2020/07/23 12:40:53 by user42            #+#    #+#             */
+/*   Updated: 2020/07/23 12:41:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr(t_list *l, int number)
+void	ft_case_s(t_list *l)
 {
-	if (number < 0)
-		number = -number;
-	if (number > 9)
+	char *str;
+
+	str = (char *)va_arg(l->args, long int);
+	l->len = 0;
+	while (str[l->len])
 	{
-		ft_putnbr(l, number / 10);
-		ft_putchar(number % 10 + 48, l);
+		ft_putchar((char)str[l->len], l);
+		l->len++;
 	}
-	else
-		ft_putchar(number + 48, l);
-}
-
-void	ft_case_d(t_list *l)
-{
-	int number;
-
-	number = va_arg(l->args, int);
-	ft_putnbr(l, number);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_saver_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/05 18:05:08 by agonzale          #+#    #+#             */
-/*   Updated: 2020/04/07 12:37:24 by agonzale         ###   ########.fr       */
+/*   Created: 2020/07/23 12:51:58 by user42            #+#    #+#             */
+/*   Updated: 2020/08/18 10:44:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int ft_saver_flags(t_list *l, char *line)
 {
-	int number;
 	while (!ft_isspecifier(line[l->pos]))
 	{
 		if (line[l->pos] == '-')  
