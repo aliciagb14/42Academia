@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printer_int.c                                   :+:      :+:    :+:   */
+/*   ft_printer_unsigned.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/23 12:48:03 by user42            #+#    #+#             */
-/*   Updated: 2020/09/08 11:05:35 by user42           ###   ########.fr       */
+/*   Created: 2020/09/08 11:06:26 by user42            #+#    #+#             */
+/*   Updated: 2020/09/08 11:33:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printer_int(t_list *l, const char *line)
+void	ft_printer_unsigned(t_list *l, const char *line)
 {
-	int number;
+	long long int number;
 	int size;
-	number = va_arg(l->args, int);
+	number = va_arg(l->args, unsigned long int);
 	l->len = ft_get_size_num(l, number);
 	if (l->flags.minus == TRUE && l->flags.zero == TRUE)
 		ft_case_zero_width(l, line, number, size);
@@ -30,7 +30,7 @@ void	ft_printer_int(t_list *l, const char *line)
 		ft_case_width_prec(l, line, number, size);
 }
 
-void ft_case_width(t_list *l, const char *line, int number, int size)
+void ft_case_width_u(t_list *l, const char *line, int number, int size)
 {
 	if (l->flags.minus == TRUE)
 	{
@@ -46,7 +46,7 @@ void ft_case_width(t_list *l, const char *line, int number, int size)
 	}
 }
 
-void ft_case_zero_width(t_list *l, const char *line, int number, int size)
+void ft_case_zero_width_u(t_list *l, const char *line, int number, int size)
 {
 	if (l->flags.minus == TRUE && l->flags.zero == TRUE)
 		ft_putnbr(l, number);
@@ -58,7 +58,7 @@ void ft_case_zero_width(t_list *l, const char *line, int number, int size)
 	}
 }
 
-void ft_case_width_prec(t_list *l, const char *line, int number, int size)	
+void ft_case_width_prec_u(t_list *l, const char *line, int number, int size)	
 {
 	if (l->flags.minus == TRUE)	{
 		if (l->width > l->precision)
@@ -93,7 +93,7 @@ void ft_case_width_prec(t_list *l, const char *line, int number, int size)
 	}
 }
 
-void ft_case_zero_width_prec(t_list *l, const char *line, int number, int size)	
+void ft_case_zero_width_prec_u(t_list *l, const char *line, int number, int size)	
 {
 	if (l->flags.minus == TRUE)
 	{

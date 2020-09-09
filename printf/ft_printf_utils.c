@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:51:20 by user42            #+#    #+#             */
-/*   Updated: 2020/08/18 10:33:36 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/09 10:08:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,66 +58,11 @@ int		ft_get_size_num(t_list *l, int number)
 	return (l->len);
 }
 
-
-int		ft_count_nb(int number)
+int ft_strlen (t_list *l, char *str)
 {
-	int				count;
-	unsigned int	c;
-
-	c = 0;
-	count = 0;
-	if (number < 0)
-	{
-		c = number * -1;
-		count++;
-	}
-	if (number > 0)
-		c = number;
-	while (c >= 10)
-	{
-		c = c / 10;
-		count++;
-	}
-	if (c < 10)
-		count++;
-	return (count);
-}
-
-void	ft_putnum(char *str, int number, int len)
-{
-	unsigned int c;
-
-	c = 0;
-	str[len--] = '\0';
-	if (number == 0)
-		str[0] = '0';
-	if (number < 0)
-	{
-		str[0] = '-';
-		c = number * -1;
-	}
-	if (number > 0)
-		c = number;
-	while (c > 10 || (c <= 10 && c != 0))
-	{
-		str[len--] = c % 10 + 48;
-		c = c / 10;
-	}
-}
-
-char	*ft_itoa(int number)
-{
-	char	*str;
-	int		len;
-
-	if (number < -2147483648)
-		return (NULL);
-	len = ft_count_nb(number);
-	str = (char*)malloc(sizeof(char) * len + 1);
-	if (str == 0)
-		return (NULL);
-	ft_putnum(str, number, len);
-	return (str);
+	while (str[l->len])
+		l->len++;
+	return l->len;
 }
 
 int		ft_isnumber(char c)

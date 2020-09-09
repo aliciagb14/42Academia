@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:49:21 by user42            #+#    #+#             */
-/*   Updated: 2020/08/18 11:38:11 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/08 11:33:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		ft_printf(const char *line, ...)
 
 int		main(void)
 {
-	printf("%d\n", ft_printf("%4c", 'x'));
-	printf("%d\n", printf("%4c", 'x'));
+	printf("%d\n", ft_printf("%04.1uFIN", 42));
+	printf("%d\n", printf("%04.1uFIN", 42));
 	return (0);
 }

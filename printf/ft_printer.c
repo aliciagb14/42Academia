@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:46:54 by user42            #+#    #+#             */
-/*   Updated: 2020/08/18 11:08:18 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/09 10:07:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,22 @@ void ft_printer_minus(t_list *l, int number)
 		ft_putchar('-', l);
 }
 
-void ft_printer_character(t_list *l, const char *line)	{
-	while (line[l->pos])	{
-		ft_putchar(line[l->pos], l);
-		l->pos++;
+void ft_printer_character(t_list *l, char *str)	{
+	while (*str)	{
+		ft_putchar(*str, l);
+		str++;
 	}
+}
+
+void	ft_putnbr(t_list *l, int number)
+{
+	if (number < 0)
+		number = -number;
+	if (number > 9)
+	{
+		ft_putnbr(l, number / 10);
+		ft_putchar(number % 10 + 48, l);
+	}
+	else
+		ft_putchar(number + 48, l);
 }
