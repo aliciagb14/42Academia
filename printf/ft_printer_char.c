@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:38:19 by user42            #+#    #+#             */
-/*   Updated: 2020/08/18 20:29:20 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/29 18:46:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,20 @@ void	ft_putchar(char c, t_list *l)
 
 void ft_printer_char(t_list *l, const char *line)
 {
-	char next;
-	next = (char)va_arg(l->args, int);
+	char c;
 
-	if ((l->flags.minus == TRUE && l->flags.zero == TRUE) || l->flags.minus == TRUE)
-	{
-		ft_putchar(next, l);
-		ft_printer_spaces(l, l->width - 1, line);
-	}
-	else if (l->flags.zero == TRUE)
+	c = va_arg(l->args, int);
+	if ((l->flags.zero == 1 && l->precision < 0) || 
+		(l->width > 0 && l->flags.minus == FALSE))
 	{
 		ft_printer_spaces(l, l->width - 1, line);
-		ft_putchar(next, l);
+		ft_putchar(c, l);
 	}
-	else //no funciona cuando es %4c o cosas así
+	else if (l->flags.minus == 1)
 	{
+		ft_putchar(c, l);
 		ft_printer_spaces(l, l->width - 1, line);
-		ft_putchar(next, l);
 	}
-	
+	else
+		ft_putchar(c, l);
 }

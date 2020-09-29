@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:46:54 by user42            #+#    #+#             */
-/*   Updated: 2020/09/09 10:07:22 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/18 13:03:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ void ft_printer_minus(t_list *l, int number)
 		ft_putchar('-', l);
 }
 
-void ft_printer_character(t_list *l, char *str)	{
-	while (*str)	{
+void ft_printer_character(t_list *l, char *str)
+{
+	while (*str)
+	{
 		ft_putchar(*str, l);
 		str++;
 	}

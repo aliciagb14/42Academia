@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/23 12:49:21 by user42            #+#    #+#             */
-/*   Updated: 2020/09/08 11:33:03 by user42           ###   ########.fr       */
+/*   Created: 2020/07/23 TRUE2:49:2TRUE by user42            #+#    #+#             */
+/*   Updated: 2020/09/28 23:29:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ int		ft_printf(const char *line, ...)
 
 	if (!(l = malloc(sizeof(t_list))))
 		return (-1);
-	l->pos = 0;
-	va_start(l->args, line);
 	ft_initialize(l);
+	va_start(l->args, line);
 	while (line[l->pos])
 	{
 		if (line[l->pos] == '%')
@@ -39,7 +38,7 @@ int		ft_printf(const char *line, ...)
 
 int		main(void)
 {
-	printf("%d\n", ft_printf("%04.1uFIN", 42));
-	printf("%d\n", printf("%04.1uFIN", 42));
+	printf("%d\n", ft_printf("%7.5s", "bombastic"));
+	printf("%d\n", printf("%7.5s", "bombastic"));
 	return (0);
 }

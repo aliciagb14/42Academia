@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/23 12:50:08 by user42            #+#    #+#             */
-/*   Updated: 2020/09/09 10:05:54 by user42           ###   ########.fr       */
+/*   Created: 2020/07/23 TRUE2:50:08 by user42            #+#    #+#             */
+/*   Updated: 2020/09/29 TRUE8:46:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		ft_isspecifier(char c);
 void	ft_putnbr(t_list *l, int number);
 int     ft_strlen (t_list *l, char *str);
 int		ft_get_size_num(t_list *l, int number);
-int		ft_atoi(char *str, t_list *l);
+int		ft_atoi(const char *str);
 int		ft_isspace(int c);
 int		ft_isnumber(char c);
 //ft_cases
@@ -65,27 +65,28 @@ char    *ft_trans_hexp(unsigned long int i);
 char    *ft_type_hexap(char *def);
 
 //FLAGS
-int     ft_saver_flags(t_list *l, char *line);
+int     ft_saver_flags(t_list *l, const char *line);
 void    ft_printer_zero(t_list *l, int number, int size);
 void    ft_printer_spaces(t_list *l, int size, const char *line);
 void    ft_printer_minus(t_list *l, int number);
 void    ft_printer_character(t_list *l, char *str);
-void    ft_case_width(t_list *l, const char *line, int number, int size);
-void    ft_case_zero_width(t_list *l, const char *line, int number, int size);
-void    ft_case_width_prec(t_list *l, const char *line, int number, int size);
-void    ft_case_zero_width_prec(t_list *l, const char *line, int number, int size);
-void    ft_case_zero_s(t_list *l, const char *line, char *str, int size);
-void    ft_case_width_s(t_list *l, const char *line, char *str, int size);
+void    ft_case_width(t_list *l, const char *line, int number);
+void    ft_case_zero_width(t_list *l, const char *line, int number);
+void    ft_case_width_prec(t_list *l, const char *line, int number);
+void    ft_case_zero_width_prec(t_list *l, const char *line, int number);
+void    ft_case_zero_s(t_list *l, const char *line, char *str);
+void    ft_case_width_s(t_list *l, const char *line, char *str);
 void    ft_aux_case_width_s(t_list *l, const char *line, char *str);
+void    ft_case_width_prec_s(t_list *l, const char *line, char *str);
 void    ft_case_width_prec_x(t_list *l, const char *line, char *s, int nb);
 void    ft_case_width_x(t_list *l, const char *line, char *s, int nb);
 void    ft_case_width_hexap(t_list *l, const char *line, char *str, int number);
 void    ft_case_width_prec_hexap(t_list *l, const char *line, char *str, int number);
 char    *ft_case_prec_hexap(t_list *l, char *s);
-void    ft_case_width_u(t_list *l, const char *line, int number, int size);
-void    ft_case_zero_width_u(t_list *l, const char *line, int number, int size);
-void    ft_case_width_prec_u(t_list *l, const char *line, int number, int size);
-void    ft_case_zero_width_prec_u(t_list *l, const char *line, int number, int size);
+void    ft_case_width_u(t_list *l, const char *line, int number);
+void    ft_case_zero_width_u(t_list *l, const char *line, int number);
+void    ft_case_width_prec_u(t_list *l, const char *line, int number);
+void    ft_case_zero_width_prec_u(t_list *l, const char *line, int number);
 /*
 void va_start(va_list ap, last) -> inicializa lista
 void va_arg(va_list ap, type) -> devuelve sig argumento de lista

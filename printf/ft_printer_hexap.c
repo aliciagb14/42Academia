@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:25:46 by user42            #+#    #+#             */
-/*   Updated: 2020/09/08 11:33:13 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/29 18:46:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void ft_printer_hexap(t_list *l, const char *line)
 	number = va_arg(l->args, unsigned long int);
 	str = ft_trans_hexp(number);
 	l->len = ft_strlen(l, str);
-    if ((l->flags.minus == TRUE || l->flags.zero == TRUE) && l->width <= 0 &&
+    if ((l->flags.minus == 1 || l->flags.zero == 1) && l->width <= 0 &&
 		l->precision <= 0)
         ft_printer_character(l, str);
 	else if (l->width >= 0 && l->precision >= 0)
@@ -38,12 +38,12 @@ void ft_case_width_prec_hexap(t_list *l, const char *line, char *str, int number
 			ft_printer_spaces(l, l->width - l->precision - 2, line);
 			ft_printer_character(l, str);
 		}
-		else if (l->flags.minus == TRUE)
+		else if (l->flags.minus == 1)
 		{
 			ft_printer_character(l, str);
 			ft_printer_spaces(l, l->width - l->len, line);
 		}
-		else if (l->flags.zero == TRUE && l->flags.minus == FALSE)
+		else if (l->flags.zero == 1 && l->flags.minus == FALSE)
 		{
 			ft_printer_spaces(l, l->width - l->len, line);
 			ft_printer_character(l, str);
@@ -57,12 +57,12 @@ void ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
 		ft_printer_spaces(l, l->width - l->len, line);
 		ft_printer_character(l, str);
 	} 
-	else if (l->flags.minus == TRUE && l->precision < l->len)
+	else if (l->flags.minus == 1 && l->precision < l->len)
 	{
 		ft_printer_character(l, str);
 		ft_printer_spaces(l, l->width - l->len, line);
 	}
-	else if (l->flags.zero == TRUE && l->precision < l->len && l->width < l->len)
+	else if (l->flags.zero == 1 && l->precision < l->len && l->width < l->len)
 	{
 		if (l->precision <= 0)
 			ft_printer_zero(l, number, l->width - l->len);

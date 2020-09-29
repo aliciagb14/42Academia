@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:43:06 by user42            #+#    #+#             */
-/*   Updated: 2020/07/23 12:44:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/14 09:00:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		ft_initialize(t_list *l)
 	l->cnt = 0;
 	l->pos = 0;
 	l->len = 0;
-	l->flags.zero = 0;
+	l->flags.zero = FALSE;
 	l->flags.space = FALSE;
 	l->flags.minus = FALSE;
 }

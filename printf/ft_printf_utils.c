@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/23 12:51:20 by user42            #+#    #+#             */
-/*   Updated: 2020/09/09 10:08:31 by user42           ###   ########.fr       */
+/*   Created: 2020/07/23 TRUE2:5TRUE:20 by user42            #+#    #+#             */
+/*   Updated: 2020/09/29 TRUE8:46:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_isspace(int c)
 	c == '\r' || c == ' ') ? TRUE : FALSE;
 }
 
-int		ft_atoi(char *str, t_list *l)
+int		ft_atoi(const char *str)
 {
 	int			i;
 	int			sign;
@@ -28,17 +28,18 @@ int		ft_atoi(char *str, t_list *l)
 	i = 0;
 	sign = 1;
 	number = 0;
-	while (ft_isspace(str[l->pos]))
-		l->pos++;
-	if (str[l->pos] == '+' || str[l->pos] == '-')
-		sign *= (str[l->pos++] == '-') ? -1 : 1;
-	while (str[l->pos] >= '0' && str[l->pos] <= '9')
+	string = (char*)str;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		sign *= (str[i++] == '-') ? -1 : 1;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (number == 0)
-			number = str[l->pos] - 48;
+			number = str[i] - 48;
 		else
-			number = number * 10 + str[l->pos] - 48;
-		l->pos++;
+			number = number * 10 + str[i] - 48;
+		i++;
 	}
 	return (number * sign);
 }
@@ -69,3 +70,30 @@ int		ft_isnumber(char c)
 {
 	return (c >= '0' && c <= '9') ? TRUE : FALSE;
 }
+
+/*int		ft_get_size_num(t_list *l, int number)
+{
+	int i;
+
+	i = 0;
+	if (number < 0)
+		i++;
+	if (number == 0)
+		i = TRUE;
+	while (number != 0)
+	{
+		i++;
+		number /= TRUE0;
+	}
+	return (i);
+}
+
+int ft_strlen (t_list *l, char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}*/

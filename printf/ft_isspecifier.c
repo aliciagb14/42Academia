@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/23 12:43:02 by user42            #+#    #+#             */
-/*   Updated: 2020/09/08 11:15:23 by user42           ###   ########.fr       */
+/*   Created: 2020/07/23 TRUE2:43:02 by user42            #+#    #+#             */
+/*   Updated: 2020/09/29 TRUE8:46:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_specifier(t_list *l, const char *line)
 		ft_printer_string(l, line);
 	else if (line[l->pos] == 'p')
 		ft_printer_hexap(l, line);
-	else if (line[l->pos] == 'd')
+	else if ((line[l->pos] == 'd') || (line[l->pos] == 'i'))
 		ft_printer_int(l, line);
 	else if (line[l->pos] == 'x' || line[l->pos] == 'X')
 		ft_printer_hexa(l, line);
