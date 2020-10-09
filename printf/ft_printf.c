@@ -35,10 +35,3 @@ int		ft_printf(const char *line, ...)
 	va_end(l->args);
 	return (l->cnt);
 }
-
-int		main(void)
-{
-	printf("%d\n", ft_printf("%7.5s", "bombastic"));
-	printf("%d\n", printf("%7.5s", "bombastic"));
-	return (0);
-}
