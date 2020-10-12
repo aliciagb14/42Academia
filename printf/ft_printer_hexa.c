@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/22 12:16:33 by user42            #+#    #+#             */
-/*   Updated: 2020/09/29 18:46:04 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/29 21:07:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void ft_case_width_prec_x(t_list *l, const char *line, char *s, int nb)
 
 void ft_case_width_x(t_list *l, const char *line, char *s, int nb)
 {
+	//TODO: nb puesto para q no de error, borrar despues
+	if (nb){}
 	ft_printer_spaces(l, l->width - l->len, line);
 	ft_printer_character(l, s);
 }

@@ -18,31 +18,55 @@ void ft_printer_string(t_list *l, const char *line)
 
 	str = (char *)va_arg(l->args, long int);
 	l->len = ft_strlen(l, str);
-	if (l->precision <=0 && l->width <= 0)
-		ft_printer_character(l, str);
+	if (str)
+	{
+	if (l->width <= 0 && l->flags.minus == FALSE)
+	{
+		if (l->precision <= 0 ||  l->precision >= l->len)
+			ft_printer_character(l, str);
+		else if (l->precision == 0 && l->precision < l->len)
+			ft_printer_character(l, "\0");
+		else if (l->precision < l->len)
+			ncharacter_according_prec(l, str);
+	}
 	else if (l->width > 0 && l->precision <= 0)
 		ft_case_width_s(l, line, str);
-	else if (l->flags.minus == FALSE && l->precision > 0 && l->width <= 0)
-	{
-		ft_printer_character(l, str); //INCOmpleto
-	}
 	else if (l->width > 0 && l->precision > 0)
 		ft_case_width_prec_s(l, line, str);
+	}
+	else
+	{
+		
+	}
+	
 }
 
 void ft_case_width_prec_s(t_list *l, const char *line, char *str)
 {
 	if (l->flags.minus == FALSE && l->flags.zero == FALSE)
 	{
-		if (l->precision < l->len)
-		{
-			ft_printer_character(l, str);
-			l->len++;
-		}
-		else
+		if (l->width < l->len || l->precision < l->len)
 		{
 			ft_printer_spaces(l, l->width - l->precision, line);
+			ncharacter_according_prec(l, str);
+		}
+		else if (l->width > l->len || l->precision > l->len)
+		{
+			ft_printer_spaces(l, l->width - l->len, line);
 			ft_printer_character(l, str);
+		}
+	}
+	else if (l->flags.minus == TRUE)
+	{
+		if (l->precision > l->len)
+		{
+			ft_printer_character(l, str);
+			ft_printer_spaces(l, l->width - l->len, line);
+		}
+		else if(l->precision <= l->len)
+		{
+			ncharacter_according_prec(l, str);
+			ft_printer_spaces(l, l->width - l->len, line);
 		}
 	}
 }
@@ -61,9 +85,38 @@ void ft_case_width_s(t_list *l, const char *line, char *str)
 	}
 }
 
-void ft_aux_case_width_s(t_list *l, const char *line, char *str)
+char *ncharacter_according_prec(t_list *l, char *str)
 {
+	int i;
 	
+	i = 0;
+	while (*str && l->precision != 0)
+	{
+		ft_putchar(*str, l);
+		str++;
+		l->precision--;
+	}
+	l->len = ft_strlen(l, str);
+	return (&str[i]);
+}
+
+char	*ft_strdup(t_list *l, char *s1)
+{
+	char	*s2;
+	size_t	i;
+	size_t	j;
+
+	j = 0;
+	i = ft_strlen(l, s1);
+	if (!(s2 = (char*)malloc(sizeof(char) * (i + 1))))
+		return (0);
+	while (s1[j])
+	{
+		s2[j] = s1[j];
+		j++;
+	}
+	s2[j] = '\0';
+	return ((char*)s2);
 }
 
 /*

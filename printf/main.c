@@ -2,7 +2,7 @@
 
 int		main(void)
 {
-	printf("%d\n", ft_printf("%7.5s", "bombastic"));
-	printf("%d\n", printf("%7.5s", "bombastic"));
+	printf("%d\n", ft_printf("%.0d", 0));
+	printf("%d\n", printf("%.0d", 0));
 	return (0);
 }

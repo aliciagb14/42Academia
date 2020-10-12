@@ -15,6 +15,7 @@
 
 #define TRUE 1
 #define FALSE 0
+#define NULL = 0
 #include <stdio.h>
 #include <stdarg.h> //al incluir la librería  declaro va_list y se definen sus 3 macros       
 #include <string.h>
@@ -72,12 +73,15 @@ void    ft_printer_minus(t_list *l, int number);
 void    ft_printer_character(t_list *l, char *str);
 void    ft_case_width(t_list *l, const char *line, int number);
 void    ft_case_zero_width(t_list *l, const char *line, int number);
+void    ft_case_prec_d(t_list *l, const char *line, int number);
 void    ft_case_width_prec(t_list *l, const char *line, int number);
-void    ft_case_zero_width_prec(t_list *l, const char *line, int number);
+void    ft_case_width_prec(t_list *l, const char *line, int number);
 void    ft_case_zero_s(t_list *l, const char *line, char *str);
 void    ft_case_width_s(t_list *l, const char *line, char *str);
 void    ft_aux_case_width_s(t_list *l, const char *line, char *str);
 void    ft_case_width_prec_s(t_list *l, const char *line, char *str);
+char	*ft_strdup(t_list *l, char *s1);
+char    *ncharacter_according_prec(t_list *l, char *str);
 void    ft_case_width_prec_x(t_list *l, const char *line, char *s, int nb);
 void    ft_case_width_x(t_list *l, const char *line, char *s, int nb);
 void    ft_case_width_hexap(t_list *l, const char *line, char *str, int number);

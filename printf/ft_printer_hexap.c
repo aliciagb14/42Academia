@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:25:46 by user42            #+#    #+#             */
-/*   Updated: 2020/09/29 18:46:04 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/29 21:08:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void ft_printer_hexap(t_list *l, const char *line)
 
 void ft_case_width_prec_hexap(t_list *l, const char *line, char *str, int number)
 {
+	//TODO: if(number) borrar
+	if (number){}
 		if (l->flags.minus == FALSE && l->flags.zero == FALSE)
 		{
 			ft_printer_spaces(l, l->width - l->precision - 2, line);
