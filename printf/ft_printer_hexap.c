@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:25:46 by user42            #+#    #+#             */
-/*   Updated: 2020/10/13 10:49:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/13 12:29:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void ft_printer_hexap(t_list *l, const char *line)
 	str = ft_trans_hexp(number);
 	l->len = ft_strlen(l, str);
 	if (number == 0)
-		ft_printer_character(l, "(nil)");
+		ft_printer_character(l, "(0x0)");
     else if ((l->flags.minus == TRUE || l->flags.zero == TRUE) && l->width <= 0 &&
 		l->precision <= 0)
         ft_printer_character(l, str);
