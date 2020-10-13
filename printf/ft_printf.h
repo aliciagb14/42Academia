@@ -71,22 +71,27 @@ void    ft_printer_zero(t_list *l, int number, int size);
 void    ft_printer_spaces(t_list *l, int size, const char *line);
 void    ft_printer_minus(t_list *l, int number);
 void    ft_printer_character(t_list *l, char *str);
+//INTEGER
 void    ft_case_width(t_list *l, const char *line, int number);
 void    ft_case_zero_width(t_list *l, const char *line, int number);
 void    ft_case_prec_d(t_list *l, const char *line, int number);
 void    ft_case_width_prec(t_list *l, const char *line, int number);
 void    ft_case_width_prec(t_list *l, const char *line, int number);
+//STRINGS
 void    ft_case_zero_s(t_list *l, const char *line, char *str);
 void    ft_case_width_s(t_list *l, const char *line, char *str);
 void    ft_aux_case_width_s(t_list *l, const char *line, char *str);
 void    ft_case_width_prec_s(t_list *l, const char *line, char *str);
 char	*ft_strdup(t_list *l, char *s1);
+//HEXA_X
 char    *ncharacter_according_prec(t_list *l, char *str);
 void    ft_case_width_prec_x(t_list *l, const char *line, char *s, int nb);
 void    ft_case_width_x(t_list *l, const char *line, char *s, int nb);
+//HEXA_p
 void    ft_case_width_hexap(t_list *l, const char *line, char *str, int number);
-void    ft_case_width_prec_hexap(t_list *l, const char *line, char *str, int number);
+void    ft_case_width_prec_hexap(t_list *l, const char *line, char *str);
 char    *ft_case_prec_hexap(t_list *l, char *s);
+//UNSIGNED
 void    ft_case_width_u(t_list *l, const char *line, int number);
 void    ft_case_zero_width_u(t_list *l, const char *line, int number);
 void    ft_case_width_prec_u(t_list *l, const char *line, int number);
