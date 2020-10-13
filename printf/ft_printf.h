@@ -15,7 +15,7 @@
 
 #define TRUE 1
 #define FALSE 0
-#define NULL = 0
+//#define NULL = 0
 #include <stdio.h>
 #include <stdarg.h> //al incluir la librería  declaro va_list y se definen sus 3 macros       
 #include <string.h>
