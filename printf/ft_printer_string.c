@@ -16,7 +16,7 @@ void ft_printer_string(t_list *l, const char *line)
 {
 	char *str;
 
-	str = (char *)va_arg(l->args, long int);
+	str = (char *)va_arg(l->args, void *);
 	l->len = ft_strlen(l, str);
 	if (str != NULL)
 	{
