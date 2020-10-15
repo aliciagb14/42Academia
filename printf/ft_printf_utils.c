@@ -61,9 +61,12 @@ int		ft_get_size_num(t_list *l, int number)
 
 int ft_strlen (t_list *l, char *str)
 {
-	while (str[l->len])
-		l->len++;
-	return l->len;
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 
 int		ft_isnumber(char c)

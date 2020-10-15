@@ -16,10 +16,10 @@ void ft_printer_string(t_list *l, const char *line)
 {
 	char *str;
 
-	str = (char *)va_arg(l->args, void *);
-	l->len = ft_strlen(l, str);
+	str = (char *)va_arg(l->args, long int);
 	if (str != NULL)
 	{
+		l->len = ft_strlen(l, str);
 		if (l->width <= 0 && l->flags.minus == FALSE)
 		{
 			if (l->precision <= 0 ||  l->precision >= l->len)
