@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:38:19 by user42            #+#    #+#             */
-/*   Updated: 2020/10/12 23:36:36 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/15 20:10:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	ft_putchar(char c, t_list *l)
 {
 	write(1, &c, 1);
 	l->cnt++;
-	if (c == '\0')
-		l->cnt--;
 }
 
 void ft_printer_char(t_list *l, const char *line)
