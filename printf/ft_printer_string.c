@@ -22,8 +22,13 @@ void ft_printer_string(t_list *l, const char *line)
 		l->len = ft_strlen(l, str);
 		if (l->width <= 0 && l->flags.minus == FALSE)
 		{
-			if (l->precision <= 0 ||  l->precision >= l->len)
+			if (l->precision >= l->len)
 				ft_printer_character(l, str);
+			else if (l->precision == 0)
+			{
+				write(1, "", 0);
+				str = NULL;		
+			}
 			else if (l->precision < l->len)
 				ncharacter_according_prec(l, str);
 		}
@@ -34,8 +39,26 @@ void ft_printer_string(t_list *l, const char *line)
 	}
 	else
 	{
-		write(1, "(null)", 6);
-		l->cnt += 6;
+		if (l->width >= 0)
+		{
+			l->len += 6;
+			l->cnt += 6;
+			if (l->flags.minus == TRUE)
+			{
+				write(1, "(null)", 6);
+				ft_printer_spaces(l, l->width - l->len, line);
+			}
+			else if (l->flags.minus == FALSE)
+			{
+				if (l->precision >= 0 && l->width < 0)
+					write(1, "", 0);
+				else
+				{
+					ft_printer_spaces(l, l->width - l->len, line);
+					write(1, "(null)", 6);
+				}
+			}
+		}
 		str = NULL;
 	}
 }
@@ -99,7 +122,7 @@ char *ncharacter_according_prec(t_list *l, char *str)
 	return (&str[i]);
 }
 
-char	*ft_strdup(t_list *l, char *s1)
+/*char	*ft_strdup(t_list *l, char *s1)
 {
 	char	*s2;
 	size_t	i;
@@ -117,7 +140,7 @@ char	*ft_strdup(t_list *l, char *s1)
 	s2[j] = '\0';
 	return ((char*)s2);
 }
-
+*/
 /*
 void ft_printer_string(t_list *l, const char *line)
 {
