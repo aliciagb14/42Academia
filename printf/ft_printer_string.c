@@ -34,7 +34,7 @@ void ft_printer_string(t_list *l, const char *line)
 	}
 	else
 	{
-		ft_printer_character(l, "(null)");
+		write(1, "(null)", 6);
 		l->cnt += 6;
 		str = NULL;
 	}
