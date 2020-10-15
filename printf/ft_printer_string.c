@@ -26,8 +26,13 @@ void ft_printer_string(t_list *l, const char *line)
 				ft_printer_character(l, str);
 			else if (l->precision == 0)
 			{
-				write(1, "", 0);
-				str = NULL;		
+				if (l->len > l->width || l->len > l->precision)
+					ft_printer_character(l, str);
+				else
+				{
+					write(1, "", 0);
+					str = NULL;
+				}		
 			}
 			else if (l->precision < l->len)
 				ncharacter_according_prec(l, str);
@@ -39,26 +44,25 @@ void ft_printer_string(t_list *l, const char *line)
 	}
 	else
 	{
-		if (l->width >= 0)
+		l->len += 6;
+		if (l->precision >= l->len)
 		{
-			l->len += 6;
-			l->cnt += 6;
-			if (l->flags.minus == TRUE)
-			{
+			if (l->width <= l->len)
 				write(1, "(null)", 6);
-				ft_printer_spaces(l, l->width - l->len, line);
+			else if (l->flags.minus == TRUE)
+			{	
+				write(1, "(null)", 6);
+				ft_printer_spaces(l, l->width - l->len, line);	
 			}
 			else if (l->flags.minus == FALSE)
 			{
-				if (l->precision >= 0 && l->width < 0)
-					write(1, "", 0);
-				else
-				{
-					ft_printer_spaces(l, l->width - l->len, line);
-					write(1, "(null)", 6);
-				}
+				ft_printer_spaces(l, l->width - l->len, line);
+				write(1, "(null)", 6);
 			}
 		}
+		else if (l->precision < l->len)
+			ft_printer_spaces(l, l->width, line);
+		l->cnt += 6;
 		str = NULL;
 	}
 }
@@ -112,13 +116,14 @@ char *ncharacter_according_prec(t_list *l, char *str)
 	int i;
 	
 	i = 0;
+	l->len = 0;
 	while (*str && l->precision != 0)
 	{
 		ft_putchar(*str, l);
 		str++;
 		l->precision--;
+		l->len++;
 	}
-	l->len = ft_strlen(l, str);
 	return (&str[i]);
 }
 
