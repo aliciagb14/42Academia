@@ -18,27 +18,25 @@ void ft_printer_string(t_list *l, const char *line)
 
 	str = (char *)va_arg(l->args, long int);
 	l->len = ft_strlen(l, str);
-	if (str)
+	if (str != NULL)
 	{
-	if (l->width <= 0 && l->flags.minus == FALSE)
-	{
-		if (l->precision <= 0 ||  l->precision >= l->len)
-			ft_printer_character(l, str);
-		else if (l->precision == 0 && l->precision < l->len)
-			ft_printer_character(l, "\0");
-		else if (l->precision < l->len)
-			ncharacter_according_prec(l, str);
-	}
-	else if (l->width > 0 && l->precision <= 0)
-		ft_case_width_s(l, line, str);
-	else if (l->width > 0 && l->precision > 0)
-		ft_case_width_prec_s(l, line, str);
+		if (l->width <= 0 && l->flags.minus == FALSE)
+		{
+			if (l->precision <= 0 ||  l->precision >= l->len)
+				ft_printer_character(l, str);
+			else if (l->precision < l->len)
+				ncharacter_according_prec(l, str);
+		}
+		else if (l->width > 0 && l->precision <= 0)
+			ft_case_width_s(l, line, str);
+		else if (l->width > 0 && l->precision > 0)
+			ft_case_width_prec_s(l, line, str);
 	}
 	else
 	{
-		
+		ft_printer_character(l, "(null)");
+		l->len = 6;
 	}
-	
 }
 
 void ft_case_width_prec_s(t_list *l, const char *line, char *str)
