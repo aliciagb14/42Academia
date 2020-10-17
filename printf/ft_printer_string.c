@@ -20,24 +20,9 @@ void ft_printer_string(t_list *l, const char *line)
 	if (str != NULL)
 	{
 		l->len = ft_strlen(l, str);
-		if (l->width <= 0 && l->flags.minus == FALSE)
-		{
-			if (l->precision >= l->len)
-				ft_printer_character(l, str);
-			else if (l->precision == 0)
-			{
-				if (l->len > l->width || l->len > l->precision)
-					ft_printer_character(l, str);
-				else
-				{
-					write(1, "", 0);
-					str = NULL;
-				}		
-			}
-			else if (l->precision < l->len)
-				ncharacter_according_prec(l, str);
-		}
-		else if (l->width > 0 && l->precision <= 0)
+		if (l->width == 0 && l->precision != 0)
+			ncharacter_according_prec(l, str);
+		else if (l->width >= 0 && l->precision <= 0)
 			ft_case_width_s(l, line, str);
 		else if (l->width > 0 && l->precision > 0)
 			ft_case_width_prec_s(l, line, str);
@@ -45,24 +30,27 @@ void ft_printer_string(t_list *l, const char *line)
 	else
 	{
 		l->len += 6;
-		if (l->precision >= l->len)
+		if (l->flags.minus == TRUE)
 		{
-			if (l->width <= l->len)
+			//l->cnt += 6;
+			if (l->precision < l->width && l->precision < l->len)
+				ft_printer_spaces(l, l->width, line);
+			else
+			{
 				write(1, "(null)", 6);
-			else if (l->flags.minus == TRUE)
-			{	
-				write(1, "(null)", 6);
-				ft_printer_spaces(l, l->width - l->len, line);	
+				ft_printer_spaces(l, l->width - l->len, line);
 			}
-			else if (l->flags.minus == FALSE)
+		}
+		else if (l->flags.minus == FALSE)
+		{
+			if (l->precision < l->width && l->precision < l->len && l->precision > 0)
+				ft_printer_spaces(l, l->width, line);
+			else
 			{
 				ft_printer_spaces(l, l->width - l->len, line);
 				write(1, "(null)", 6);
 			}
 		}
-		else if (l->precision < l->len)
-			ft_printer_spaces(l, l->width, line);
-		l->cnt += 6;
 		str = NULL;
 	}
 }
@@ -99,15 +87,30 @@ void ft_case_width_prec_s(t_list *l, const char *line, char *str)
 
 void ft_case_width_s(t_list *l, const char *line, char *str)
 {
-	if (l->flags.minus == FALSE)
+	if (l->flags.minus == FALSE && l->precision == 0)
 	{
-		ft_printer_spaces(l, l->width - l->len, line);
-		ft_printer_character(l, str);
+		if (l->precision < l->len && l->width != 0)
+			ft_printer_spaces(l, l->width, line);
+		else
+		{
+			ft_printer_spaces(l, l->width - l->len, line);
+			ft_printer_character(l, str);	
+		}
 	}
-	else if (l->flags.minus == TRUE)
+	else if (l->flags.minus == TRUE && l->precision == 0)
 	{
-		ft_printer_character(l, str);
-		ft_printer_spaces(l, l->width - l->len, line);
+		if (l->precision < l->len)
+			ft_printer_spaces(l, l->width, line);
+		else if (l->precision < l->len)
+		{
+			ft_printer_spaces(l, l->width - l->len, line);
+			ft_printer_character(l,str);
+		}
+		else
+		{
+			ft_printer_character(l, str);
+			ft_printer_spaces(l, l->width - l->len, line);
+		}
 	}
 }
 
@@ -146,75 +149,4 @@ char *ncharacter_according_prec(t_list *l, char *str)
 	return ((char*)s2);
 }
 */
-/*
-void ft_printer_string(t_list *l, const char *line)
-{
-	char *str;
 
-	str = (char *)va_arg(l->args, long int);
-	if (l->width < 0 && l->precision < 0 && l->flags.minus == FALSE)
-	{
-		while (str[l->len])
-		{
-			ft_putchar((char)str[l->len], l);
-			l->len++;
-		}
-	}
-	else if (l->flags.zero == TRUE || l->flags.minus == TRUE)
-		ft_case_zero_s(l, line, str);
-	else if (l->flags.zero == TRUE && l->flags.minus == TRUE)
-		ft_case_zero_s(l, line, str);
-	else if (l->flags.zero == FALSE && l->width > 0)
-		ft_case_width_s(l, line, str);
-}
-
-void ft_case_zero_s(t_list *l, const char *line, char *str)
-{
-	if (l->flags.zero == TRUE && l->flags.minus == FALSE)
-	{
-		ft_printer_spaces(l, l->precision - TRUE, line);
-	 	ft_printer_character(l, str);
-	}
-	else if (l->flags.minus == TRUE)
-	{
-		ft_printer_character(l, str);
-		ft_printer_spaces(l, l->width - l->len, line);
-	}
-}
-
-void ft_case_width_s(t_list *l, const char *line, char *str)
-{
-	if (l->flags.minus == TRUE && l->precision < 0)
-	{
-		ft_printer_character(l, str);
-		ft_printer_spaces(l, l->width - l->len, line);
-	}
-	else if (l->flags.minus == FALSE)
-	{
-		l->len = ft_strlen(l, str);
-		if (l->precision > 0)
-			ft_printer_spaces(l, l->width - l->precision, line);
-		else
-			ft_printer_spaces(l, l->width - l->len, line);
-		l->len = 0;
-		ft_aux_case_width_s(l, line, str);
-	}
-}
-
-void ft_aux_case_width_s(t_list *l, const char *line, char *str)
-{
-	if (l->precision > 0)
-	{
-		l->len = 0;
-		ft_printer_character(l, str);
-	}
-	else
-	{
-		while (str[l->len])
-		{
-			ft_putchar((char)str[l->len], l);
-			l->len++;
-		}
-	}
-}
-*/
