@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printer_hexap.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/24 12:25:46 by user42            #+#    #+#             */
-/*   Updated: 2020/10/18 13:07:30 by user42           ###   ########.fr       */
+/*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
+/*   Updated: 2020/10/18 13:14:20 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ char *ft_type_hexap(char *def)
     i++;
     def[i] = 'x';
     i++;
+	l->len = 2;
     return (def);
 }
 
