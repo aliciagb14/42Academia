@@ -36,5 +36,5 @@ void		ft_specifier(t_list *l, const char *line)
 	else if (line[l->pos] == 'u')
 		ft_printer_unsigned(l, line);
 	else if (line[l->pos] == '%')
-		ft_putchar('%', l);
+		ft_printer_percent(l, line);
 }
