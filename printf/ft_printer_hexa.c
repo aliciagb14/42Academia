@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/22 12:16:33 by user42            #+#    #+#             */
-/*   Updated: 2020/10/13 12:01:21 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/18 02:02:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,106 @@ void ft_printer_hexa(t_list *l, const char *line)
 	char *str;
 
 
-	number = va_arg(l->args, int);
+	number = va_arg(l->args, unsigned long int);
 	str = ft_trans_hex(number, line[l->pos]);
 	l->len = ft_strlen(l, str);
-	if (l->flags.minus == 1 || (l->width > 0 && l->precision > 0))
-		ft_case_width_prec_x(l, line, str, number);
-	else if (l->flags.zero == 1 || (l->width > 0 && l->flags.minus == FALSE))
-		ft_case_width_x(l, line, str, number);
+
+	if (number != 0 || (l->width >= l->precision && l->width >= 0) ||
+		(l->precision >= l->width && l->precision >= 0))
+	{
+		if (l->flags.minus == 1 || (l->width > 0 && l->precision > 0))
+			ft_case_width_prec_x(l, line, str, number);
+		else if (l->flags.zero == 1 || (l->width >= 0 && l->flags.minus == FALSE))
+			ft_case_width_x(l, line, str, number);
+	}
+	else
+	{
+		ft_case_zero(l, line, str, number);
+	}
 }
 
+void	ft_case_zero(t_list *l, const char *line, char *s, int nb)
+{
+	if (l->flags.minus == TRUE || l->precision > 0)
+	{
+		ft_printer_spaces(l, l->precision, line);
+	}
+	else if (l->precision <= 0)
+		ft_printer_spaces(l, l->width, line);
+}
+
+void	ft_case_width_prec_x(t_list *l, const char *line, char *s, int nb)
+{
+	if (l->width == 0)
+		ft_printer_character(l, s);
+	else
+	{
+		if (l->width > l->precision && l->precision > l->len)
+		{
+			if (l->flags.minus == TRUE)
+			{
+				if (nb == 0)
+				{
+					ft_printer_zero(l, nb, l->precision);
+					ft_printer_spaces(l, l->width - l->precision, line);
+				}
+				else
+				{
+					ft_printer_zero(l, nb, l->width - l->precision);
+					ft_printer_character(l, s);
+					ft_printer_spaces(l, l->precision - l->len, line);	
+				}
+			}
+			else
+			{
+				ft_printer_spaces(l, l->width - l->precision, line);
+				ft_printer_zero(l, nb, l->precision - l->len);
+				ft_printer_character(l, s);
+			}
+			
+		}
+		else
+		{
+			ft_printer_zero(l, nb, l->precision - l->len);
+			if (l->precision > l->len)
+			{
+				ft_printer_character(l, s);
+				ft_printer_spaces(l, l->width - l->len, line); //-7x, 33
+			}
+			else
+			{
+				if (l->flags.minus == TRUE)
+				{
+					ft_printer_character(l, s);	
+					ft_printer_spaces(l, l->width - l->len, line);
+				}
+				else
+				{	
+					ft_printer_spaces(l, l->width - l->len, line); //-7x, 33
+					ft_printer_character(l, s);	
+				}
+			}
+		}
+	}
+}
+
+void	ft_case_width_x(t_list *l, const char *line, char *s, int nb)
+{
+	if (l->precision > l->width || (l->width > l->precision && l->flags.zero == TRUE))
+	{
+		if (l->precision > l->width)
+			ft_printer_zero(l, nb, l->precision - l->len);
+		else
+				ft_printer_zero(l, nb, l->width - l->len);
+		ft_printer_character(l, s);
+	}
+	else
+	{
+		ft_printer_spaces(l, l->width - l->len, line);
+		ft_printer_character(l, s);
+	}
+	
+}
 
 char	 *ft_trans_hex(long int i, char c)
 {
@@ -55,19 +146,4 @@ char	 *ft_trans_hex(long int i, char c)
 	}
 	def[--count] = hex_char[i_copy % 16];
 	return (def);
-}
-
-void ft_case_width_prec_x(t_list *l, const char *line, char *s, int nb)
-{
-	ft_printer_zero(l, nb, l->precision - l->len);
-	ft_printer_character(l, s);
-	ft_printer_spaces(l, l->width - l->precision, line);
-}
-
-void ft_case_width_x(t_list *l, const char *line, char *s, int nb)
-{
-	//TODO: nb puesto para q no de error, borrar despues
-	if (nb){}
-	ft_printer_spaces(l, l->width - l->len, line);
-	ft_printer_character(l, s);
 }
