@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:25:46 by user42            #+#    #+#             */
-/*   Updated: 2020/10/18 12:47:47 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/18 12:52:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void ft_printer_hexap(t_list *l, const char *line)
 	l->len = ft_strlen(l, str);
 	if (number == 0 || number == NULL)
 		ft_printer_character(l, "0x0");
-    else if ((l->flags.minus == TRUE || l->flags.zero == TRUE) && l->width <= 0 &&
+   /* else if ((l->flags.minus == TRUE || l->flags.zero == TRUE) && l->width <= 0 &&
 		l->precision <= 0)
         ft_printer_character(l, str);
 	else if (l->width >= 0 && l->precision >= 0)
 		ft_case_width_prec_hexap(l, line, str);
 	else if (l->width >= 0 || l->precision >= 0)
-		ft_case_width_hexap(l, line, str, number);
+		ft_case_width_hexap(l, line, str, number);*/
 }
 /*
 void ft_case_width_prec_hexap(t_list *l, const char *line, char *str)
