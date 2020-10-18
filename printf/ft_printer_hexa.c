@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/22 12:16:33 by user42            #+#    #+#             */
-/*   Updated: 2020/10/18 02:05:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/18 02:09:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ void ft_printer_hexa(t_list *l, const char *line)
 void	ft_case_zero_hexa(t_list *l, const char *line, char *s, int nb)
 {
 	if (l->flags.minus == TRUE || l->precision > 0)
-	{
 		ft_printer_spaces(l, l->precision, line);
-	}
 	else if (l->precision <= 0)
 		ft_printer_spaces(l, l->width, line);
 }
