@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/18 13:30:32 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/18 13:34:56 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void ft_printer_hexap(t_list *l, const char *line)
 		ft_printer_character(l, "0x0");
 	}
 	else if (l->width >= 0 && l->precision < 0)
+	{
+		l->len = 2;
 		ft_printer_character(l, str);
+	}
    /* else if ((l->flags.minus == TRUE || l->flags.zero == TRUE) && l->width <= 0 &&
 		l->precision <= 0)
         ft_printer_character(l, str);
@@ -99,7 +102,7 @@ char *ft_case_prec_hexap(t_list *l, char *s)
 	return (s);
 }
 
-char *ft_type_hexap(t_list *l, char *def)
+char *ft_type_hexap(char *def)
 {
     int i;
     
@@ -108,7 +111,6 @@ char *ft_type_hexap(t_list *l, char *def)
     i++;
     def[i] = 'x';
     i++;
-	l->len = 2;
     return (def);
 }
 
