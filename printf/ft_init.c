@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:43:06 by user42            #+#    #+#             */
-/*   Updated: 2020/09/14 09:00:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/18 12:18:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_initialize(t_list *l)
+void	ft_initialize(t_list *l)
 {
 	l->width = 0;
 	l->precision = 0;
