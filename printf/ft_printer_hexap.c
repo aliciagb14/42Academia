@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/19 14:30:32 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:38:11 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,23 @@ void ft_printer_hexap(t_list *l, const char *line)
 
 void ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
 {
+	l->len += 2;
+	l->cnt += 2;
 	if (l->flags.minus == FALSE)
 	{
-		l->len += 2;
-		l->cnt += 2;
 		if (l->width > l->len)
 			ft_printer_spaces(l, l->width - l->len, line);
 		write(1, "0x", 2);
 		ft_printer_character(l, str);		
 	}
+	else
+	{
+		write(1, "0x", 2);
+		ft_printer_character(l, str);
+		if (l->width > l->len)
+			ft_printer_spaces(l, l->width - l->len, line);
+	}
+	
 }
 /*
 void ft_case_width_prec_hexap(t_list *l, const char *line, char *str)
