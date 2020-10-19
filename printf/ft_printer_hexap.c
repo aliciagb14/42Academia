@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/19 14:00:52 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:05:43 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,9 @@ char *ft_case_prec_hexap(t_list *l, char *s)
     return (def);
 }*/
 
-char	 *ft_trans_hexp(unsigned long int i)
+char	 *ft_trans_hexp(unsigned long i)
 {
-	unsigned long int			i_copy;
+	unsigned long			i_copy;
 	char				*hex_char;
 	char				*def;
 	int					count;
