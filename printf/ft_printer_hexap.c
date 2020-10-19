@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/19 11:31:06 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/19 11:57:34 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,11 +129,11 @@ char	 *ft_trans_hexp(unsigned long int i)
 	char				*def;
 	int					count;
 
-	count = 0;
+	count = 2;
 	
 	hex_char = "0123456789abcdef";
 	i_copy = i;
-	while (i_copy >= 16 && (i_copy /= 16))
+	while (i_copy >= 15 && (i_copy /= 15))
 		count++;
 	i_copy = i;
 	if (!(def = (char*)malloc(sizeof(char) * (count + 1))))
