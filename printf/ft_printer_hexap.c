@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/19 13:53:44 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:00:52 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,12 @@ void ft_printer_hexap(t_list *l, const char *line)
 void ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
 {
 	if (l->flags.minus == FALSE)
+	{
+		write(1, "0x", 2);
+		l->len += 2;
+		l->cnt+= 2;
 		ft_printer_character(l, str);
+	}
 }
 /*
 void ft_case_width_prec_hexap(t_list *l, const char *line, char *str)
@@ -107,7 +112,7 @@ char *ft_case_prec_hexap(t_list *l, char *s)
 	return (s);
 }
 
-char *ft_type_hexap(char *def)
+/*char *ft_type_hexap(char *def)
 {
     int i;
     
@@ -116,12 +121,8 @@ char *ft_type_hexap(char *def)
     i++;
     def[i] = 'x';
     i++;
-	def[i] = '1';
-	i++;
-	def[i] = '0';
-	i++;
     return (def);
-}
+}*/
 
 char	 *ft_trans_hexp(unsigned long int i)
 {
@@ -130,7 +131,7 @@ char	 *ft_trans_hexp(unsigned long int i)
 	char				*def;
 	int					count;
 
-	count = 3;
+	count = 1;
 	
 	hex_char = "0123456789abcdef";
 	i_copy = i;
@@ -147,6 +148,5 @@ char	 *ft_trans_hexp(unsigned long int i)
 		i_copy /= 16;
 	}
 	def[--count] = hex_char[i_copy % 16];
-    def = ft_type_hexap(def);
 	return (def);
 }
