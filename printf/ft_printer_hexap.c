@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/19 13:51:44 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/19 13:53:44 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ char *ft_type_hexap(char *def)
     i++;
     def[i] = 'x';
     i++;
-	def[i] == '1';
+	def[i] = '1';
 	i++;
-	def[i] == '0';
+	def[i] = '0';
 	i++;
     return (def);
 }
