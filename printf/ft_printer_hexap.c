@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/19 11:08:53 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/19 11:15:24 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void ft_printer_hexap(t_list *l, const char *line)
 
 
 	number = va_arg(l->args, int);
-	str = ft_trans_hexp(l, number);
+	str = ft_trans_hexp(number);
 	l->len = ft_strlen(l, str);
 	if (number == 0) // || number == NULL
 	{
@@ -33,6 +33,7 @@ void ft_printer_hexap(t_list *l, const char *line)
 		ft_printer_character(l, str);
 	else if (l->width >= 0 || l->precision >= 0)
 	{
+		l->len -= 1;
 		ft_case_width_hexap(l, line, str, number);
 	}
    /* else if ((l->flags.minus == TRUE || l->flags.zero == TRUE) && l->width <= 0 &&
@@ -109,7 +110,7 @@ char *ft_case_prec_hexap(t_list *l, char *s)
 	return (s);
 }
 
-char *ft_type_hexap(t_list *l, char *def)
+char *ft_type_hexap(char *def)
 {
     int i;
     
@@ -118,11 +119,10 @@ char *ft_type_hexap(t_list *l, char *def)
     i++;
     def[i] = 'x';
     i++;
-	l->len += 2;
     return (def);
 }
 
-char	 *ft_trans_hexp(t_list *l, unsigned long int i)
+char	 *ft_trans_hexp(unsigned long int i)
 {
 	unsigned long int			i_copy;
 	char				*hex_char;
@@ -146,6 +146,6 @@ char	 *ft_trans_hexp(t_list *l, unsigned long int i)
 		i_copy /= 16;
 	}
 	def[--count] = hex_char[i_copy % 16];
-    def = ft_type_hexap(l, def);
+    def = ft_type_hexap(def);
 	return (def);
 }
