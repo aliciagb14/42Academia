@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/19 14:44:19 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:47:18 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,11 @@ void ft_printer_hexap(t_list *l, const char *line)
 	{
 		l->len+= 2;
 		l->cnt+= 2;
-		write(1, "0x", 2); //ptrc -1, -1
+		write(1, "0x", 2);
 		ft_printer_character(l, str);
 	}
 	else if (l->width >= 0 || l->precision >= 0)
 		ft_case_width_hexap(l, line, str, number);
-   /* else if ((l->flags.minus == TRUE || l->flags.zero == TRUE) && l->width <= 0 &&
-		l->precision <= 0)
-        ft_printer_character(l, str);
-	else if (l->width >= 0 && l->precision >= 0)
-		ft_case_width_prec_hexap(l, line, str);
-	else if (l->width >= 0 || l->precision >= 0)
-		ft_case_width_hexap(l, line, str, number);*/
 }
 
 void ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
@@ -67,53 +60,8 @@ void ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
 	}
 	
 }
-/*
-void ft_case_width_prec_hexap(t_list *l, const char *line, char *str)
-{
-	if (l->flags.minus == FALSE && l->flags.zero == FALSE)
-	{
-		ft_printer_spaces(l, l->width - l->precision - 2, line);
-		ft_printer_character(l, str);
-	}
-	else if (l->flags.minus == 1)
-	{
-		ft_printer_character(l, str);
-		ft_printer_spaces(l, l->width - l->len, line);
-	}
-	else if (l->flags.zero == 1 && l->flags.minus == FALSE)
-	{
-		ft_printer_spaces(l, l->width - l->len, line);
-		ft_printer_character(l, str);
-	}
-}
 
-void ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
-{
-	if (l->flags.minus == FALSE && l->flags.zero == FALSE && l->precision <= 0)
-	{
-		ft_printer_spaces(l, l->width - l->len, line);
-		ft_printer_character(l, str);
-	} 
-	else if (l->flags.minus == 1 && l->precision < l->len)
-	{
-		ft_printer_character(l, str);
-		ft_printer_spaces(l, l->width - l->len, line);
-	}
-	else if (l->flags.zero == 1 && l->precision < l->len && l->width < l->len)
-	{
-		if (l->precision <= 0)
-			ft_printer_zero(l, number, l->width - l->len);
-		ft_printer_character(l, str);
-	}
-	else if (l->precision >= 0 && (l->len < l->precision || l->len < l->width))
-	{
-		str = ft_case_prec_hexap(l, str);
-		ft_printer_zero(l, number, l->precision - l->len + 2);
-		ft_printer_character(l, str);
-	}
-}*/
-
-char *ft_case_prec_hexap(t_list *l, char *s)
+/*char *ft_case_prec_hexap(t_list *l, char *s)
 {
 	int cnt;
 
@@ -125,7 +73,7 @@ char *ft_case_prec_hexap(t_list *l, char *s)
 		cnt++;
 	}
 	return (s);
-}
+}*/
 
 char	 *ft_trans_hexp(unsigned long i)
 {
