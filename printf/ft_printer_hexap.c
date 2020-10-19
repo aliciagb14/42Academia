@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/19 12:04:58 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/19 12:09:27 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ char	 *ft_trans_hexp(unsigned long int i)
 	char				*def;
 	int					count;
 
-	count = 3;
+	count = -1;
 	
 	hex_char = "0123456789abcdef";
 	i_copy = i;
