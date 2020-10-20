@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:37 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/20 19:00:36 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/20 19:53:44 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	ft_initialize(t_list *l)
 {
-	l->width = -1;
-	l->precision = -1;
+	l->width = 0;
+	l->precision = 0;
 	l->cnt = 0;
 	l->pos = 0;
 	l->len = 0;
 	l->flags.zero = FALSE;
 	l->flags.space = FALSE;
 	l->flags.minus = FALSE;
+	l->flags.point = FALSE;
 }
