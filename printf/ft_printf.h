@@ -28,6 +28,7 @@ typedef struct s_flags
     int     minus;	// -
 	int     space;	// ' '
     int     zero;	// 0
+    int     point; //.
 }               t_flags;
 
 typedef struct  s_princp {
@@ -47,7 +48,7 @@ void	ft_specifier(t_list *l, const char *line);
 int		ft_isspecifier(char c);
 //ft_numbers
 void	ft_putnbr(t_list *l, int number);
-int     ft_strlen (t_list *l, char *str);
+int     ft_strlen (t_list *l, char *str); //borrar t_list ya q no lo uso
 int		ft_get_size_num(t_list *l, int number);
 int		ft_atoi(const char *str);
 int		ft_isspace(int c);
@@ -61,8 +62,9 @@ void    ft_printer_hexa(t_list *l, const char *line);
 void    ft_printer_hexap(t_list *l, const char *line);
 void	ft_printer_int(t_list *l, const char *line);
 void	ft_printer_unsigned(t_list *l, const char *line);
+void    ft_printer_percent(t_list *l, const char *line);
 char	*ft_trans_hex(long int i, char c);
-char    *ft_trans_hexp(unsigned long int i);
+char    *ft_trans_hexp(unsigned long i);
 char    *ft_type_hexap(char *def);
 
 //FLAGS
@@ -82,15 +84,15 @@ void    ft_case_zero_s(t_list *l, const char *line, char *str);
 void    ft_case_width_s(t_list *l, const char *line, char *str);
 void    ft_aux_case_width_s(t_list *l, const char *line, char *str);
 void    ft_case_width_prec_s(t_list *l, const char *line, char *str);
-char	*ft_strdup(t_list *l, char *s1);
+//STRINGS ANTIGUO
+
 //HEXA_X
 char    *ncharacter_according_prec(t_list *l, char *str);
 void    ft_case_width_prec_x(t_list *l, const char *line, char *s, int nb);
 void    ft_case_width_x(t_list *l, const char *line, char *s, int nb);
+void	ft_case_zero_hexa(t_list *l, const char *line, char *s, int nb);
 //HEXA_p
 void    ft_case_width_hexap(t_list *l, const char *line, char *str, int number);
-void    ft_case_width_prec_hexap(t_list *l, const char *line, char *str);
-char    *ft_case_prec_hexap(t_list *l, char *s);
 //UNSIGNED
 void    ft_case_width_u(t_list *l, const char *line, int number);
 void    ft_case_zero_width_u(t_list *l, const char *line, int number);
