@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/20 20:12:08 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/20 20:16:16 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,24 +135,3 @@ char *ncharacter_according_prec(t_list *l, char *str)
 	}
 	return (&str[i]);
 }
-
-/*char	*ft_strdup(t_list *l, char *s1)
-{
-	char	*s2;
-	size_t	i;
-	size_t	j;
-
-	j = 0;
-	i = ft_strlen(l, s1);
-	if (!(s2 = (char*)malloc(sizeof(char) * (i + 1))))
-		return (0);
-	while (s1[j])
-	{
-		s2[j] = s1[j];
-		j++;
-	}
-	s2[j] = '\0';
-	return ((char*)s2);
-}
-*/
-
