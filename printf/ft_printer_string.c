@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/20 18:06:00 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/20 18:11:25 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void ft_case_width_prec_s(t_list *l, const char *line, char *str)
 
 void ft_case_width_s(t_list *l, const char *line, char *str)
 {
-	if (l->flags.minus == FALSE && l->precision == 0)
+	if (l->flags.minus == FALSE)
 	{
 		if (l->precision < l->len && l->width != 0)
 		{
@@ -105,11 +105,9 @@ void ft_case_width_s(t_list *l, const char *line, char *str)
 			ft_printer_character(l, str);	
 		}
 	}
-	else if (l->flags.minus == TRUE && l->precision == 0)
+	else if (l->flags.minus == TRUE)
 	{
-		if (l->precision < l->len)
-			ft_printer_spaces(l, l->width, line);
-		else if (l->precision < l->len)
+		if (l->precision < l->len && l->width < l->len)
 		{
 			ft_printer_spaces(l, l->width - l->len, line);
 			ft_printer_character(l,str);
