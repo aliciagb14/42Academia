@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:38 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/18 13:17:42 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/21 21:18:20 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,15 @@ void ft_case_width_u(t_list *l, const char *line, int number)
 {
 	if (l->flags.minus == TRUE)
 	{
-		ft_printer_minus(l, number);
-		ft_putnbr(l, number);
-		ft_printer_spaces(l, l->width - l->len, line);
+		if (l->flags.point == TRUE && l->width >= l->precision && number == 0)
+			ft_printer_spaces(l, l->width, line);
+		else
+		{
+			ft_printer_minus(l, number);
+			ft_putnbr(l, number);
+			ft_printer_spaces(l, l->width - l->len, line);
+		}
+		
 	}
 	else if (l->flags.zero == TRUE)
 	{
@@ -45,9 +51,19 @@ void ft_case_width_u(t_list *l, const char *line, int number)
 	}
 	else if (l->flags.minus == FALSE)
 	{
-		ft_printer_spaces(l, l->width - l->len, line);
-		ft_printer_minus(l, number);
-		ft_putnbr(l, number);
+		if (l->flags.point == TRUE && l->width >= l->precision && number == 0)
+		{
+			if (l->precision < 0)
+				ft_printer_zero(l, number, l->len);
+			else
+				ft_printer_spaces(l, l->width, line);
+		}
+		else
+		{
+			ft_printer_spaces(l, l->width - l->len, line);
+			ft_printer_minus(l, number);
+			ft_putnbr(l, number);	
+		}
 	}
 }
 
