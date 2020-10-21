@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/21 19:14:39 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/21 20:34:04 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void ft_printer_string(t_list *l, const char *line)
 	char *str;
 
 	str = (char *)va_arg(l->args, long int);
-	if (str != NULL && *str)
+	if (str != NULL || *str)
 	{
 		l->len = ft_strlen(l, str);
 		if (l->width == 0 && l->precision != 0)
@@ -27,12 +27,16 @@ void ft_printer_string(t_list *l, const char *line)
 		else if (l->width > 0 && l->precision > 0)
 			ft_case_width_prec_s(l, line, str);
 	}
+	else if (str == "\0")
+	{
+		ft_printer_spaces(l, l->width, line);
+	}
 	else
 	{
 		l->len += 6;
 		if (l->flags.minus == TRUE)
 		{
-			l->cnt += 6;
+			//l->cnt += 6;
 			if (l->flags.point == TRUE && l->precision < l->len)//l->precision < l->width && l->precision < l->len
 				ft_printer_spaces(l, l->width, line);
 			else
@@ -43,7 +47,7 @@ void ft_printer_string(t_list *l, const char *line)
 		}
 		else if (l->flags.minus == FALSE)
 		{
-			if (l->flags.point == TRUE && l->precision < l->len)
+			if (l->flags.point == TRUE && l->precision < l->len && l->precision >= 0)
 				ft_printer_spaces(l, l->width, line);
 			else
 			{
