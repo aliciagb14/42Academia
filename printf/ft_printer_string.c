@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/21 18:05:14 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/21 19:06:05 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void ft_printer_string(t_list *l, const char *line)
 	char *str;
 
 	str = (char *)va_arg(l->args, long int);
-	if (str != NULL)
+	if (str != NULL && *str)
 	{
 		l->len = ft_strlen(l, str);
 		if (l->width == 0 && l->precision != 0)
