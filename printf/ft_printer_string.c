@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/21 17:17:26 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/21 17:25:49 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void ft_case_width_s(t_list *l, const char *line, char *str)
 		}
 		else
 		{
-			if (l->precision != 0)
+			if (l->width >= 0 && l->flags.point == FALSE)
 			{
 				ft_printer_spaces(l, l->width - l->len, line);
 				ft_printer_character(l, str);
