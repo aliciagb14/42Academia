@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/21 17:57:44 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/21 18:05:14 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,17 @@ void ft_case_width_s(t_list *l, const char *line, char *str)
 	{
 		if (l->width > l->len && l->flags.point == FALSE)
 		{
-			ft_printer_spaces(l, l->width - l->len, line);
-			ft_printer_character(l, str);
+			if (l->flags.minus == TRUE)
+			{
+				ft_printer_character(l, str);
+				ft_printer_spaces(l, l->width - l->len, line);
+			}
+			else
+			{	
+				ft_printer_spaces(l, l->width - l->len, line);
+				ft_printer_character(l, str);
+			}
+			
 		}
 		else if (l->width > l->precision && l->flags.point == TRUE)
 			ft_printer_spaces(l, l->width, line);
@@ -104,8 +113,16 @@ void ft_case_width_s(t_list *l, const char *line, char *str)
 	{
 		if (l->width >= 0 && l->flags.point == FALSE)
 		{
-			ft_printer_spaces(l, l->width - l->len, line);
-			ft_printer_character(l, str);
+			if (l->flags.minus == TRUE)
+			{
+				ft_printer_character(l, str);
+				ft_printer_spaces(l, l->width - l->len, line);
+			}
+			else
+			{
+				ft_printer_spaces(l, l->width - l->len, line);
+				ft_printer_character(l, str);	
+			}
 		}
 	}
 	/*if (l->flags.minus == FALSE)
