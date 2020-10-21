@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/21 20:34:04 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/21 20:45:03 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void ft_printer_string(t_list *l, const char *line)
 	char *str;
 
 	str = (char *)va_arg(l->args, long int);
-	if (str != NULL || *str)
+	if (str != NULL)
 	{
 		l->len = ft_strlen(l, str);
 		if (l->width == 0 && l->precision != 0)
@@ -26,10 +26,6 @@ void ft_printer_string(t_list *l, const char *line)
 			ft_case_width_s(l, line, str);
 		else if (l->width > 0 && l->precision > 0)
 			ft_case_width_prec_s(l, line, str);
-	}
-	else if (str == "\0")
-	{
-		ft_printer_spaces(l, l->width, line);
 	}
 	else
 	{
