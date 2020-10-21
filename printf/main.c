@@ -15,10 +15,10 @@ int		main(void)
 	static char *a11;
 	static void *a12;
 
-	static char *s_hello = "hello world"; //test hexap
-	//static char *s_hidden = "hi low\0don't print me lol\0"; test s
-	printf("%d\n", ft_printf("%.03s", NULL));
-	printf("%d\n", printf("%.03s", NULL));
+	//static char *s_hello = "hello world"; //test hexap
+	static char *s_hidden = "hi low\0don't print me lol\0"; //test s
+	printf("%d\n", ft_printf("%-3.s", s_hidden));
+	printf("%d\n", printf("%-3.s", s_hidden));
 	getchar();
 	return (0);
 }
