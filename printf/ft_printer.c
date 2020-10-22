@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:52 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/18 13:17:55 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 20:00:11 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void ft_printer_character(t_list *l, char *str)
 	}
 }
 
-void	ft_putnbr(t_list *l, int number)
+void	ft_putnbr(t_list *l, unsigned long int number)
 {
 	if (number < 0)
 		number = -number;

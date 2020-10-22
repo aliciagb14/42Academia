@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:38 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/21 21:24:52 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 19:59:11 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	ft_printer_unsigned(t_list *l, const char *line)
 		ft_case_zero_width_u(l, line, number);
 	else if (l->width >= 0 && l->precision <= 0)
 		ft_case_width_u(l, line, number);
-	/*else if (l->width >= 0 && l->flags.zero == TRUE)
-		ft_case_zero_width_u(l, line, number);*/
 	else if (l->precision > 0 && l->width >= 0)
 		ft_case_width_prec_u(l, line, number);
 }
