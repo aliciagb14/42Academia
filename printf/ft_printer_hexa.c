@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:15:31 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/18 13:15:37 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/21 23:14:00 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,10 @@ void ft_printer_hexa(t_list *l, const char *line)
 	str = ft_trans_hex(number, line[l->pos]);
 	l->len = ft_strlen(l, str);
 
-	if (number != 0 || (l->width >= l->precision && l->width >= 0) ||
-		(l->precision >= l->width && l->precision >= 0))
-	{
-		if (l->flags.minus == 1 || (l->width > 0 && l->precision > 0))
-			ft_case_width_prec_x(l, line, str, number);
-		else if (l->flags.zero == 1 || (l->width >= 0 && l->flags.minus == FALSE))
-			ft_case_width_x(l, line, str, number);
-	}
-	/*else
-		ft_case_zero_hexa(l, line, str, number);*/
+	if (l->flags.minus == 1 || (l->width > 0 && l->precision > 0))
+		ft_case_width_prec_x(l, line, str, number);
+	else if (l->flags.zero == 1 || (l->width >= 0 && l->flags.minus == FALSE))
+		ft_case_width_x(l, line, str, number);
 }
 
 /*void	ft_case_zero_hexa(t_list *l, const char *line, char *s, int nb)
@@ -44,7 +38,7 @@ void ft_printer_hexa(t_list *l, const char *line)
 
 void	ft_case_width_prec_x(t_list *l, const char *line, char *s, int nb)
 {
-	if (l->width == 0)
+	if (l->width == 0 && nb != 0)
 		ft_printer_character(l, s);
 	else
 	{
@@ -109,8 +103,11 @@ void	ft_case_width_x(t_list *l, const char *line, char *s, int nb)
 	}
 	else
 	{
-		ft_printer_spaces(l, l->width - l->len, line);
-		ft_printer_character(l, s);
+		//if (l->precision != l->len && l->precision != 0)
+		//{
+			ft_printer_spaces(l, l->width - l->len, line);
+			ft_printer_character(l, s);
+		//}
 	}
 	
 }
