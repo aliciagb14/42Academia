@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/22 19:35:27 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 19:38:04 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void ft_printer_string(t_list *l, const char *line)
 	}
 	else
 	{
-		//l->len += 6;
+		l->len += 6;
 		if (l->flags.minus == TRUE)
 		{
 			if (l->flags.point == TRUE && l->precision <= l->len)
