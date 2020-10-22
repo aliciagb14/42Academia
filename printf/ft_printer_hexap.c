@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/22 20:52:35 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 20:55:29 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,13 @@ void ft_printer_hexap(t_list *l, const char *line)
 		}
 		else
 		{
-			l->len = 3;
+			l->len = 2; //l->len = 3
 			if (l->width > 0)
 				ft_printer_spaces(l, l->width - l->len, line);
-			ft_printer_character(l, "0x0");
+			ft_printer_character(l, "0x"); //ft_printer_character(l, "0x0");
 		}
 		
 	}
-	/*else if (l->width >= 0 && l->precision < 0)
-	{
-		l->len+= 2;
-		l->cnt+= 2;
-		write(1, "0x", 2);
-		ft_printer_character(l, str);
-	}*/
 	else if (l->width >= 0 || l->precision >= 0)
 		ft_case_width_hexap(l, line, str, number);
 }
@@ -82,20 +75,6 @@ void ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
 	}
 	
 }
-
-/*char *ft_case_prec_hexap(t_list *l, char *s)
-{
-	int cnt;
-
-	cnt = 0;
-	while (cnt < 2)
-	{
-		ft_putchar(*s, l);
-		s++;
-		cnt++;
-	}
-	return (s);
-}*/
 
 char	 *ft_trans_hexp(unsigned long i)
 {
