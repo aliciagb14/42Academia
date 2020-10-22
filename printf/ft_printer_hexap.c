@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/22 20:55:29 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 20:57:35 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void ft_printer_hexap(t_list *l, const char *line)
 		}
 		else
 		{
-			l->len = 2; //l->len = 3
+			l->len = 3;
 			if (l->width > 0)
 				ft_printer_spaces(l, l->width - l->len, line);
-			ft_printer_character(l, "0x"); //ft_printer_character(l, "0x0");
+			ft_printer_character(l, "0x0");
 		}
 		
 	}
