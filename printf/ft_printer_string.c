@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/22 17:48:39 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 17:49:28 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void ft_printer_string(t_list *l, const char *line)
 				}
 				else
 					ft_printer_spaces(l, l->width, line);
+			}
 			else
 			{
 				l->cnt += 6;
