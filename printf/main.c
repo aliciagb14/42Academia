@@ -17,7 +17,7 @@ int		main(void)
 
 	//static char *s_hello = "hello world"; //test hexap
 	static char *s_hidden = "hi low\0don't print me lol\0"; //test s
-	printf("%d\n", ft_printf("%u", 4294967295u));
-	printf("%d\n", printf("%u", 4294967295u));
+	printf("%d\n", ft_printf("%.p", NULL));
+	printf("%d\n", printf("%.p", NULL));
 	return (0);
 }
