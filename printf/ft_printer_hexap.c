@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/22 20:32:30 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 20:43:11 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,38 @@ void ft_printer_hexap(t_list *l, const char *line)
 	number = va_arg(l->args, void *);
 	str = ft_trans_hexp(number);
 	l->len = ft_strlen(l, str);
-	if (number == 0 && l->flags.point == FALSE)
+	if (number == 0 || number == NULL)
 	{
-		l->len = 3;
-		if (l->width > 0)
-			ft_printer_spaces(l, l->width - l->len, line);
-		ft_printer_character(l, "0x0");
+		if (l->flags.point == FALSE)
+		{
+			l->len = 3;
+			if (l->width > 0)
+				ft_printer_spaces(l, l->width - l->len, line);
+			ft_printer_character(l, "0x0");
+		}
+		else
+		{
+			l->len+= 2;
+			l->cnt+= 2;
+			if (l->precision == 0)
+				write(1, "0x", 2);
+			else
+			{
+				write(1, "0x", 2);
+				ft_printer_spaces(l, l->width - l->len, line);
+				ft_printer_character(l, str);
+			}
+			
+		}
+		
 	}
-	/*if (l->flags.point == TRUE && l->precision == 0)
-	{
-		l->len += 5;
-		l->cnt += 5;
-		write(1, "(nil)", 5);
-	}*/
-	else if (l->width >= 0 && l->precision < 0)
+	/*else if (l->width >= 0 && l->precision < 0)
 	{
 		l->len+= 2;
 		l->cnt+= 2;
 		write(1, "0x", 2);
 		ft_printer_character(l, str);
-	}
+	}*/
 	else if (l->width >= 0 || l->precision >= 0)
 		ft_case_width_hexap(l, line, str, number);
 }
