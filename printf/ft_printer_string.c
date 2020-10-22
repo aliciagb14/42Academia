@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/22 17:37:50 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 17:48:39 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,14 @@ void ft_printer_string(t_list *l, const char *line)
 		if (l->flags.minus == TRUE)
 		{
 			if (l->flags.point == TRUE && l->precision < l->len)//l->precision < l->width && l->precision < l->len
-				ft_printer_spaces(l, l->width, line);
+			{
+				if (l->precision != 0)
+				{
+					ft_printer_spaces(l, l->width - 1, line);
+					ft_printer_character(l, str);
+				}
+				else
+					ft_printer_spaces(l, l->width, line);
 			else
 			{
 				l->cnt += 6;
