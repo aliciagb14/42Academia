@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:15:31 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/21 23:14:00 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 18:09:55 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void ft_printer_hexa(t_list *l, const char *line)
 	char *str;
 
 
-	number = va_arg(l->args, unsigned long int);
+	number = va_arg(l->args, unsigned int);
 	str = ft_trans_hex(number, line[l->pos]);
 	l->len = ft_strlen(l, str);
 

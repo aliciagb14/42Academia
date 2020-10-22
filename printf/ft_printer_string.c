@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/22 17:55:56 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 18:15:13 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void ft_printer_string(t_list *l, const char *line)
 		else if (l->width > 0 && l->precision > 0)
 			ft_case_width_prec_s(l, line, str);
 	}
-	else
+	else if (str == NULL)
 	{
 		l->len += 6;
 		if (l->flags.minus == TRUE)
