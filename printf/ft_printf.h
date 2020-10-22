@@ -47,7 +47,8 @@ void	ft_initialize(t_list *l);
 void	ft_specifier(t_list *l, const char *line);
 int		ft_isspecifier(char c);
 //ft_numbers
-void	ft_putnbr(t_list *l, unsigned int number);
+void	ft_putnbr(t_list *l, int number);
+void	ft_putnbr_u(t_list *l, unsigned int number);
 int     ft_strlen (t_list *l, char *str); //borrar t_list ya q no lo uso
 int		ft_get_size_num(t_list *l, int number);
 int		ft_atoi(const char *str);
