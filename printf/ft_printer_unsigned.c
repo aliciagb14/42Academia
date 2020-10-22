@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:38 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/22 20:13:06 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 20:18:00 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_printer_unsigned(t_list *l, const char *line)
 {
-	long long int number;
+	unsigned int number;
 	int size;
 	number = va_arg(l->args, unsigned int);
 	l->len = ft_get_size_num(l, number);
@@ -59,7 +59,7 @@ void ft_case_width_u(t_list *l, const char *line, int number)
 		else
 		{
 			ft_printer_spaces(l, l->width - l->len, line);
-			ft_printer_minus(l, number);
+			//ft_printer_minus(l, number);
 			ft_putnbr_u(l, number);	
 		}
 	}
