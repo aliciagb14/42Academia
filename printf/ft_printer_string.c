@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/22 18:38:38 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/22 18:47:17 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void ft_case_width_prec_s(t_list *l, const char *line, char *str)
 {
 	if (l->flags.minus == FALSE && l->flags.zero == FALSE)
 	{
-		if (l->width < l->len)//|| l->precision < l->len
+		if (l->width < l->len || l->precision < l->len)
 		{
 			ft_printer_spaces(l, l->width - l->precision, line);
 			ncharacter_according_prec(l, str);
