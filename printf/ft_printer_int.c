@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:16:05 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/23 10:15:56 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/23 12:47:30 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	ft_printer_int(t_list *l, const char *line)
 
 	number = va_arg(l->args, int);
 	l->len = ft_get_size_num(l, number);
-	if (l->flags.minus == TRUE && l->flags.zero == TRUE)
-		ft_case_zero_width(l, line, number);
-	else if (l->width >= 0 && l->precision <= 0)
+	if (l->width >= 0 && l->precision <= 0)
 		ft_case_width(l, line, number);
 	else if (l->precision > 0 && l->width >= 0)
 		ft_case_width_prec(l, line, number);
@@ -65,7 +63,7 @@ void	ft_case_width(t_list *l, const char *line, int number)
 	}
 }
 
-void	ft_case_zero_width(t_list *l, const char *line, int number)
+/*void	ft_case_zero_width(t_list *l, const char *line, int number)
 {
 	if (l->flags.minus == TRUE)
 	{
@@ -110,7 +108,7 @@ void	ft_case_zero_width(t_list *l, const char *line, int number)
 		ft_printer_zero(l, number, l->precision - l->len);
 		ft_putnbr(l, number);
 	}
-}
+}*/
 
 void	ft_case_width_prec(t_list *l, const char *line, int number)
 {
@@ -187,7 +185,7 @@ void	ft_case_width_prec(t_list *l, const char *line, int number)
 	}
 }
 
-void	ft_case_zero_width_prec(t_list *l, const char *line, int number)
+/*void	ft_case_zero_width_prec(t_list *l, const char *line, int number)
 {
 	if (l->flags.minus == TRUE)
 	{
@@ -212,4 +210,4 @@ void	ft_case_zero_width_prec(t_list *l, const char *line, int number)
 			ft_putnbr(l, number);
 		}
 	}
-}
+}*/

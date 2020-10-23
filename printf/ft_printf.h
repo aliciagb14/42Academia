@@ -76,9 +76,8 @@ void    ft_printer_minus(t_list *l, int number);
 void    ft_printer_character(t_list *l, char *str);
 //INTEGER
 void    ft_case_width(t_list *l, const char *line, int number);
-void    ft_case_zero_width(t_list *l, const char *line, int number);
-void    ft_case_prec_d(t_list *l, const char *line, int number);
-void    ft_case_width_prec(t_list *l, const char *line, int number);
+//void    ft_case_zero_width(t_list *l, const char *line, int number);
+//void    ft_case_prec_d(t_list *l, const char *line, int number);
 void    ft_case_width_prec(t_list *l, const char *line, int number);
 //STRINGS
 void    ft_case_zero_s(t_list *l, const char *line, char *str);

@@ -6,18 +6,16 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/23 09:49:48 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/23 12:21:33 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_printer_hexap(t_list *l, const char *line)
+void	ft_printer_hexap(t_list *l, const char *line)
 {
-    
-	unsigned long int number;
-	char *str;
-
+	unsigned long int	number;
+	char				*str;
 
 	number = va_arg(l->args, void *);
 	str = ft_trans_hexp(number);
@@ -26,8 +24,8 @@ void ft_printer_hexap(t_list *l, const char *line)
 	{
 		if (l->flags.point == TRUE)
 		{
-			l->len+= 2;
-			l->cnt+= 2;
+			l->len += 2;
+			l->cnt += 2;
 			if (l->precision == 0 && l->width < l->len)
 				write(1, "0x", 2);
 			else if (l->precision > l->len)
@@ -44,18 +42,17 @@ void ft_printer_hexap(t_list *l, const char *line)
 		}
 		else
 		{
-			l->len = 3;
+			l->len += 3;
 			if (l->width > 0)
 				ft_printer_spaces(l, l->width - l->len, line);
 			ft_printer_character(l, "0x0");
 		}
-		
 	}
 	else if (l->width >= 0 || l->precision >= 0)
 		ft_case_width_hexap(l, line, str, number);
 }
 
-void ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
+void	ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
 {
 	l->len += 2;
 	l->cnt += 2;
@@ -64,7 +61,7 @@ void ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
 		if (l->width > l->len)
 			ft_printer_spaces(l, l->width - l->len, line);
 		write(1, "0x", 2);
-		ft_printer_character(l, str);		
+		ft_printer_character(l, str);
 	}
 	else
 	{
@@ -73,18 +70,16 @@ void ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
 		if (l->width > l->len)
 			ft_printer_spaces(l, l->width - l->len, line);
 	}
-	
 }
 
-char	 *ft_trans_hexp(unsigned long i)
+char	*ft_trans_hexp(unsigned long i)
 {
-	unsigned long			i_copy;
+	unsigned long		i_copy;
 	char				*hex_char;
 	char				*def;
 	int					count;
 
 	count = 1;
-	
 	hex_char = "0123456789abcdef";
 	i_copy = i;
 	while (i_copy >= 16 && (i_copy /= 16))
