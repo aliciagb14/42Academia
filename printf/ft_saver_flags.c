@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:18:35 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/20 20:35:58 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/23 18:41:34 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int ft_saver_flags(t_list *l, const char *line)
 				l->pos++;
 		}
 		else if (line[l->pos] == '*')
+		{
 			l->width = va_arg(l->args, int);
+			if (l->width < 0)
+				l->flags.minus = TRUE;
+		}
 		else if (line[l->pos] == '.')
 		{
 			l->flags.point = TRUE;
