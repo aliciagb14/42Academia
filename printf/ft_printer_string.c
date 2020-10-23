@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/23 20:04:53 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/23 20:07:11 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void ft_case_width_s(t_list *l, const char *line, char *str)
 			ft_printer_spaces(l, l->width - l->len, line);
 		}
 		else if (l->width > 0 && l->precision != 0 ||
-			(l->width > 0 && l->precision == 0))
+			(l->width > 0 && l->precision == 0) && l->flags.ast == FALSE)
 			ft_printer_spaces(l, l->width, line);
 	}
 }
