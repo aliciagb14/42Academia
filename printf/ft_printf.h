@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:01:56 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/23 14:30:51 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/23 14:46:25 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void    ft_case_zero_s(t_list *l, const char *line, char *str);
 void    ft_case_width_s(t_list *l, const char *line, char *str);
 void    ft_aux_case_width_s(t_list *l, const char *line, char *str);
 void    ft_case_width_prec_s(t_list *l, const char *line, char *str);
-//STRINGS ANTIGUO
-
 //HEXA_X
 char    *ncharacter_according_prec(t_list *l, char *str);
 void    ft_case_width_prec_x(t_list *l, const char *line, char *s, int nb);
@@ -92,8 +90,8 @@ void	ft_case_zero_hexa(t_list *l, const char *line, char *s, int nb);
 void    ft_case_width_hexap(t_list *l, const char *line, char *str, int number);
 //UNSIGNED
 void    ft_case_width_u(t_list *l, const char *line, int number);
-void    ft_case_zero_width_u(t_list *l, const char *line, int number);
+void	ft_case_minus_width_u(t_list *l, const char *line, int number);
+void    ft_case_width_prec_minus_u(t_list *l, const char *line, int number);
+void    ft_case_width_prec_aux_u(t_list *l, const char *line, int number);
 void    ft_case_width_prec_u(t_list *l, const char *line, int number);
-void    ft_case_zero_width_prec_u(t_list *l, const char *line, int number);
-
 #endif
