@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:38 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/23 14:46:29 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/23 16:51:10 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void ft_case_width_u(t_list *l, const char *line, int number)
 		else
 		{
 			ft_printer_minus(l, number);
-			ft_putnbr(l, number);
+			ft_putnbr_u(l, number);
 			ft_printer_spaces(l, l->width - l->len, line);
 		}
 	}
@@ -48,7 +48,7 @@ void ft_case_width_u(t_list *l, const char *line, int number)
 		if (number < 0)
 			ft_printer_minus(l, number);
 		ft_printer_zero(l, number, l->width - l->len);
-		ft_putnbr(l, number);
+		ft_putnbr_u(l, number);
 	}
 	else if (l->flags.minus == FALSE)
 		ft_case_minus_width_u(l, line, number);
@@ -66,8 +66,8 @@ void	ft_case_minus_width_u(t_list *l, const char *line, int number)
 	else
 	{
 		ft_printer_spaces(l, l->width - l->len, line);
-		ft_printer_minus(l, number);
-		ft_putnbr(l, number);
+		//ft_printer_minus(l, number);
+		ft_putnbr_u(l, number);
 	}
 }
 
@@ -97,7 +97,7 @@ void ft_case_width_prec_u(t_list *l, const char *line, int number)
 			ft_printer_zero(l, number, l->precision - l->len);
 		}
 	}
-	ft_putnbr(l, number);
+	ft_putnbr_u(l, number);
 }
 
 void	ft_case_width_prec_minus_u(t_list *l, const char *line, int number)
@@ -106,7 +106,7 @@ void	ft_case_width_prec_minus_u(t_list *l, const char *line, int number)
 	if (number < 0)
 	{
 		ft_printer_zero(l, number, l->precision - l->len + 1);
-		ft_putnbr(l, number);
+		ft_putnbr_u(l, number);
 		if (l->precision > l->len)
 			ft_printer_spaces(l, l->precision - 1, line);
 		else
@@ -115,7 +115,7 @@ void	ft_case_width_prec_minus_u(t_list *l, const char *line, int number)
 	else
 	{
 		ft_printer_zero(l, number, l->precision - l->len);
-		ft_putnbr(l, number);
+		ft_putnbr_u(l, number);
 		if (l->precision > l->len)
 			ft_printer_spaces(l, l->width - l->precision, line);
 		else
