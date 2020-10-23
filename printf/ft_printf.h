@@ -3,50 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/23 TRUE2:50:08 by user42            #+#    #+#             */
-/*   Updated: 2020/09/29 TRUE8:46:04 by user42           ###   ########.fr       */
+/*   Created: 2020/10/23 14:01:56 by agonzale          #+#    #+#             */
+/*   Updated: 2020/10/23 14:30:51 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef     PRINTF_H
+# define    PRINTF_H
 
 #define TRUE 1
 #define FALSE 0
-//#define NULL = 0
 #include <stdio.h>
-#include <stdarg.h> //al incluir la librería  declaro va_list y se definen sus 3 macros       
+#include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 /*estructuras*/
 typedef struct s_flags
 {
-    int     minus;	// -
-	int     space;	// ' '
-    int     zero;	// 0
-    int     point; //.
+    int     minus;
+	int     space;
+    int     zero;
+    int     point;
 }               t_flags;
 
 typedef struct  s_princp {
-    int         width; //ancho
-    int         precision; //numeros tras la coma
-    int         cnt; //cuenta %s, %c, %f....
-	int			pos; // es un contador (igual que i)
+    int         width;
+    int         precision;
+    int         cnt;
+	int			pos;
 	int			len;
     va_list     args;
-   	t_flags		flags;
+    t_flags     flags;
 }               t_list;
 
-					/*funciones*/
 void	ft_initialize(t_list *l);
-//ft_specifier
 void	ft_specifier(t_list *l, const char *line);
 int		ft_isspecifier(char c);
-//ft_numbers
 void	ft_putnbr(t_list *l, int number);
 void	ft_putnbr_u(t_list *l, unsigned int number);
 int     ft_strlen (t_list *l, char *str); //borrar t_list ya q no lo uso
@@ -76,8 +71,9 @@ void    ft_printer_minus(t_list *l, int number);
 void    ft_printer_character(t_list *l, char *str);
 //INTEGER
 void    ft_case_width(t_list *l, const char *line, int number);
-//void    ft_case_zero_width(t_list *l, const char *line, int number);
-//void    ft_case_prec_d(t_list *l, const char *line, int number);
+void	ft_case_minus_width(t_list *l, const char *line, int number);
+void    ft_case_width_prec_minus(t_list *l, const char *line, int number);
+void    ft_case_width_prec_aux(t_list *l, const char *line, int number);
 void    ft_case_width_prec(t_list *l, const char *line, int number);
 //STRINGS
 void    ft_case_zero_s(t_list *l, const char *line, char *str);
@@ -99,9 +95,5 @@ void    ft_case_width_u(t_list *l, const char *line, int number);
 void    ft_case_zero_width_u(t_list *l, const char *line, int number);
 void    ft_case_width_prec_u(t_list *l, const char *line, int number);
 void    ft_case_zero_width_prec_u(t_list *l, const char *line, int number);
-/*
-void va_start(va_list ap, last) -> inicializa lista
-void va_arg(va_list ap, type) -> devuelve sig argumento de lista
-void va_end(va_list ap) -> limpia arg list
-*/
+
 #endif
