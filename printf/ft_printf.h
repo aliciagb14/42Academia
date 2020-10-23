@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:01:56 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/23 18:05:09 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/23 19:16:35 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_flags
     int     minus;
 	int     space;
     int     zero;
+    int     ast;
     int     point;
 }               t_flags;
 
