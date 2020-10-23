@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:38 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/23 16:51:10 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/23 16:58:30 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_printer_unsigned(t_list *l, const char *line)
 	}
 }
 
-void ft_case_width_u(t_list *l, const char *line, int number)
+void	ft_case_width_u(t_list *l, const char *line, int number)
 {
 	if (l->flags.minus == TRUE)
 	{
@@ -66,12 +66,11 @@ void	ft_case_minus_width_u(t_list *l, const char *line, int number)
 	else
 	{
 		ft_printer_spaces(l, l->width - l->len, line);
-		//ft_printer_minus(l, number);
 		ft_putnbr_u(l, number);
 	}
 }
 
-void ft_case_width_prec_u(t_list *l, const char *line, int number)	
+void	ft_case_width_prec_u(t_list *l, const char *line, int number)
 {
 	if (l->width <= l->precision && l->flags.minus == TRUE)
 	{
