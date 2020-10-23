@@ -90,6 +90,7 @@ void    ft_case_width_prec_s(t_list *l, const char *line, char *str);
 //HEXA_X
 char    *ncharacter_according_prec(t_list *l, char *str);
 void    ft_case_width_prec_x(t_list *l, const char *line, char *s, int nb);
+void	ft_case_width_prec_aux_x(t_list *l, const char *line, char *s, int nb);
 void    ft_case_width_x(t_list *l, const char *line, char *s, int nb);
 void	ft_case_zero_hexa(t_list *l, const char *line, char *s, int nb);
 //HEXA_p

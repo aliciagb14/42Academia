@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:18:05 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/18 13:18:08 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:23:06 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		ft_get_size_num(t_list *l, int number)
 	return (l->len);
 }
 
-int ft_strlen (t_list *l, char *str)
+int		ft_strlen(t_list *l, char *str)
 {
 	int i;
 
@@ -74,29 +74,28 @@ int		ft_isnumber(char c)
 	return (c >= '0' && c <= '9') ? TRUE : FALSE;
 }
 
-/*int		ft_get_size_num(t_list *l, int number)
+void	ft_putnbr(t_list *l, int number)
 {
-	int i;
-
-	i = 0;
 	if (number < 0)
-		i++;
-	if (number == 0)
-		i = TRUE;
-	while (number != 0)
+		number = -number;
+	if (number > 9)
 	{
-		i++;
-		number /= TRUE0;
+		ft_putnbr(l, number / 10);
+		ft_putchar(number % 10 + 48, l);
 	}
-	return (i);
+	else
+		ft_putchar(number + 48, l);
 }
 
-int ft_strlen (t_list *l, char *str)
+void	ft_putnbr_u(t_list *l, unsigned int number)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}*/
+	if (number < 0)
+		number = -number;
+	if (number > 9)
+	{
+		ft_putnbr(l, number / 10);
+		ft_putchar(number % 10 + 48, l);
+	}
+	else
+		ft_putchar(number + 48, l);
+}
