@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/23 17:56:07 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/23 17:57:42 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void ft_printer_string(t_list *l, const char *line)
 				{
 					ncharacter_according_prec(l, "(null");
 					ft_printer_spaces(l, l->width - 1, line);
-					/*ft_printer_spaces(l, l->width - 1, line);
-					ft_printer_character(l, "(null)");*/
 				}
 				else
 					ft_printer_spaces(l, l->width, line);
