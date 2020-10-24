@@ -6,63 +6,42 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:14:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/23 18:37:07 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/24 12:47:18 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printer_hexap(t_list *l, const char *line)
+void	ft_case_printer_hexap_aux(t_list *l, char *s)
 {
-	unsigned long int	number;
-	char				*str;
-
-	number = va_arg(l->args, void *);
-	str = ft_trans_hexp(number);
-	l->len = ft_strlen(l, str);
-	if (number == 0 || number == NULL)
+	l->cnt += 2;
+	if (l->precision == 0 && l->width < l->len)
+		write(1, "0x", 2);
+	else if (l->precision > l->len)
 	{
-		l->len += 2;
-		if (l->flags.point == TRUE)
-		{
-			l->cnt += 2;
-			if (l->precision == 0 && l->width < l->len)
-				write(1, "0x", 2);
-			else if (l->precision > l->len)
-			{
-				write(1, "0x", 2);
-				if (l->precision > l->len)
-					ft_printer_zero(l, number, l->precision - 1);
-				ft_printer_character(l, str);
-			}
-			else
-			{
-				ft_printer_spaces(l, l->width - l->len + 1, line);
-				write(1, "0x", 2);
-			}
-		}
-		else
-		{
-			if (l->width > 0)
-				ft_printer_spaces(l, l->width - l->len, line);
-			ft_printer_character(l, "0x0");
-		}
+		write(1, "0x", 2);
+		if (l->precision > l->len)
+			ft_printer_zero(l, l->precision - 1);
+		ft_printer_character(l, s);
 	}
-	else if (l->width >= 0 || l->precision >= 0)
-		ft_case_width_hexap(l, line, str, number);
+	else
+	{
+		ft_printer_spaces(l, l->width - l->len + 1);
+		write(1, "0x", 2);
+	}
 }
 
-void	ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
+void	ft_case_width_hexap(t_list *l, char *str)
 {
 	l->len += 2;
 	l->cnt += 2;
 	if (l->flags.minus == FALSE)
 	{
 		if (l->width > l->len)
-			ft_printer_spaces(l, l->width - l->len, line);
+			ft_printer_spaces(l, l->width - l->len);
 		write(1, "0x", 2);
 		if (l->precision > l->width && l->precision > l->len)
-			ft_printer_zero(l, number, l->precision - l->width - 1);
+			ft_printer_zero(l, l->precision - l->width - 1);
 		ft_printer_character(l, str);
 	}
 	else
@@ -70,7 +49,7 @@ void	ft_case_width_hexap(t_list *l, const char *line, char *str, int number)
 		write(1, "0x", 2);
 		ft_printer_character(l, str);
 		if (l->width > l->len)
-			ft_printer_spaces(l, l->width - l->len, line);
+			ft_printer_spaces(l, l->width - l->len);
 	}
 }
 

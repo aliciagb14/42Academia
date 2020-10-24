@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:18:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/20 20:35:25 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/24 10:43:51 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int		ft_printf(const char *line, ...)
 		l->pos++;
 	}
 	va_end(l->args);
+	free(l);
 	return (l->cnt);
 }

@@ -1,45 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printer_flags.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 13:18:05 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/24 12:59:35 by agonzale         ###   ########.fr       */
+/*   Created: 2020/10/18 13:17:52 by agonzale          #+#    #+#             */
+/*   Updated: 2020/10/24 12:22:50 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_isspace(int c)
+void	ft_printer_zero(t_list *l, int size)
 {
-	return (c == '\t' || c == '\n' || c == '\v' || c == '\f' ||
-	c == '\r' || c == ' ') ? TRUE : FALSE;
+	while (size > 0)
+	{
+		ft_putchar('0', l);
+		size--;
+	}
 }
 
-int		ft_strlen(char *str)
+void	ft_printer_spaces(t_list *l, int size)
 {
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	while (size > 0)
+	{
+		ft_putchar(' ', l);
+		size--;
+	}
 }
 
-char	*ncharacter_according_prec(t_list *l, char *str)
+void	ft_printer_minus(t_list *l, int number)
 {
-	int i;
+	if (number < 0)
+		ft_putchar('-', l);
+}
 
-	i = 0;
-	l->len = 0;
-	while (*str && l->precision != 0)
+void	ft_printer_character(t_list *l, char *str)
+{
+	while (*str)
 	{
 		ft_putchar(*str, l);
 		str++;
-		l->precision--;
-		l->len++;
 	}
-	return (&str[i]);
 }

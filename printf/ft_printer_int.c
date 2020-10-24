@@ -6,87 +6,69 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:16:05 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/23 18:05:17 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/24 12:51:12 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printer_int(t_list *l, const char *line)
-{
-	int		number;
-	int		size;
-
-	number = va_arg(l->args, int);
-	l->len = ft_get_size_num(l, number);
-	if (l->width >= 0 && l->precision <= 0)
-		ft_case_width(l, line, number);
-	else if (l->precision > 0 && l->width >= 0)
-	{
-		if (l->width > l->precision && l->flags.minus == TRUE)
-			ft_case_width_prec_minus(l, line, number);
-		else
-			ft_case_width_prec(l, line, number);
-	}
-}
-
-void	ft_case_width(t_list *l, const char *line, int number)
+void	ft_case_width(t_list *l, int number)
 {
 	if (l->flags.minus == TRUE)
 	{
 		if (l->flags.point == TRUE && l->width >= l->precision && number == 0)
-			ft_printer_spaces(l, l->width, line);
+			ft_printer_spaces(l, l->width);
 		else
 		{
 			ft_printer_minus(l, number);
 			ft_putnbr(l, number);
-			ft_printer_spaces(l, l->width - l->len, line);
+			ft_printer_spaces(l, l->width - l->len);
 		}
 	}
 	else if (l->flags.zero == TRUE)
 	{
 		if (number < 0)
 			ft_printer_minus(l, number);
-		ft_printer_zero(l, number, l->width - l->len);
+		ft_printer_zero(l, l->width - l->len);
 		ft_putnbr(l, number);
 	}
 	else if (l->flags.minus == FALSE)
-		ft_case_minus_width(l, line, number);
+		ft_case_minus_width(l, number);
 }
 
-void	ft_case_minus_width(t_list *l, const char *line, int number)
+void	ft_case_minus_width(t_list *l, int number)
 {
 	if (l->flags.point == TRUE && l->width >= l->precision && number == 0)
 	{
 		if (l->precision < 0)
-			ft_printer_zero(l, number, l->len);
+			ft_printer_zero(l, l->len);
 		else
-			ft_printer_spaces(l, l->width, line);
+			ft_printer_spaces(l, l->width);
 	}
 	else
 	{
-		ft_printer_spaces(l, l->width - l->len, line);
+		ft_printer_spaces(l, l->width - l->len);
 		ft_printer_minus(l, number);
 		ft_putnbr(l, number);
 	}
 }
 
-void	ft_case_width_prec(t_list *l, const char *line, int number)
+void	ft_case_width_prec(t_list *l, int number)
 {
 	if (l->width <= l->precision && l->flags.minus == TRUE)
 	{
 		if (number > 0 || l->width > l->len)
-			ft_printer_zero(l, number, l->precision - l->len);
+			ft_printer_zero(l, l->precision - l->len);
 		else
 		{
 			ft_printer_minus(l, number);
-			ft_printer_zero(l, number, l->precision - l->len + 1);
+			ft_printer_zero(l, l->precision - l->len + 1);
 		}
 	}
 	else
 	{
 		if (l->width > l->precision)
-			ft_case_width_prec_aux(l, line, number);
+			ft_case_width_prec_aux(l, number);
 		else
 		{
 			if (number < 0)
@@ -94,53 +76,53 @@ void	ft_case_width_prec(t_list *l, const char *line, int number)
 				ft_printer_minus(l, number);
 				l->len--;
 			}
-			ft_printer_zero(l, number, l->precision - l->len);
+			ft_printer_zero(l, l->precision - l->len);
 		}
 	}
 	ft_putnbr(l, number);
 }
 
-void	ft_case_width_prec_minus(t_list *l, const char *line, int number)
+void	ft_case_width_prec_minus(t_list *l, int number)
 {
 	ft_printer_minus(l, number);
 	if (number < 0)
 	{
-		ft_printer_zero(l, number, l->precision - l->len + 1);
+		ft_printer_zero(l, l->precision - l->len + 1);
 		ft_putnbr(l, number);
 		if (l->precision > l->len)
-			ft_printer_spaces(l, l->precision - 1, line);
+			ft_printer_spaces(l, l->precision - 1);
 		else
-			ft_printer_spaces(l, l->precision, line);
+			ft_printer_spaces(l, l->precision);
 	}
 	else
 	{
-		ft_printer_zero(l, number, l->precision - l->len);
+		ft_printer_zero(l, l->precision - l->len);
 		ft_putnbr(l, number);
 		if (l->precision > l->len)
-			ft_printer_spaces(l, l->width - l->precision, line);
+			ft_printer_spaces(l, l->width - l->precision);
 		else
-			ft_printer_spaces(l, l->width - l->len, line);
+			ft_printer_spaces(l, l->width - l->len);
 	}
 }
 
-void	ft_case_width_prec_aux(t_list *l, const char *line, int number)
+void	ft_case_width_prec_aux(t_list *l, int number)
 {
 	if (number < 0)
 	{
 		if (l->precision < l->len)
-			ft_printer_spaces(l, l->precision, line);
+			ft_printer_spaces(l, l->precision);
 		else
-			ft_printer_spaces(l, l->len, line);
+			ft_printer_spaces(l, l->len);
 		ft_printer_minus(l, number);
-		ft_printer_zero(l, number, l->precision - l->len + 1);
+		ft_printer_zero(l, l->precision - l->len + 1);
 	}
 	else
 	{
 		if (l->precision > l->len)
-			ft_printer_spaces(l, l->width - l->precision, line);
+			ft_printer_spaces(l, l->width - l->precision);
 		else
-			ft_printer_spaces(l, l->width - l->len, line);
+			ft_printer_spaces(l, l->width - l->len);
 		ft_printer_minus(l, number);
-		ft_printer_zero(l, number, l->precision - l->len);
+		ft_printer_zero(l, l->precision - l->len);
 	}
 }
