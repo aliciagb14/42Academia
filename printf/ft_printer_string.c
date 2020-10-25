@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/25 12:58:33 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/25 23:17:03 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	ft_printer_string(t_list *l)
 	else
 	{
 		l->len += 6;
-		if (l->flags.minus == TRUE)
+		if (l->flags.point == TRUE && l->precision <= l->len)
 		{
-			if (l->flags.point == TRUE && l->precision <= l->len)
+			if (l->flags.minus == TRUE)
 			{
 				if (l->precision != 0 && l->width > 0)
 				{
@@ -42,14 +42,24 @@ void	ft_printer_string(t_list *l)
 				else
 					ft_printer_spaces(l, l->width);
 			}
-			else
+			else if (l->flags.minus == FALSE)
 			{
-				l->cnt += 6;
-				write(1, "(null)", 6);
-				ft_printer_spaces(l, l->width - l->len);
+				if (l->width >= 0 && l->len > l->precision)
+				{
+					ft_printer_spaces(l, l->width - l->precision);
+					ncharacter_according_prec(l, "(null)");
+				}
+				else
+					ft_printer_spaces(l, l->width);
 			}
 		}
-		else if (l->flags.minus == FALSE)
+		else
+		{
+			l->cnt += 6;
+			write(1, "(null)", 6);
+			ft_printer_spaces(l, l->width - l->len);
+		}
+		/*else if (l->flags.minus == FALSE)
 		{
 			if (l->flags.point == TRUE && l->precision < l->len && l->precision >= 0)
 			{
@@ -67,8 +77,28 @@ void	ft_printer_string(t_list *l)
 				ft_printer_spaces(l, l->width - l->len);
 				write(1, "(null)", 6);
 			}
-		}
+		}*/
 		str = NULL;
+	}
+}
+
+void ft_case_minus_null_s(t_list *l, char *str)
+{
+	if (l->flags.point == TRUE && l->precision <= l->len)
+	{
+		if (l->precision != 0 && l->width > 0)
+		{
+			ncharacter_according_prec(l, "(null");
+			ft_printer_spaces(l, l->width - 1);
+		}
+		else
+			ft_printer_spaces(l, l->width);
+	}
+	else
+	{
+		l->cnt += 6;
+		write(1, "(null)", 6);
+		ft_printer_spaces(l, l->width - l->len);
 	}
 }
 

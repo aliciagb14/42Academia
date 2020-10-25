@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 11:20:02 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/24 13:05:53 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/25 21:44:48 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_printer_hexa(t_list *l, const char *line)
 	else if (l->flags.zero == TRUE ||
 		(l->width >= 0 && l->flags.minus == FALSE))
 		ft_case_width_x(l, str, number);
+	free(str);
 }
 
 void	ft_printer_hexap(t_list *l)
@@ -83,4 +84,5 @@ void	ft_printer_hexap(t_list *l)
 	}
 	else if (l->width >= 0 || l->precision >= 0)
 		ft_case_width_hexap(l, str);
+	free(str);
 }

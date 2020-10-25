@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:18:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/25 11:47:40 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/25 23:09:41 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		ft_printf(const char *line, ...)
 {
 	t_list *l;
+	int cnt;
 
 	if (!(l = malloc(sizeof(t_list))))
 		return (-1);
@@ -33,6 +34,7 @@ int		ft_printf(const char *line, ...)
 		l->pos++;
 	}
 	va_end(l->args);
+	cnt = l->cnt;
 	free(l);
-	return (l->cnt);
+	return (cnt);
 }
