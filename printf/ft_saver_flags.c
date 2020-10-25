@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:18:35 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/24 13:13:02 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/25 12:52:00 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	ft_saver_ast_prec(t_list *l, const char *line)
 	{
 		l->flags.ast = TRUE;
 		l->precision = va_arg(l->args, int);
-		if (l->precision < 0)
-			l->precision = 0;
+		/*if (l->precision < 0)
+			l->precision = 0;*/
 	}
 	else
 		l->precision = ft_atoi(line + l->pos + 1);
