@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/25 12:19:28 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/25 12:31:13 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	ft_printer_string(t_list *l)
 	char *str;
 
 	str = (char *)va_arg(l->args, char *);
-	if (l->width != 0 && l->flags.point == FALSE && l->precision != 0 &&
-	l->flags.ast == FALSE && l->precision < l->len)
-	{
-	if (str != NULL)
+	if (str != NULL && l->precision != 0)
 	{
 		l->len = ft_strlen(str);
 		if (l->width == 0 && l->precision != 0)
@@ -73,7 +70,6 @@ void	ft_printer_string(t_list *l)
 		}
 		str = NULL;
 	}
-}
 }
 
 void	ft_case_width_prec_s(t_list *l, char *str)
