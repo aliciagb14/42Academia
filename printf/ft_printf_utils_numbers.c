@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 11:25:14 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/24 13:09:35 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/25 13:12:05 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	ft_putnbr(t_list *l, long int number)
 
 void	ft_putnbr_u(t_list *l, unsigned int number)
 {
-	/*if (number < 0)
-		number = -number;*/
 	if (number > 9)
 	{
 		ft_putnbr(l, number / 10);
