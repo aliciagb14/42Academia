@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 11:20:02 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/26 01:09:14 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/26 01:19:13 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	ft_printer_string(t_list *l)
 	{
 		l->len += 6;
 		if (l->flags.minus == TRUE)
-			ft_case_minus_null_s(l, str);
+			ft_case_minus_null_s(l);
 		else if (l->flags.minus == FALSE)
-			ft_case_no_minus_null(l, str);
+			ft_case_no_minus_null(l);
 		str = NULL;
 	}
 }
