@@ -6,11 +6,37 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 11:20:02 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/25 21:44:48 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/26 01:09:14 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_printer_string(t_list *l)
+{
+	char *str;
+
+	str = (char *)va_arg(l->args, char *);
+	if (str != NULL)
+	{
+		l->len = ft_strlen(str);
+		if (l->width == 0 && l->precision != 0)
+			ncharacter_according_prec(l, str);
+		else if (l->width >= 0 && l->precision <= 0)
+			ft_case_width_s(l, str);
+		else if (l->width > 0 && l->precision > 0)
+			ft_case_width_prec_s(l, str);
+	}
+	else
+	{
+		l->len += 6;
+		if (l->flags.minus == TRUE)
+			ft_case_minus_null_s(l, str);
+		else if (l->flags.minus == FALSE)
+			ft_case_no_minus_null(l, str);
+		str = NULL;
+	}
+}
 
 void	ft_printer_int(t_list *l)
 {

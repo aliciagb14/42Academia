@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:01:56 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/24 13:11:11 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/26 01:08:45 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void    ft_case_minus_width(t_list *l, int number);
 void    ft_case_width_prec_minus(t_list *l, int number);
 void    ft_case_width_prec_aux(t_list *l, int number);
 void    ft_case_width_prec(t_list *l, int number);
+void    ft_case_minus_null_s(t_list *l, char *str);
+void    ft_case_no_minus_null(t_list *l, char *str);
 void    ft_case_width_s(t_list *l, char *str);
 void    ft_case_width_prec_s(t_list *l, char *str);
 char    *ncharacter_according_prec(t_list *l, char *str);
