@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/26 01:19:03 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/26 01:23:10 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,64 +79,37 @@ void	ft_case_width_prec_s(t_list *l, char *str)
 
 void	ft_case_width_s(t_list *l, char *str)
 {
-	//if (l->precision < l->len && l->width != 0)
-	//{
-		if (l->flags.point == FALSE)
-		{
-			if (l->flags.minus == TRUE)
-			{
-				ft_printer_character(l, str);
-				ft_printer_spaces(l, l->width - l->len);
-			}
-			else if (l->flags.zero == TRUE)
-			{
-				ft_printer_zero(l, l->width - l->len);
-				ft_printer_character(l, str);
-			}
-			else
-			{
-				ft_printer_spaces(l, l->width - l->len);
-				ft_printer_character(l, str);
-			}
-		}
-		else if (l->flags.ast == TRUE)
-		{
-			if ((l->precision != 0 || l->width != 0) && l->precision > 0)
-			{
-				ft_printer_character(l, str);
-				ft_printer_spaces(l, l->width - l->len);
-			}
-			if (l->precision < 0)
-			{
-				ft_printer_character(l, str);
-				ft_printer_spaces(l, l->width - l->len);
-			}
-		}
-		else if (l->flags.point == TRUE && l->flags.ast == FALSE)
-			ft_printer_spaces(l, l->width);
-	//}
-	/*else
+	if (l->flags.point == FALSE)
 	{
-		if (l->width >= 0 && l->flags.point == FALSE)
-		{
-			if (l->flags.minus == TRUE)
-			{
-				ft_printer_character(l, str);
-				ft_printer_spaces(l, l->width - l->len);
-			}
-			else
-			{
-				ft_printer_spaces(l, l->width - l->len);
-				ft_printer_character(l, str);
-			}
-		}
-		else if (l->flags.ast == TRUE && (l->precision != 0 || l->width != 0))
+		if (l->flags.minus == TRUE)
 		{
 			ft_printer_character(l, str);
 			ft_printer_spaces(l, l->width - l->len);
 		}
-		else if ((l->width > 0 && l->precision != 0) ||
-			(l->width > 0 && l->precision == 0 && l->flags.ast == FALSE))
+		else if (l->flags.zero == TRUE)
+		{
+			ft_printer_zero(l, l->width - l->len);
+			ft_printer_character(l, str);
+		}
+		else
+		{
+			ft_printer_spaces(l, l->width - l->len);
+			ft_printer_character(l, str);
+		}
+	}
+	else if (l->flags.ast == TRUE)
+	{
+		if ((l->precision != 0 || l->width != 0)) //&& l->precision > 0
+		{
+			ft_printer_character(l, str);
+			ft_printer_spaces(l, l->width - l->len);
+		}
+		/*if (l->precision < 0)
+			{
+				ft_printer_character(l, str);
+				ft_printer_spaces(l, l->width - l->len);
+			}
+		}*/
+		else if (l->flags.point == TRUE && l->flags.ast == FALSE)
 			ft_printer_spaces(l, l->width);
-	}*/
 }
