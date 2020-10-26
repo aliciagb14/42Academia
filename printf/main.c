@@ -17,7 +17,8 @@ int		main(void)
 
 	//static char *s_hello = "hello world"; //test hexap
 	static char *s_hidden = "hi low\0don't print me lol\0"; //test s
-	printf("%d\n", ft_printf("%.*s", 0, "hello"));
-	printf("%d\n", printf("%.*s", 0, "hello"));
+	printf("%d\n", ft_printf("%x %x %x %x %x\n", 12345, 45215, 65874, 25456, 12587));
+	printf("%d\n", printf("%x %x %x %x %x\n", 12345, 45215, 65874, 25456, 12587));
+	//system("leaks a.out");
 	return (0);
 }
