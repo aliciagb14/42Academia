@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:01:56 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/26 01:19:01 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/26 01:45:24 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,30 @@
 
 typedef struct  s_flags
 {
-    int         minus;
-    int         space;
-    int         zero;
-    int         ast;
-    int         point;
+    int             minus;
+    int             space;
+    int             zero;
+    int             ast;
+    int             point;
 }               t_flags;
 
-typedef struct  s_princp {
-    int         width;
-    int         precision;
-    int         cnt;
-    int			pos;
-    int			len;
+typedef struct              s_princp
+{
+    int             width;
+    int             precision;
+    int             cnt;
+    int			    pos;
+    int			    len;
     va_list     args;
     t_flags     flags;
-}               t_list;
+}                           t_list;
 
 void    ft_initialize(t_list *l);
 void    ft_specifier(t_list *l, const char *line);
 int     ft_isspecifier(char c);
 void    ft_putnbr(t_list *l, long int number);
 void    ft_putnbr_u(t_list *l, unsigned int number);
-int     ft_strlen (char *str); //borrar t_list ya q no lo uso
+int     ft_strlen (char *str);
 int     ft_get_size_num(t_list *l, int number);
 int     ft_atoi(const char *str);
 int	    ft_isspace(int c);

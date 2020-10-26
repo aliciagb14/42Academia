@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:18:16 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/25 23:09:41 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/26 01:29:52 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		ft_printf(const char *line, ...)
 {
-	t_list *l;
-	int cnt;
+	t_list	*l;
+	int		cnt;
 
 	if (!(l = malloc(sizeof(t_list))))
 		return (-1);
