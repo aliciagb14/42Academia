@@ -6,13 +6,13 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 13:17:26 by agonzale          #+#    #+#             */
-/*   Updated: 2020/10/26 01:15:52 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/10/26 01:17:34 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_case_minus_null_s(t_list *l, char *str)
+void ft_case_minus_null_s(t_list *l)
 {
 	if (l->flags.point == TRUE && l->precision <= l->len)
 	{
@@ -32,7 +32,7 @@ void ft_case_minus_null_s(t_list *l, char *str)
 	}
 }
 
-void ft_case_no_minus_null(t_list *l, char *str)
+void ft_case_no_minus_null(t_list *l)
 {
 	if (l->flags.point == TRUE && l->precision < l->len && l->precision >= 0)
 	{
