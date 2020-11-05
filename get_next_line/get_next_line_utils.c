@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 07:46:25 by agonzale          #+#    #+#             */
-/*   Updated: 2020/01/30 11:47:54 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/11/05 23:44:28 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strchr(const char *str, int c)
 {
 	char	*aux;
 	int		i;
@@ -42,7 +42,7 @@ char	*ft_strchr(char *str, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, const char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -88,7 +88,7 @@ char	*ft_strdup(const char *s1)
 	return (s);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	unsigned int	i;
 	char			*src;

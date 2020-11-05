@@ -6,11 +6,12 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 07:35:08 by agonzale          #+#    #+#             */
-/*   Updated: 2020/01/30 15:04:33 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/11/05 23:56:32 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#define BUFFER_SIZE 42
 
 int		read_lines(char **line, char **s, int fd)
 {
@@ -36,8 +37,9 @@ int		read_lines(char **line, char **s, int fd)
 	return (1);
 }
 
-int		output(char **line, char **s, int ret, int fd)
+int		output(char **line, char **s, int fd)
 {
+	int		ret = 0;
 	if (ret < 0)
 	{
 		free(s[fd]);
@@ -54,13 +56,11 @@ int		output(char **line, char **s, int ret, int fd)
 
 int		get_next_line(int fd, char **line)
 {
-	int				ret;
 	int				numbytes;
 	char			*temp;
 	static char		*s[4096];
 	char			buf[BUFFER_SIZE + 1];
 
-	ret = 0;
 	if (fd < 0 || !line || !BUFFER_SIZE)
 		return (-1);
 	while ((numbytes = read(fd, buf, BUFFER_SIZE)) > 0)
@@ -77,5 +77,5 @@ int		get_next_line(int fd, char **line)
 		if (ft_strchr(s[fd], '\n'))
 			break ;
 	}
-	return ((numbytes == -1) ? -1 : output(line, s, ret, fd));
+	return ((numbytes == -1) ? -1 : output(line, s, fd));
 }
