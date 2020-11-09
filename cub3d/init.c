@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/06 00:18:08 by agonzale          #+#    #+#             */
-/*   Updated: 2020/11/09 11:13:52 by agonzale         ###   ########.fr       */
+/*   Created: 2020/11/09 11:11:34 by agonzale          #+#    #+#             */
+/*   Updated: 2020/11/09 11:29:10 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <fcntl.h>
-# include "libft/libft.h"
-# define PI 3.141592
+#include "cub3d.h"
 
-typedef struct t_player
+void ft_init(t_player *data_player)
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	camX;
-	double	camY;
-	double	time;
-	double	old_time;
-}			s_player;
-#endif
+	//pos inicial x e y
+	data_player->posX =;
+	data_player->posY =;
+	//vector de dir inicial
+	data_player->dirX =;
+	data_player->dirY =;
+	//version 2d del raycaster de la camara
+	data_player->camX =;
+	data_player->camY =;
+	//tiempo del cuadro actual
+	data_player->time =;
+	//tiempo del fotograma anterior
+	data_player->old_time =;
+}

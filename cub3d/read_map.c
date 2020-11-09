@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 23:24:57 by agonzale          #+#    #+#             */
-/*   Updated: 2020/11/06 00:17:32 by agonzale         ###   ########.fr       */
+/*   Updated: 2020/11/09 11:12:37 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define mapHeight 24
 #define screenWidth 640
 #define screenHeight 480
+#include "cub3d.h"
 
 int worldMap[mapWidth][mapHeight]=
 {
@@ -42,13 +43,3 @@ int worldMap[mapWidth][mapHeight]=
   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
-
-int main (int argc, char **argv)
-{
-  	double posX = 22, posY = 12;  // posición inicial x e y
-	double dirX = -1, dirY = 0; // vector de dirección inicial
-	double planoX = 0, planoY = 0.66; // la versión 2d raycaster del plano de la cámara
- 
-  double time = 0; // tiempo del cuadro actual
-   double oldTime = 0; // tiempo del fotograma anterior
-}
