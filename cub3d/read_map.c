@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 13:50:55 by agonzale          #+#    #+#             */
-/*   Updated: 2021/01/16 13:16:13 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/01/19 00:11:47 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void get_info_map(char *line, t_error error, t_data *info) //t_gnl_buffer *buffe
     handle_texture(line + 3, error, &info->west);
   else if (!ft_strncmp(line, "EA ", 3))
     handle_texture(line + 3, error, &info->east);
-  /*else if (ft_isdigit(*line) || *line == ' ')
+  /*else if (ft_isdigit(*line) || *line == ' ') empieza a leer el mapa
     handle_map(buffer, error, info);*/
   else
     error.error_id = wrong_input;
