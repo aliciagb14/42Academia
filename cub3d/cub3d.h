@@ -28,7 +28,11 @@ typedef enum s_error_number
 	wrong_input,
 	repeated_resolution_def,
 	wrong_resolution_x,
-	wrong_resolution_y
+	wrong_resolution_y,
+	repeated_ceiling_def,
+	repeated_floor_def,
+	wrong_colour,
+	invalid_format_color
 } 			t_error_number;
 
 typedef struct s_error
@@ -42,6 +46,13 @@ typedef struct s_texture
 {
 	
 }			t_texture;
+
+typedef struct s_colour
+{
+	int r;
+	int g;
+	int b;
+}			t_colour;
 
 typedef struct s_data
 {
@@ -60,8 +71,11 @@ typedef struct s_gnl_buffer
 	
 }	t_gnl_buffer;*/
 
-void get_info_map(char *line, t_error error, t_data *info);
-void read_file(char *path, t_data *info);
-int get_resolution(char *line, t_error error, t_data *info);
-void handle_args(int argc, char **argv);
+void	get_info_map(char *line, t_error error, t_data *info);
+void	read_file(char *path, t_data *info);
+int		handle_resolution(char *line, t_error error, t_data *info);
+void	handle_args(int argc, char **argv);
+int		handle_colour(char *line, t_error error, int *listacolors);
+int		check_color(char *line, t_error error);
+int		create_trgb(int t, int r, int g, int b);
 #endif
