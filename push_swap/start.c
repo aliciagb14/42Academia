@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:08:21 by agonzale          #+#    #+#             */
-/*   Updated: 2021/05/29 15:08:02 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/05/29 20:00:51 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,19 @@ void check_error(t_list_dbl **list, int aux, int j, char *current_argv)
 	}
 }
 
+void circular_fun(t_list_dbl *list)
+{
+	t_list_dbl *aux;
+
+	aux = list;
+	while (list->next != NULL)
+	{
+		list = list->next;
+	}
+	list->next = aux;
+	aux->prev = list;
+}
+
 void input(t_list_dbl **list, char **argv)
 {
 	int aux;
@@ -98,28 +111,39 @@ void input(t_list_dbl **list, char **argv)
 		}
 		i++;
 	}
+	circular_fun(*list);
 }
 
 void print_stack(t_list_dbl *list)
 {
-	while (list)
+	t_list_dbl *aux;
+
+	aux = list;
+	while (aux != list->prev)
 	{
-		printf("%i \n", ((int *)(list)->content)[0]);
-		list = list->next;
+		printf("%i \n", ((int *)(aux)->content)[0]);
+		aux = aux->next;
 	}
+	printf("%i \n", ((int *)(aux)->content)[0]);
 }
 
 int main(int argc, char **argv)
 {
-	t_list_dbl *list;
+	t_stacks stack;
 
-	list = NULL;
+	ft_memset(&stack, 0, sizeof(t_stacks));
 	if (argc == 1)
 		return (0);
-	input(&list, argv);
+	input(&stack.stack_a, argv);
 	printf("Original\n");
-	print_stack(list);
+	print_stack(stack.stack_a);
 	printf("\nSwap \n");
-	swap(list);
-	print_stack(list);
+	swap(stack.stack_a);
+	print_stack(stack.stack_a);
+	printf("\nRotate \n");
+	rotate_a(&stack);
+	print_stack(stack.stack_a);
+	printf("\nReverse Rotate \n");
+	rev_rotate_a(&stack);
+	print_stack(stack.stack_a);
 }
