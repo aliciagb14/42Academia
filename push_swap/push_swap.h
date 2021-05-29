@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:17:17 by agonzale          #+#    #+#             */
-/*   Updated: 2021/05/25 16:32:52 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/05/29 14:23:21 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,9 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "libft/libft.h"
+
+void swap(t_list_dbl *list);
+void input(t_list_dbl **list, char **argv);
+t_bool is_elem_dup(t_list_dbl *list, char *number);
+t_bool is_sorted(t_list_dbl *list);
 #endif

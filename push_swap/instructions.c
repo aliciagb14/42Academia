@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 18:40:43 by agonzale          #+#    #+#             */
-/*   Updated: 2021/05/25 23:59:45 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/05/29 14:25:15 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 t_bool is_sorted(t_list_dbl *list)
 {
-	int i;
+	t_list_dbl *aux;
 
-	i = 0;
 	if (!list)
-		return 0;
-	while (list)
-	{
-		if (&list->next < &list->content)
-		{
-			ft_putstr_fd("Lista no ordenada", STDERR_FILENO);
-			return false;
-		}
-		else
-			return true;
-		list->next;
+		return (0);
+	aux = list;
+	while (aux->next != list)
+	{ //aux que al inicio sea list, y me voy a mover con el aux, hasta que aux de next = list
+		if (((int *)aux->content)[0] > ((int *)aux->next->content)[0])
+			return (false);
+		aux = aux->next;
 	}
+	return (true);
 }
