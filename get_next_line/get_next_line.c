@@ -54,7 +54,7 @@ int		output(char **line, char **s, int fd)
 		return (read_lines(line, s, fd));
 }
 
-int		get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line) //line es dir de puntero de char que guarda lo q tiene fd
 {
 	int				numbytes;
 	char			*temp;
