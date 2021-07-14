@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:42:43 by rprieto-          #+#    #+#             */
-/*   Updated: 2021/05/29 14:25:07 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/07/03 20:45:46 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ typedef struct s_list
 
 typedef struct s_list_dbl
 {
-	void *content;
+	void				*content;
 	struct s_list_dbl	*next;
 	struct s_list_dbl	*prev;
-}						t_list_dbl;
+}					t_list_dbl;
 
 typedef enum e_bool
 {
