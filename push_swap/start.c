@@ -6,41 +6,11 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:08:21 by agonzale          #+#    #+#             */
-/*   Updated: 2021/07/14 11:11:24 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/06 12:57:25 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*a contiene num aleatorio de enteros positivos o negativos duplicados
-b vacio. Dejar los elementos en a*/
-
-t_bool	is_elem_dup(t_list_dbl *list, char *number)
-{
-	int	aux;
-
-	if (list)
-	{
-		aux = ft_atoi(number);
-		while (list)
-		{
-			if (((int *)list->content)[0] == aux)
-				return (true);
-			list = list->next;
-		}
-	}
-	return (false);
-}
-
-int	*get_number(int number)
-{
-	int	*ptr;
-
-	ptr = (int *)malloc(sizeof(int));
-	if (ptr == NULL)
-		return (NULL);
-	*ptr = number;
-	return (ptr);
-}
 
 void	check_error(t_list_dbl **list, int aux, int j, char *current_argv)
 {
@@ -69,19 +39,6 @@ void	check_error(t_list_dbl **list, int aux, int j, char *current_argv)
 		ft_lstdbl_clear(list, free);
 		exit(-1);
 	}
-}
-
-void	circular_fun(t_list_dbl *list)
-{
-	t_list_dbl	*aux;
-
-	aux = list;
-	while (list->next != NULL)
-	{
-		list = list->next;
-	}
-	list->next = aux;
-	aux->prev = list;
 }
 
 void	input(t_list_dbl **list, char **argv)
@@ -117,19 +74,6 @@ void	input(t_list_dbl **list, char **argv)
 	circular_fun(*list);
 }
 
-void	print_stack(t_list_dbl *list)
-{
-	t_list_dbl	*aux;
-
-	aux = list;
-	while (aux != list->prev)
-	{
-		printf("%i \n", ((int *)(aux)->content)[0]);
-		aux = aux->next;
-	}
-	printf("%i \n", ((int *)(aux)->content)[0]);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stacks	stack;
@@ -140,5 +84,4 @@ int	main(int argc, char **argv)
 	input(&stack.stack_a, argv);
 	stack.size_a = ft_lstdbl_size(stack.stack_a) - 1;
 	stack.size_b = ft_lstdbl_size(stack.stack_b) - 1;
-	
 }

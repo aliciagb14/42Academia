@@ -6,22 +6,26 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:20:47 by agonzale          #+#    #+#             */
-/*   Updated: 2021/07/14 10:55:15 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/06 13:23:33 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rev_rotate_a(t_stacks *stack)
+void	rev_rotate_a(t_list_dbl **stack_a, t_bool print)
 {
-	if (!stack->stack_a || !stack->stack_a->prev)
+	if (!(*stack_a) || !(*stack_a)->prev)
 		return ;
-	stack->stack_a = stack->stack_a->prev;
+	*stack_a = (*stack_a)->prev;
+	if (print)
+		ft_putstr_fd("rra", STDOUT_FILENO);
 }
 
-void	rev_rotate_b(t_stacks *stack)
+void	rev_rotate_b(t_list_dbl **stack_b, t_bool print)
 {
-	if (!stack->stack_b || !stack->stack_b->prev)
+	if (!(*stack_b) || !(*stack_b)->prev)
 		return ;
-	stack->stack_b = stack->stack_b->prev;
+	*stack_b = (*stack_b)->prev;
+	if (print)
+		ft_putstr_fd("rrb", STDOUT_FILENO);
 }

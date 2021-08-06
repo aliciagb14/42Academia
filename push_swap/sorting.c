@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_instructions.c                               :+:      :+:    :+:   */
+/*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 11:12:37 by agonzale          #+#    #+#             */
-/*   Updated: 2021/07/14 11:17:01 by agonzale         ###   ########.fr       */
+/*   Created: 2021/07/23 10:35:27 by agonzale          #+#    #+#             */
+/*   Updated: 2021/08/06 13:35:45 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 /*
-**Rotate: El primero se convierte en el ultimo
-**Rev_Rotate: El ultimo se convierte en el primero
+**	Separa en 2 mitades los numeros que tenemos que ordenar
+**
 */
-void print_swap(unsigned int instruction, t_stacks *stack)
+int	get_pivot(t_list_dbl *start, int size)
 {
-	
+	int	swaps;
+	int	pivot;
+	int	i;
+
+	pivot = *(int*)(start->content);
+	while (swaps != size / 2)
+	{
+		swaps = 0;
+		pivot = *(int*)(start->next->content);
+		while (i < size)
+		{
+			if (*(int*)(start->content) <= pivot)
+				swaps++;
+			i++;
+		}
+		swaps -= size;
+	}
+	return (pivot);
 }
