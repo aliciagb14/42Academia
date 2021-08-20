@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 10:50:06 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/06 14:39:37 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/20 18:40:53 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,29 @@ int	get_position_biggest_number_b(t_list_dbl *stack_b)
 	}
 	return (max_index);
 }
-
-t_bool	special_permutations(t_list *subdivisions, t_stacks *stack,
-	int *tam_set, int rotated_times)
+/*
+** Comprueba que si como el numero recibido del stack a
+** 			se puede ordenar
+*/
+t_bool	special_permutations(t_stacks *stack, int *tam_set, int *rotated_times)
 {
 	if (!is_sorted(stack->stack_a))
-		sort_a(subdivisions, stack);
-	while (rotated_times)
+		sort_a(stack);
+	while (*tam_set)
 	{
-		if (get_position_biggest_number_b(stack->stack_b) == *(int*)stack->stack_b->prev)
-			rev_rotate_a(&stack->stack_b, true);
-		else if (get_position_biggest_number_b(stack->stack_b)
-			== *(int*)stack->stack_b->next)
-			swap_b(stack->stack_b, true);
-		else if (get_position_biggest_number_b(stack->stack_b)
-			== *(int*)stack->stack_a)
+		if (get_position_biggest_number_b(stack->stack_b)
+			== stack->size_b - 1 && stack->size_b != 1)
 		{
-			push_a(stack->stack_a, true);
+			rev_rotate_b(&stack->stack_b, true);
+			(*rotated_times)--;
+		}
+		else if (get_position_biggest_number_b(stack->stack_b) == 1)
+			swap_b(stack->stack_b, true);
+		else if (get_position_biggest_number_b(stack->stack_b) == 0)
+		{
+			push_a(stack, true);
 			stack->sorted_elem_a++;
-			tam_set--;
+			(*tam_set)--;
 		}
 		else
 			return (false);
@@ -59,43 +63,38 @@ t_bool	special_permutations(t_list *subdivisions, t_stacks *stack,
 	return (true);
 }
 
-int	push_rotate_backwards_b(t_list *lista, int nb_swaps, t_stacks *stack,
+int	push_rotate_backwards_b(t_stacks *stack,
 	int *tam_set, int rotated_times)
 {
 	int	pivot;
 
-	pivot = get_pivot(stack->stack_b, stack->size_b - stack->sorted_elem_b);
+	pivot = get_pivot(stack->stack_b, stack->size_b - *tam_set, stack->size_b);
 	while (rotated_times > 0)
 	{
 		rev_rotate_b(&stack->stack_b, true);
 		rotated_times--;
-		//special_permutations(lista, stack, tam_set, rotated_times);
-		special_permutations(stack->stack_b, stack, tam_set, rotated_times);
-		//if (lista->content >= pivot)
+		special_permutations(stack, tam_set, &rotated_times);
 		if (*(int*)(stack->stack_b->content) >= pivot)
 		{
 			push_a(stack, true);
-			nb_swaps++;
+			(*tam_set)--;
 		}
 	}
 	return (rotated_times);
 }
 
-int	push_rotate_forwards_b(t_list *lista, int *tam_set, t_stacks *stack,
-		int rotated_times)//t_list *lista
+int	push_rotate_forwards_b(int *tam_set, t_stacks *stack)
 {
 	int	pivot;
 	int	nb_swaps;
 
 	nb_swaps = 0;
-	pivot = get_pivot(stack->stack_b, stack->size_b - stack->sorted_elem_b);
+	pivot = get_pivot(stack->stack_b, 0, *tam_set);
 	while (*tam_set > stack->sorted_elem_b)
 	{
-		//if (!special_permutations(lista, stack, tam_set, elem_cola_stack))
-		if (!special_permutations(stack->stack_b, stack, tam_set, rotated_times))
+		if (!special_permutations(stack, tam_set, &nb_swaps))
 		{
-			//if (lista->content >= pivot)
-			if(*(int*)(stack->stack_b->content))
+			if(*(int*)(stack->stack_b->content) >= pivot)
 			{
 				push_a(stack, true);
 				tam_set--;
@@ -107,28 +106,29 @@ int	push_rotate_forwards_b(t_list *lista, int *tam_set, t_stacks *stack,
 			}
 		}
 	}
-	return (tam_set);
+	return (nb_swaps);
 }
 
-void	sort_b(t_list *subdivisions, t_stacks *stack, int nb_swaps)
+void	sort_b(t_list *subdivisions, t_stacks *stack)
 {
 	int		elem_cola_stack;
-	int		*tam_set;
+	int		tam_set;
 	t_list	*aux;
 
 	while (subdivisions)
 	{
-		while (subdivisions->content)
+		tam_set = (int)((long int)subdivisions->content);
+		elem_cola_stack = 0;
+		while (tam_set)
 		{
 			if (elem_cola_stack == 0)
 			{
-				elem_cola_stack = push_rotate_forwards_b(subdivisions, tam_set,
-						stack, elem_cola_stack);
+				elem_cola_stack = push_rotate_forwards_b(&tam_set, stack);
 			}
 			else
-				elem_cola_stack = push_rotate_backwards_b(subdivisions,
-						nb_swaps, stack, tam_set, elem_cola_stack);
-			sort_a(subdivisions, stack);
+				elem_cola_stack = push_rotate_backwards_b(stack, &tam_set,
+					elem_cola_stack);
+			sort_a(stack);
 		}
 		aux = subdivisions;
 		subdivisions = subdivisions->next;

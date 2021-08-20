@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:25:01 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/03 11:06:50 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/09 12:24:55 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ void	push_a(t_stacks *stack, t_bool print)
 		stack->stack_a->next = aux;
 		stack->stack_a = aux;
 	}
+	stack->size_a++;
+	stack->size_b--;
 	if (print)
-		ft_putstr_fd("pa", STDOUT_FILENO);
+		ft_putstr_fd("pa\n", STDOUT_FILENO);
 }
 
 void	push_b(t_stacks *stack, t_bool print)
@@ -102,6 +104,8 @@ void	push_b(t_stacks *stack, t_bool print)
 		stack->stack_b->next = aux;
 		stack->stack_b = aux;
 	}
+	stack->size_b++;
+	stack->size_a--;
 	if (print)
-		ft_putstr_fd("pb", STDOUT_FILENO);
+		ft_putstr_fd("pb\n", STDOUT_FILENO);
 }

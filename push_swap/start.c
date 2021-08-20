@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:08:21 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/06 12:57:25 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/20 18:41:39 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,17 @@ int	main(int argc, char **argv)
 {
 	t_stacks	stack;
 
-	ft_inicialize(&stack);
 	if (argc < 2)
 		return (0);
+	ft_memset(&stack, 0, sizeof(t_stacks));
 	input(&stack.stack_a, argv);
-	stack.size_a = ft_lstdbl_size(stack.stack_a) - 1;
-	stack.size_b = ft_lstdbl_size(stack.stack_b) - 1;
+	stack.size_a = ft_lstdbl_size(stack.stack_a);
+	stack.sorted_elem_a = 0;
+	stack.size_b = ft_lstdbl_size(stack.stack_b);
+	if (stack.size_a <= 3)
+		three_numbers(stack.stack_a, stack.size_a);
+	else if (stack.size_a <= 5)
+		five_numbers(&stack);
+	else
+		sort_a(&stack);
 }

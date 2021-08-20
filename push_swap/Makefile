@@ -1,18 +1,21 @@
 NAME = push_swap
+LIBFT_A = libft.a
 EXTRA = push_swap.a
 SRCS = start.c five_numbers.c swap.c three_numbers.c utils.c sorting.c sort_a.c	\
-		sort_b.c rotate.c rev_rotate.c push.c instructions.c inicialize_struct.c
-OBJS = ${SRCS:.c=.o};
-CC = gcc -c
+		sort_b.c rotate.c rev_rotate.c push.c
+OBJS = ${SRCS:.c=.o}
+CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 all: ${NAME}
-${NAME}: ${SRCS}
-		${CC} -Ilibft ${CFLAGS} ${SRCS} libft.a 
-		ar rc ${NAME} ${OBJS}
-		ranlib ${EXTRA}
+${NAME}: ${LIBFT_A} ${SRCS}
+		${CC} -Ilibft ${CFLAGS} ${SRCS} libft.a -o push_swap
+${LIBFT_A}:
+	make -C libft
+	cp libft/libft.a .
 clean:
-		${RM} ${OBJS}
+		make -C libft clean
+		${RM} ${OBJS} libft.a
 fclean:	clean
 		${RM} ${NAME} ${OBJS}
 re: fclean all

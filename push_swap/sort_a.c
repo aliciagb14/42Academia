@@ -6,29 +6,30 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 10:49:50 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/06 14:41:55 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/20 18:49:28 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 /*
 ** Numeros ordenados se encuentran abajo del stack
+** nb_swaps son los numeros q pusea a b, esta variable luego nos sirve
+** 			para saber cuantos numeros componen la subdivision (tam)
+** rotated times, numero de veces que pasa un numero a la cola del stack
 */
-int	push_rotate_forwards_a(t_list *lista, int nb_swaps,
-	t_stacks *stack)
+int	push_rotate_forwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 {
 	int	pivot;
 	int	rotated_times;
 
 	rotated_times = 0;
-	pivot = get_pivot(stack->stack_a, stack->size_a - stack->sorted_elem_a);
+	pivot = get_pivot(stack->stack_a, 0, stack->size_a - stack->sorted_elem_a);
 	while (rotated_times < stack->size_a - stack->sorted_elem_a)
 	{
-		if (*(int*)lista->content <= pivot)
+		if (*(int*)stack->stack_a->content <= pivot)
 		{
 			push_b(stack, true);
-			nb_swaps++;
+			(*nb_swaps)++;
 		}
 		else
 		{
@@ -41,30 +42,30 @@ int	push_rotate_forwards_a(t_list *lista, int nb_swaps,
 
 /*
 ** Numeros ordenados se encuentran arriba del stack
-**	
+**	si hay mas num desordenados que ordenados,
+**	haces una rotacion para poder acceder a la  direccion con + facilidad
+** si hay mas num ordenados 
 */
-int	push_rotate_backwards_a(t_list *lista, int nb_swaps,
-	t_stacks *stack)
+int	push_rotate_backwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 {
 	int	pivot;
-	int	rotated_times;
+	int rotated_times;
 
-	pivot = get_pivot(stack->stack_a, stack->size_a - stack->sorted_elem_a);
 	if (stack->sorted_elem_a < stack->size_a - stack->sorted_elem_a)
 	{
 		while (stack->sorted_elem_a)
-		{
 			rotate_a(&stack->stack_a, true);
-			rotated_times = 0;
-		}
+		return (0);
 	}
+	rotated_times = stack->size_a - stack->sorted_elem_a;
+	pivot = get_pivot(stack->stack_a, stack->sorted_elem_a, stack->size_a);
 	while (rotated_times)
 	{
 		rev_rotate_a(&stack->stack_a, true);
 		if (*(int*)stack->stack_a->content <= pivot)
 		{
 			push_b(stack, true);
-			nb_swaps++;
+			(*nb_swaps)++;
 		}
 		rotated_times--;
 	}
@@ -72,33 +73,31 @@ int	push_rotate_backwards_a(t_list *lista, int nb_swaps,
 }
 
 /*
-** Si el numero de elementos desordenados es > 3
-** comprobaremos si el numero de elementos de la cola es 0
+** Si el numero de elementos desordenados es > 3 y mientras
+** existan numeros en la cola del stack, pasamos num a b
+** comprobaremos si el numero de elementos de la cola es 0.
+** si lo es, implica que los numeros ordenados estan abajo
+** (subdivisions guarda cuantos numeros pushea a b en cada iteracion)
 */
-void	sort_a(t_list *subdivisions, t_stacks *stack)
+void	sort_a(t_stacks *stack)
 {
-	int		nb_swaps;
+	unsigned long int		nb_swaps;
+	t_list	*subdivisions;
 	int		rotated_times;
 
 	rotated_times = 0;
 	subdivisions = NULL;
-	while (stack->size_a - stack->sorted_elem_a > 3)
+	while (stack->size_a - stack->sorted_elem_a > 3 || rotated_times)
 	{
 		nb_swaps = 0;
 		if (rotated_times == 0)
-		{
-			rotated_times = push_rotate_forwards_a(subdivisions, nb_swaps,
-					stack);
-		}
+			rotated_times = push_rotate_forwards_a(&nb_swaps, stack);
 		else
-		{
-			rotated_times = push_rotate_backwards_a(subdivisions, nb_swaps,
-					stack);
-		}
+			rotated_times = push_rotate_backwards_a(&nb_swaps, stack);
 		if (nb_swaps)
 			ft_lstadd_front(&subdivisions, ft_lstnew((void*)nb_swaps));
 	}
 	three_numbers(stack->stack_a, stack->size_a - stack->sorted_elem_a);
-	stack->sorted_elem_a = stack->size_a;
-	sort_b(subdivisions, stack, nb_swaps);
+	stack->sorted_elem_a += stack->size_a - stack->sorted_elem_a;
+	sort_b(subdivisions, stack);
 }

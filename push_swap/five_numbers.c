@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:01:16 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/06 14:23:37 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/16 12:36:29 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ int	get_position_smaller_number(t_list_dbl *stack_a)
 	int	min;
 	int	min_index;
 	int	i;
+	t_list_dbl *aux;
 
 	i = 0;
 	min_index = 0;
 	min = *(int*)stack_a->content;
-	while (stack_a->next != NULL)
+	aux = stack_a;
+	while (stack_a != aux || i == 0)
 	{
-		if (min > *(int*)stack_a->next->content)
+		if (min > *(int*)stack_a->content)
 		{
-			min = *(int*)stack_a->next->content;
+			min = *(int*)stack_a->content;
 			min_index = i;
 		}
 		stack_a = stack_a->next;
@@ -41,23 +43,20 @@ int	get_position_smaller_number(t_list_dbl *stack_a)
 */
 void	push_smallest_number(int min_index, t_stacks *stack)
 {
-	int	i;
-
-	i = stack->size_a - (stack->size_a - min_index);
-	if (min_index <= stack->size_a / 2)
+	if (min_index >= stack->size_a / 2)
 	{
-		while (i > stack->size_a / 2)
+		while (min_index < stack->size_a)
 		{
-			rotate_a(&stack->stack_a, true);
-			i++;
+			rev_rotate_a(&stack->stack_a, true);
+			min_index++;
 		}
 	}
 	else
 	{
-		while (i < stack->size_a / 2)
+		while (min_index)
 		{
-			rev_rotate_a(&stack->stack_a, true);
-			i++;
+			rotate_a(&stack->stack_a, true);
+			min_index--;
 		}
 	}
 	push_b(stack, true);
@@ -71,13 +70,12 @@ void	five_numbers(t_stacks *stack)
 {
 	int	min_index;
 
-	min_index = get_position_smaller_number(stack->stack_a);
-	push_smallest_number(min_index, stack);
-	if (stack->size_a == 5)
+	while (stack->size_a != 3)
 	{
-		get_position_smaller_number(stack->stack_a);
+		min_index = get_position_smaller_number(stack->stack_a);
 		push_smallest_number(min_index, stack);
 	}
-	else if (stack->size_a == 3)
-		three_numbers(stack->stack_a, stack->size_a);
+	three_numbers(stack->stack_a, stack->size_a);
+	while (stack->size_b)
+		push_a(stack, true);
 }

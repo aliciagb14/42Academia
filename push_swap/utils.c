@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:22:36 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/05 12:04:37 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/16 12:35:43 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,28 @@ int	*get_number(int number)
 		return (NULL);
 	*ptr = number;
 	return (ptr);
+}
+
+/*aux que al inicio sea list, y me voy a mover con el aux,
+hasta que aux de next = list*/
+t_bool	is_sorted(t_list_dbl *list)
+{
+	t_list_dbl	*aux;
+	t_bool first_iteration;
+
+	first_iteration = false;
+	if (!list)
+		return (0);
+	if (!list->next)
+		return (true);
+	aux = list;
+	while (aux->next != list || !first_iteration)
+	{
+		if (((int *)aux->content)[0] >
+			((int *)aux->next->content)[0])
+			return (false);
+		aux = aux->next;
+		first_iteration = true;
+	}
+	return (true);
 }
