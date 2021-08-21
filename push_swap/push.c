@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 11:25:01 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/09 12:24:55 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/21 11:30:43 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	push_a(t_stacks *stack, t_bool print)
 	}
 	else
 	{
-		aux->next = stack->stack_b->prev;
-		aux->prev = stack->stack_b->next;
-		stack->stack_a->prev = aux;
-		stack->stack_a->next = aux;
+		aux->next = stack->stack_a;
+		aux->prev = stack->stack_a->prev;
+		aux->prev->next = aux;
+		aux->next->prev = aux;
 		stack->stack_a = aux;
 	}
 	stack->size_a++;
@@ -98,10 +98,10 @@ void	push_b(t_stacks *stack, t_bool print)
 	}
 	else
 	{
-		aux->next = stack->stack_a->prev;
-		aux->prev = stack->stack_a->next;
-		stack->stack_b->prev = aux;
-		stack->stack_b->next = aux;
+		aux->next = stack->stack_b;
+		aux->prev = stack->stack_b->prev;
+		aux->prev->next = aux;
+		aux->next->prev = aux;
 		stack->stack_b = aux;
 	}
 	stack->size_b++;

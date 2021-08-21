@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 18:06:54 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/09 12:59:08 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/21 13:34:51 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,7 @@ void	three_numbers(t_list_dbl *stack_a, int size_a)
 		else if (!is_sorted(stack_a))
 			rotate_a(&stack_a, true);
 	}
+	print_stack(stack_a,  size_a);
+	printf("\n--------------------\n");
+	printf("\n ---nos salimos de ordenar 3 ---\n");
 }

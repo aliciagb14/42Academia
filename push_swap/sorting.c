@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 10:35:27 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/20 18:52:52 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/20 18:58:32 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ int	get_pivot(t_list_dbl *init, int start, int end)
 			aux2 = aux2->next;
 		}
 		aux = aux->next;
+		/*swaps = end - start - swaps;
+		if (swaps < 0)
+			swaps *= -1;*/
 	}
 	return (pivot);
 }

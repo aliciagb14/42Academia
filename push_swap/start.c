@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:08:21 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/20 18:41:39 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/21 14:03:42 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,28 @@ int	main(int argc, char **argv)
 		five_numbers(&stack);
 	else
 		sort_a(&stack);
+	printf("\nResultados final Stack\n");
+	print_stack(stack.stack_a,  stack.size_a);
+	printf("\n--------------------\n");
+	print_stack(stack.stack_b,  stack.size_b);
 }
+
+/*
+** COMPROBACIONES PARA EL MAIN DE INSTRUCCIONES
+**
+**	print_stack(stack.stack_a,  stack.size_a);
+**	printf("\n--------------------\n");
+**	print_stack(stack.stack_b,  stack.size_b);
+**	push_b(&stack, true);
+**	push_b(&stack, true);
+**	push_b(&stack, true);
+**	rev_rotate_a(&stack.stack_a, true);
+**	rev_rotate_b(&stack.stack_b, true);
+**	rev_rotate_a(&stack.stack_a, true);
+**	swap_a(stack.stack_a, true);
+**	swap_b(stack.stack_b, true);
+**	printf("\n fin \n");
+**	print_stack(stack.stack_a,  stack.size_a);
+**	printf("\n--------------------\n");
+**	print_stack(stack.stack_b, stack.size_b);
+*/

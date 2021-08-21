@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:17:17 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/20 18:35:40 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/21 18:21:38 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_stacks
 **				UTILS.C
 */
 int		*get_number(int number);
-void	print_stack(t_list_dbl *list);
+void	print_stack(t_list_dbl *list, int size);
 void	circular_fun(t_list_dbl *list);
 t_bool	is_elem_dup(t_list_dbl *list, char *number);
 t_bool	is_sorted(t_list_dbl *list);

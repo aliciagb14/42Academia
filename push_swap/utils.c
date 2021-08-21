@@ -6,23 +6,33 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:22:36 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/16 12:35:43 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/21 11:41:53 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_list_dbl *list)
+void	print_stack(t_list_dbl *list, int size)
 {
 	t_list_dbl	*aux;
+	int i;
 
+	i = 0;
 	aux = list;
-	while (aux != list->prev)
+	if (list == NULL)
+		return ;
+	if (list->next == NULL)
 	{
-		printf("%i \n", ((int *)(aux)->content)[0]);
-		aux = aux->next;
+		printf("%i (prev == NULL)\n", (*(int *)(aux)->content));
+		return ;
 	}
-	printf("%i \n", ((int *)(aux)->content)[0]);
+	while (aux != list || i == 0)
+	{
+		printf("%i (prev = %i) \n", (*(int *)(aux)->content), (*(int *)(aux)->prev->content));
+		aux = aux->next;
+		i++;
+	}
+	printf("size = %d ", size);
 }
 
 void	circular_fun(t_list_dbl *list)
