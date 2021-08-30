@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 10:49:50 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/21 01:57:54 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/30 09:09:27 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ** Numeros ordenados se encuentran abajo del stack
 ** nb_swaps son los numeros q pusea a b, esta variable luego nos sirve
 ** 			para saber cuantos numeros componen la subdivision (tam)
-** rotated times, numero de veces que pasa un numero a la cola del stack
+** rotated times, numero de veces que pasa un numero (> pivote) a la cola del stack 
 */
 int	push_rotate_forwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 {
@@ -37,6 +37,10 @@ int	push_rotate_forwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 			rotated_times++;
 		}
 	}
+	printf("\n------despues de forwards a--------------\n");
+	print_stack(stack->stack_a,  stack->size_a);
+	print_stack(stack->stack_b,  stack->size_b);
+	printf("\n--------------------\n");
 	return (rotated_times);
 }
 
@@ -69,6 +73,9 @@ int	push_rotate_backwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 		}
 		rotated_times--;
 	}
+	printf("\n------despues de backwards a--------------\n");
+	print_stack(stack->stack_a,  stack->size_a);
+	printf("\n--------------------\n");
 	return (rotated_times);
 }
 
@@ -99,5 +106,8 @@ void	sort_a(t_stacks *stack)
 	}
 	three_numbers(stack->stack_a, stack->size_a - stack->sorted_elem_a);
 	stack->sorted_elem_a += stack->size_a - stack->sorted_elem_a;
+	printf("\n------antes de tocar stack b, STACK_A ES: --------------\n");
+	print_stack(stack->stack_a,  stack->size_a);
+	printf("\n--------------------\n");
 	sort_b(subdivisions, stack);
 }

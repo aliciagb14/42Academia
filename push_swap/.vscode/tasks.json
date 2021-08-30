@@ -11,10 +11,10 @@
 				"-g",
 				"-I.",
 				"-I./libft",
-				"/home/user42/Documents/Academia/push_swap/*.c",
-				"/home/user42/Documents/Academia/push_swap/libft/*.c",
+				"/Users/agonzale/Documents/Academia/push_swap/*.c",
+				"/Users/agonzale/Documents/Academia/push_swap/libft/*.c",
 				"-o",
-				"/home/user42/Documents/Academia/push_swap/a.out"
+				"/Users/agonzale/Documents/Academia/push_swap/a.out"
             ],
             "options": {
                 "cwd": "/usr/bin"

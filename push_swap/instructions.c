@@ -6,29 +6,11 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 18:40:43 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/06 14:27:13 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/08/30 08:16:27 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*aux que al inicio sea list, y me voy a mover con el aux,
-hasta que aux de next = list*/
-t_bool	is_sorted(t_list_dbl *list)
-{
-	t_list_dbl	*aux;
-
-	if (!list)
-		return (0);
-	aux = list;
-	while (aux->next != list)
-	{
-		if (((int *)aux->content)[0] >
-			((int *)aux->next->content)[0])
-			return (false);
-		aux = aux->next;
-	}
-	return (true);
-}
 
 t_bool	swap_instr(char *line, t_stacks *stack, t_bool print)
 {
