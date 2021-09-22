@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/Users/agonzale/Documents/Academia/push_swap/a.out",
-			"args": ["906", "752", "688", "929", "699", "628", "622", "415", "993", "417"],
+			"args": ["248", "999", "796", "989", "151", "657", "310", "334", "449"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

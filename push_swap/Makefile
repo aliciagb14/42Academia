@@ -2,7 +2,7 @@ NAME = push_swap
 LIBFT_A = libft.a
 EXTRA = push_swap.a
 SRCS = start.c five_numbers.c swap.c three_numbers.c utils.c sorting.c sort_a.c	\
-		sort_b.c rotate.c rev_rotate.c push.c random_generator.c
+		sort_b.c rotate.c rev_rotate.c push.c
 OBJS = ${SRCS:.c=.o}
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra

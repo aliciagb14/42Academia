@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:08:21 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/21 14:03:42 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/22 11:33:44 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,16 @@ void	input(t_list_dbl **list, char **argv)
 	circular_fun(*list);
 }
 
+void valgrind()
+{
+	system("leaks a.out");
+}
+
 int	main(int argc, char **argv)
 {
 	t_stacks	stack;
 
+	// atexit(valgrind);
 	if (argc < 2)
 		return (0);
 	ft_memset(&stack, 0, sizeof(t_stacks));
@@ -100,9 +106,9 @@ int	main(int argc, char **argv)
 /*
 ** COMPROBACIONES PARA EL MAIN DE INSTRUCCIONES
 **
-**	print_stack(stack.stack_a,  stack.size_a);
-**	printf("\n--------------------\n");
-**	print_stack(stack.stack_b,  stack.size_b);
+**	// print_stack("\n(stack.stack_a,  stack.size_a);
+**	// printf("\n--------------------\n");
+**	// print_stack("\n(stack.stack_b,  stack.size_b);
 **	push_b(&stack, true);
 **	push_b(&stack, true);
 **	push_b(&stack, true);
@@ -111,8 +117,8 @@ int	main(int argc, char **argv)
 **	rev_rotate_a(&stack.stack_a, true);
 **	swap_a(stack.stack_a, true);
 **	swap_b(stack.stack_b, true);
-**	printf("\n fin \n");
-**	print_stack(stack.stack_a,  stack.size_a);
-**	printf("\n--------------------\n");
-**	print_stack(stack.stack_b, stack.size_b);
+**	// printf("\n fin \n");
+**	// print_stack("\n(stack.stack_a,  stack.size_a);
+**	// printf("\n--------------------\n");
+**	// print_stack("\n(stack.stack_b, stack.size_b);
 */

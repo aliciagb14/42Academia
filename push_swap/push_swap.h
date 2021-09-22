@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:17:17 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/30 11:51:13 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/22 10:57:03 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ typedef struct s_stacks
 */
 int		*get_number(int number);
 void	print_stack(t_list_dbl *list, int size);
-void	circular_fun(t_list_dbl *list);
 t_bool	is_elem_dup(t_list_dbl *list, char *number);
 t_bool	is_sorted(t_list_dbl *list);
+t_bool	can_sort_a(t_stacks *stack);
+void	circular_fun(t_list_dbl *list);
 /*
 **				SWAP.C
 */
@@ -62,16 +63,16 @@ void	sort_a(t_stacks *stack);
 **				SORT_B.C
 */
 void	sort_b(t_list *subdivisions, t_stacks *stack);
-int		smaller_nb(t_stacks *stack);
 void	three_numbers(t_list_dbl *stack_a, int size_a);
 void	five_numbers(t_stacks *stack);
 void	print_swap(unsigned int instruction, t_stacks *stack);
 /*
 **				SORTING.C
 */
-//int		get_pivot(t_list_dbl *start, int size);
 int		get_pivot(t_list_dbl *init, int start, int end);
 int		get_tail_stack(t_list_dbl *start);
+int		smallest_nb(t_list_dbl *stack_a);
+int		biggest_nb(t_list_dbl *stack_b);
 /*
 **					CHECKER.C
 */

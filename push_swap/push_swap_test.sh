@@ -7,7 +7,8 @@ smallest_instr_list=9999999
 for i in {1..100}
 do
 	numbers=$(./a.out $1)
-	checker_output=$(./push_swap $numbers | ./checker_linux $numbers)
+	echo "Error with the numbers $numbers"
+	checker_output=$(./push_swap $numbers | ./checker_Mac $numbers)
 	if [[ $checker_output != "OK" ]]; then
 		echo "Error with the numbers $numbers"
 	fi

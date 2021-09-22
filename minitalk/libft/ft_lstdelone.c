@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inicialize_struct.c                                :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/03 18:42:00 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/06 12:57:12 by agonzale         ###   ########.fr       */
+/*   Created: 2021/05/25 12:57:43 by agonzale          #+#    #+#             */
+/*   Updated: 2021/05/25 12:57:45 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_inicialize(t_stacks *stack)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	ft_memset(&stack, 0, sizeof(t_stacks));
-	stack->size_a = 1;
-	stack->size_b = 1;
-	if (stack->stack_b == NULL)
-	{
-		free(stack->stack_a);
-		exit(1);
-	}
+	if (del)
+		del(lst->content);
+	free(lst);
+	lst = 0;
 }

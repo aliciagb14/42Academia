@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 10:49:50 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/30 09:09:27 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/22 10:52:23 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	push_rotate_forwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 			rotated_times++;
 		}
 	}
-	printf("\n------despues de forwards a--------------\n");
-	print_stack(stack->stack_a,  stack->size_a);
-	print_stack(stack->stack_b,  stack->size_b);
-	printf("\n--------------------\n");
+	// // // printf("\n------despues de forwards a--------------\n");
+	// // print_stack("\n(stack->stack_a,  stack->size_a);
+	// // print_stack("\n(stack->stack_b,  stack->size_b);
+	// // // printf("\n--------------------\n");
 	return (rotated_times);
 }
 
@@ -55,8 +55,9 @@ int	push_rotate_backwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 	int	pivot;
 	int rotated_times;
 
-	if (stack->sorted_elem_a < stack->size_a - stack->sorted_elem_a)
+	if (stack->sorted_elem_a && stack->sorted_elem_a < stack->size_a - stack->sorted_elem_a)
 	{
+		// printf("Señora\n");
 		while (stack->sorted_elem_a)
 			rotate_a(&stack->stack_a, true);
 		return (0);
@@ -73,9 +74,9 @@ int	push_rotate_backwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 		}
 		rotated_times--;
 	}
-	printf("\n------despues de backwards a--------------\n");
-	print_stack(stack->stack_a,  stack->size_a);
-	printf("\n--------------------\n");
+	// // // printf("\n------despues de backwards a--------------\n");
+	// // print_stack("\n(stack->stack_a,  stack->size_a);
+	// // // printf("\n--------------------\n");
 	return (rotated_times);
 }
 
@@ -106,8 +107,8 @@ void	sort_a(t_stacks *stack)
 	}
 	three_numbers(stack->stack_a, stack->size_a - stack->sorted_elem_a);
 	stack->sorted_elem_a += stack->size_a - stack->sorted_elem_a;
-	printf("\n------antes de tocar stack b, STACK_A ES: --------------\n");
-	print_stack(stack->stack_a,  stack->size_a);
-	printf("\n--------------------\n");
+	// // // printf("\n------antes de tocar stack b, STACK_A ES: --------------\n");
+	// // print_stack("\n(stack->stack_a,  stack->size_a);
+	// // // printf("\n--------------------\n");
 	sort_b(subdivisions, stack);
 }
