@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 10:50:06 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/22 13:27:49 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/22 16:05:43 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,33 @@ int	get_position_biggest_number_b(t_list_dbl *stack_b)
 	}
 	return (max_index);
 }
+
+t_bool check_special_permutations(t_stacks *stack, int *tam_set, int *rotated_times)
+{
+	int max_index;
+
+	max_index = get_position_biggest_number_b(stack->stack_b);
+	if (max_index == stack->size_b - 1 && stack->size_b != 1)
+	{
+		rev_rotate_b(&stack->stack_b, true);
+		(*rotated_times)--;
+		max_index = 0;
+		}
+	else if (max_index == 1 && *rotated_times > 1)
+	{
+		swap_b(stack->stack_b, true);
+		max_index = 0;
+	}
+	else if (max_index == 0 && *rotated_times > 0)
+	{
+		push_a(stack, true);
+		stack->sorted_elem_a++;
+		(*tam_set)--;
+	}
+	else
+		return (false);
+	return (true);
+}
 /*
 ** Queremos saber la posicion del numero mas grande del stack para poder
 ** ahorrarnos operaciones en casos específicos
@@ -41,40 +68,22 @@ int	get_position_biggest_number_b(t_list_dbl *stack_b)
 */
 t_bool	special_permutations(t_stacks *stack, int *tam_set, int *rotated_times)
 {
-	int max_index;
+	t_bool done;
 
-	max_index = get_position_biggest_number_b(stack->stack_b);
-	printf("\n ---contenido de a---\n");
-	print_stack(stack->stack_a,  stack->size_a);
-	printf("\n ---contenido de b---\n");
-	print_stack(stack->stack_b,  stack->size_b);
-	if (!can_sort_a(stack))
-		return false;
-	sort_a(stack);
-	while (*tam_set)
+	done = false;
+	// printf("\n ---contenido de a---\n");
+	// print_stack(stack->stack_a,  stack->size_a);
+	// printf("\n ---contenido de b---\n");
+	// print_stack(stack->stack_b,  stack->size_b);
+	if (stack->size_b > 1 && can_sort_a(stack))
 	{
-		if (max_index == stack->size_b - 1 && stack->size_b != 1)
-		{
-			rev_rotate_b(&stack->stack_b, true);
-			(*rotated_times)--;
-			max_index = 0;
-		}
-		else if (max_index == 1 && *rotated_times > 1)
-		{
-			swap_b(stack->stack_b, true);
-			max_index = 0;
-		}
-		else if (max_index == 0 && *rotated_times > 0)
-		{
-			// printf("Señora, es usted el número mas grande? (%i)\n", *(int *)stack->stack_b->content);
-			push_a(stack, true);
-			stack->sorted_elem_a++;
-			(*tam_set)--;
-		}
-		else
-			return (false);
+		sort_a(stack);
+		while (*tam_set > 0 && check_special_permutations(stack, tam_set, rotated_times))
+			done = true;
 	}
-	return (true);
+	else if (stack->size_b == 1)
+		push_a(stack, true);
+	return done;
 }
 
 int	push_rotate_backwards_b(t_stacks *stack,
@@ -149,7 +158,7 @@ void	sort_b(t_list *subdivisions, t_stacks *stack)
 	{
 		tam_set = (int)((long int)subdivisions->content);
 		elem_cola_stack = 0;
-		while (tam_set)
+		while (stack->size_b > 1 && tam_set)
 		{
 			if (elem_cola_stack == 0)
 				elem_cola_stack = push_rotate_forwards_b(&tam_set, stack);

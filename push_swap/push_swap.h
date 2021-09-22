@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:17:17 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/22 10:57:03 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/22 14:53:27 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	print_stack(t_list_dbl *list, int size);
 t_bool	is_elem_dup(t_list_dbl *list, char *number);
 t_bool	is_sorted(t_list_dbl *list);
 t_bool	can_sort_a(t_stacks *stack);
+t_bool	check_special_permutations(t_stacks *stack, int *tam_set, int *rotated_times);
 void	circular_fun(t_list_dbl *list);
 /*
 **				SWAP.C

@@ -5,11 +5,11 @@ SRCS = start.c five_numbers.c swap.c three_numbers.c utils.c sorting.c sort_a.c	
 		sort_b.c rotate.c rev_rotate.c push.c
 OBJS = ${SRCS:.c=.o}
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 RM = rm -rf
 all: ${NAME}
-${NAME}: ${LIBFT_A} ${SRCS}
-		${CC} -Ilibft ${CFLAGS} ${SRCS} libft.a -o push_swap
+${NAME}: ${LIBFT_A} ${SRCS} ${OBJS}
+		${CC} -Ilibft ${CFLAGS} ${SRCS} libft.a -o push_swap  
 ${LIBFT_A}:
 	make -C libft
 	cp libft/libft.a .
