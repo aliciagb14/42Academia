@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 12:01:16 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/22 14:45:11 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:28:36 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	five_numbers(t_stacks *stack)
 		min_index = get_position_smaller_number(stack->stack_a);
 		push_smallest_number(min_index, stack);
 	}
-	three_numbers(stack->stack_a, stack->size_a);
+	sort_three_numbers(stack->stack_a, stack->size_a);
 	while (stack->size_b)
 		push_a(stack, true);
 }

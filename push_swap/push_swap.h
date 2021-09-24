@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:17:17 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/22 14:53:27 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/24 15:12:44 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_stacks
 int		*get_number(int number);
 void	print_stack(t_list_dbl *list, int size);
 t_bool	is_elem_dup(t_list_dbl *list, char *number);
-t_bool	is_sorted(t_list_dbl *list);
+t_bool	is_sorted(t_list_dbl *list, int length);
 t_bool	can_sort_a(t_stacks *stack);
 t_bool	check_special_permutations(t_stacks *stack, int *tam_set, int *rotated_times);
 void	circular_fun(t_list_dbl *list);
@@ -64,7 +64,8 @@ void	sort_a(t_stacks *stack);
 **				SORT_B.C
 */
 void	sort_b(t_list *subdivisions, t_stacks *stack);
-void	three_numbers(t_list_dbl *stack_a, int size_a);
+void	sort_three_numbers(t_list_dbl *stack_a, int size_a);
+void	sort_three_numbers_full_stack_a(t_list_dbl *stack_a, int size);
 void	five_numbers(t_stacks *stack);
 void	print_swap(unsigned int instruction, t_stacks *stack);
 /*

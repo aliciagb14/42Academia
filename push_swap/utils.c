@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:22:36 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/22 10:57:07 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:01:39 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	print_stack(t_list_dbl *list, int size)
 {
+	return ;
 	t_list_dbl	*aux;
 	int i;
 
@@ -26,13 +27,13 @@ void	print_stack(t_list_dbl *list, int size)
 		printf("%i (prev == NULL)\n", (*(int *)(aux)->content));
 		return ;
 	}
-	while (aux != list || i == 0)
+	while ((aux != list || i == 0) && size > 1)
 	{
 		printf("%i (prev = %i) \n", (*(int *)(aux)->content), (*(int *)(aux)->prev->content));
 		aux = aux->next;
 		i++;
 	}
-	printf("size = %d ", size);
+	//printf"size = %d ", size);
 }
 
 void	circular_fun(t_list_dbl *list)
@@ -81,24 +82,26 @@ int	*get_number(int number)
 
 /*aux que al inicio sea list, y me voy a mover con el aux,
 hasta que aux de next = list*/
-t_bool	is_sorted(t_list_dbl *list)
+t_bool	is_sorted(t_list_dbl *list, int length)
 {
 	t_list_dbl	*aux;
 	t_bool first_iteration;
+	int	i;
 
+	i = 1;
 	first_iteration = false;
 	if (!list)
 		return (0);
 	if (!list->next)
 		return (true);
 	aux = list;
-	while (aux->next != list || !first_iteration)
+	while (i < length && (aux->next != list || !first_iteration))
 	{
-		if (((int *)aux->content)[0] >
-			((int *)aux->next->content)[0])
+		if (*(int *)aux->content > *(int *)aux->next->content)
 			return (false);
 		aux = aux->next;
 		first_iteration = true;
+		i++;
 	}
 	return (true);
 }

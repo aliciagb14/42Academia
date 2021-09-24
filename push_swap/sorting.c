@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 10:35:27 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/22 15:51:30 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/24 15:12:33 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_bool can_sort_a(t_stacks *stack)
 
 	smallest = smallest_nb(stack->stack_a);
 	biggest = biggest_nb(stack->stack_b);
-	printf("+ pequeño: %d, + grande: %d\n", smallest, biggest);
+	// //printf"+ pequeño: %d, + grande: %d\n", smallest, biggest);
 	if (smallest > biggest)
 		return true;
 	return false;

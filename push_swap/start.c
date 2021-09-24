@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:08:21 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/22 11:33:44 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:08:33 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 {
 	t_stacks	stack;
 
-	// atexit(valgrind);
+	atexit(valgrind);
 	if (argc < 2)
 		return (0);
 	ft_memset(&stack, 0, sizeof(t_stacks));
@@ -92,23 +92,24 @@ int	main(int argc, char **argv)
 	stack.sorted_elem_a = 0;
 	stack.size_b = ft_lstdbl_size(stack.stack_b);
 	if (stack.size_a <= 3)
-		three_numbers(stack.stack_a, stack.size_a);
+		sort_three_numbers(stack.stack_a, stack.size_a);
 	else if (stack.size_a <= 5)
 		five_numbers(&stack);
 	else
 		sort_a(&stack);
-	printf("\nResultados final Stack\n");
+	
+	//printf"\nResultados final Stack\n");
 	print_stack(stack.stack_a,  stack.size_a);
-	printf("\n--------------------\n");
+	//printf"\n--------------------\n");
 	print_stack(stack.stack_b,  stack.size_b);
 }
 
 /*
 ** COMPROBACIONES PARA EL MAIN DE INSTRUCCIONES
 **
-**	// print_stack("\n(stack.stack_a,  stack.size_a);
-**	// printf("\n--------------------\n");
-**	// print_stack("\n(stack.stack_b,  stack.size_b);
+**	// //print-stack("\n(stack.stack_a,  stack.size_a);
+**	// // //printf"\n--------------------\n");
+**	// //print-stack("\n(stack.stack_b,  stack.size_b);
 **	push_b(&stack, true);
 **	push_b(&stack, true);
 **	push_b(&stack, true);
@@ -117,8 +118,8 @@ int	main(int argc, char **argv)
 **	rev_rotate_a(&stack.stack_a, true);
 **	swap_a(stack.stack_a, true);
 **	swap_b(stack.stack_b, true);
-**	// printf("\n fin \n");
-**	// print_stack("\n(stack.stack_a,  stack.size_a);
-**	// printf("\n--------------------\n");
-**	// print_stack("\n(stack.stack_b, stack.size_b);
+**	// // //printf"\n fin \n");
+**	// //print-stack("\n(stack.stack_a,  stack.size_a);
+**	// // //printf"\n--------------------\n");
+**	// //print-stack("\n(stack.stack_b, stack.size_b);
 */

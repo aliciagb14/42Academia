@@ -6,7 +6,7 @@ biggest_instr_list=0
 smallest_instr_list=9999999
 for i in {1..100}
 do
-	numbers=$(./a.out $1)
+	numbers=$(./random_generator $1)
 	echo "Error with the numbers $numbers"
 	checker_output=$(./push_swap $numbers | ./checker_Mac $numbers)
 	if [[ $checker_output != "OK" ]]; then

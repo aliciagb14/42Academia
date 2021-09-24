@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 10:50:06 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/22 16:05:43 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:00:54 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int	get_position_biggest_number_b(t_list_dbl *stack_b)
 	i = 0;
 	aux = stack_b;
 	max = 0;
+	if (stack_b->next == NULL)
+		return (0);
 	while (stack_b != aux || i == 0)
 	{
-		if (max < (*(int *)stack_b->content))
+		if (max < *(int *)stack_b->content)
 		{
 			max = *(int *)stack_b->content;
 			max_index = i;
@@ -45,7 +47,7 @@ t_bool check_special_permutations(t_stacks *stack, int *tam_set, int *rotated_ti
 		rev_rotate_b(&stack->stack_b, true);
 		(*rotated_times)--;
 		max_index = 0;
-		}
+	}
 	else if (max_index == 1 && *rotated_times > 1)
 	{
 		swap_b(stack->stack_b, true);
@@ -71,10 +73,10 @@ t_bool	special_permutations(t_stacks *stack, int *tam_set, int *rotated_times)
 	t_bool done;
 
 	done = false;
-	// printf("\n ---contenido de a---\n");
-	// print_stack(stack->stack_a,  stack->size_a);
-	// printf("\n ---contenido de b---\n");
-	// print_stack(stack->stack_b,  stack->size_b);
+	//printf"\n ---contenido de a SPECIAL PERMUTATIONS---\n");
+	print_stack(stack->stack_a,  stack->size_a);
+	//printf"\n ---contenido de b---\n");
+	print_stack(stack->stack_b,  stack->size_b);
 	if (stack->size_b > 1 && can_sort_a(stack))
 	{
 		sort_a(stack);
@@ -85,30 +87,26 @@ t_bool	special_permutations(t_stacks *stack, int *tam_set, int *rotated_times)
 		push_a(stack, true);
 	return done;
 }
-
+/*
+** rotated times, numero de veces que pasa un numero a la cola del stack 
+*/
 int	push_rotate_backwards_b(t_stacks *stack,
 	int *tam_set, int rotated_times)
 {
 	int	pivot;
 
 	pivot = get_pivot(stack->stack_b, stack->size_b - *tam_set, stack->size_b);
-	// // printf("\n------backwards b--------------\n");
-		// // print_stack("\n(stack->stack_b,  stack->size_b);
-		// // printf("\n--------------------\n");
 	while (rotated_times > 0)
 	{
 		rev_rotate_b(&stack->stack_b, true);
 		rotated_times--;
 		special_permutations(stack, tam_set, &rotated_times);
-		if (*(int*)(stack->stack_b->content) >= pivot)
+		if (stack->size_b > 1 && *(int*)(stack->stack_b->content) >= pivot)
 		{
 			push_a(stack, true);
 			(*tam_set)--;
 		}
 	}
-	// // printf("\n------ despues de backwards b--------------\n");
-		// // print_stack("\n(stack->stack_b,  stack->size_b);
-		// // printf("\n--------------------\n");
 	return (rotated_times);
 }
 
@@ -116,23 +114,30 @@ int	push_rotate_forwards_b(int *tam_set, t_stacks *stack)
 {
 	int	pivot;
 	int	nb_swaps;
+	int set_size;
 
 	nb_swaps = 0;
-	// // printf("\n------forwards b--------------\n");
-	// // print_stack("\n(stack->stack_b,  stack->size_b);
-	// // printf("\n--------------------\n");
+	//printf"\n------forwards b--------------\n");
+	print_stack(stack->stack_b,  stack->size_b);
+	//printf"\n--------------------\n");
 	pivot = get_pivot(stack->stack_b, 0, stack->size_b);
-	while (*tam_set > stack->sorted_elem_b)
+	set_size = *tam_set;
+	while (set_size > 0)
 	{
-		// printf("Pivote be like: %i; %i, %i\n", pivot, *tam_set, stack->sorted_elem_b);
+		//printf"\n------STACK A: forwards dentro while--------------\n");
+		print_stack(stack->stack_a,  stack->size_a);
+		//printf"\n------STACK B: forwards dentro while--------------\n");
+		print_stack(stack->stack_b,  stack->size_b);
+		//printf"\n--------------------\n");
+		// //printf"Pivote be like: %i; %i, %i\n", pivot, *tam_set, stack->sorted_elem_b);
 		if (!special_permutations(stack, tam_set, &nb_swaps))
 		{
-			if(*(int*)(stack->stack_b->content) >= pivot)
+			if(stack->size_b > 1 && *(int*)stack->stack_b->content >= pivot)
 			{
 				push_a(stack, true);
-				/*// printf("\n------ stack a --------------\n");
-				// print_stack("\n(stack->stack_a,  stack->size_a);
-				// printf("\n--------------------\n");*/
+				//printf"\n------ stack a SPECIAL PERMUT DENTRO IF--------------\n");
+				print_stack(stack->stack_a,  stack->size_a);
+				//printf"\n--------------------\n");
 				(*tam_set)--;
 			}
 			else
@@ -140,11 +145,12 @@ int	push_rotate_forwards_b(int *tam_set, t_stacks *stack)
 				rotate_b(&stack->stack_b, true);
 				nb_swaps++;
 			}
+			set_size--;
 		}
 	}
-	// // printf("\n------despues de forwards b--------------\n");
-	// // print_stack("\n(stack->stack_b,  stack->size_b);
-	// // printf("\n--------------------\n");
+	//printf"\n------despues de forwards b--------------\n");
+	print_stack(stack->stack_b,  stack->size_b);
+	//printf"\n--------------------\n");
 	return (nb_swaps);
 }
 
@@ -158,10 +164,10 @@ void	sort_b(t_list *subdivisions, t_stacks *stack)
 	{
 		tam_set = (int)((long int)subdivisions->content);
 		elem_cola_stack = 0;
-		while (stack->size_b > 1 && tam_set)
+		while (stack->size_b >= 1 && tam_set)
 		{
 			if (elem_cola_stack == 0)
-				elem_cola_stack = push_rotate_forwards_b(&tam_set, stack);
+				elem_cola_stack = push_rotate_forwards_b(&tam_set, stack);//SEGFAULT
 			else
 				elem_cola_stack = push_rotate_backwards_b(stack, &tam_set,
 					elem_cola_stack);
