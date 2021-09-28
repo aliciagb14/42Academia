@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:42:43 by rprieto-          #+#    #+#             */
-/*   Updated: 2021/07/03 20:45:46 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/28 07:57:08 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int					ft_get_index_of(char *string, char c);
 int					ft_nbrlen(int n);
 long				ft_abs(long n);
 char				*ft_strncat_in(char *s1, char *s2, int n);
-int					get_next_line	(int fd, char **line);
+int					get_next_line(int fd, char **line);
 void				end_get_next_line(int fd);
 int					gnl_buffer(int fd, int n, t_gnl_buffer **buffer);
 void				free_gnl_buffer(t_gnl_buffer *buffer, t_bool erase_mode);

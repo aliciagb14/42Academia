@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:08:21 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/24 16:08:33 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:31:22 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ void	check_error(t_list_dbl **list, int aux, int j, char *current_argv)
 	}
 }
 
+void	check_sign_and_digits(t_list_dbl **list, char **argv, int i, int j)
+{
+	if (!ft_isdigit(argv[i][j]))
+	{
+		ft_putstr_fd("KO", STDERR_FILENO);
+		ft_lstdbl_clear(list, free);
+	}
+}
+
 void	input(t_list_dbl **list, char **argv)
 {
 	int	aux;
@@ -58,11 +67,7 @@ void	input(t_list_dbl **list, char **argv)
 				j++;
 			while (argv[i][j] && !ft_isspace(argv[i][j]))
 			{
-				if (!ft_isdigit(argv[i][j]))
-				{
-					ft_putstr_fd("KO", STDERR_FILENO);
-					ft_lstdbl_clear(list, free);
-				}
+				check_sign_and_digits(list, argv, i, j);
 				j++;
 			}
 			check_error(list, aux, j, argv[i]);
@@ -74,16 +79,16 @@ void	input(t_list_dbl **list, char **argv)
 	circular_fun(*list);
 }
 
-void valgrind()
+void	valgrind(void)
 {
-	system("leaks a.out");
+	system("leaks push_swap");
 }
 
 int	main(int argc, char **argv)
 {
 	t_stacks	stack;
 
-	atexit(valgrind);
+	// atexit(valgrind);
 	if (argc < 2)
 		return (0);
 	ft_memset(&stack, 0, sizeof(t_stacks));
@@ -97,11 +102,10 @@ int	main(int argc, char **argv)
 		five_numbers(&stack);
 	else
 		sort_a(&stack);
-	
-	//printf"\nResultados final Stack\n");
 	print_stack(stack.stack_a,  stack.size_a);
-	//printf"\n--------------------\n");
-	print_stack(stack.stack_b,  stack.size_b);
+	ft_lstdbl_clear(&stack.stack_a, free);
+	ft_lstdbl_clear(&stack.stack_b, free);
+	return (0);
 }
 
 /*

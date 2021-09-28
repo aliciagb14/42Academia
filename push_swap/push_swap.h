@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 09:17:17 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/24 15:12:44 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/28 10:21:18 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_stacks
 	t_list_dbl	*stack_a;
 }					t_stacks;
 
+void check_leaks();
 /*
 **				UTILS.C
 */

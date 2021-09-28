@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 10:50:06 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/24 16:00:54 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/28 13:54:23 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,6 @@ t_bool	special_permutations(t_stacks *stack, int *tam_set, int *rotated_times)
 	t_bool done;
 
 	done = false;
-	//printf"\n ---contenido de a SPECIAL PERMUTATIONS---\n");
-	print_stack(stack->stack_a,  stack->size_a);
-	//printf"\n ---contenido de b---\n");
-	print_stack(stack->stack_b,  stack->size_b);
 	if (stack->size_b > 1 && can_sort_a(stack))
 	{
 		sort_a(stack);
@@ -91,7 +87,7 @@ t_bool	special_permutations(t_stacks *stack, int *tam_set, int *rotated_times)
 ** rotated times, numero de veces que pasa un numero a la cola del stack 
 */
 int	push_rotate_backwards_b(t_stacks *stack,
-	int *tam_set, int rotated_times)
+	int *tam_set, int rotated_times, int pushed_times)
 {
 	int	pivot;
 
@@ -100,11 +96,13 @@ int	push_rotate_backwards_b(t_stacks *stack,
 	{
 		rev_rotate_b(&stack->stack_b, true);
 		rotated_times--;
+		(*tam_set)++;
 		special_permutations(stack, tam_set, &rotated_times);
 		if (stack->size_b > 1 && *(int*)(stack->stack_b->content) >= pivot)
 		{
 			push_a(stack, true);
 			(*tam_set)--;
+			pushed_times--;
 		}
 	}
 	return (rotated_times);
@@ -114,30 +112,18 @@ int	push_rotate_forwards_b(int *tam_set, t_stacks *stack)
 {
 	int	pivot;
 	int	nb_swaps;
-	int set_size;
+	int pushed_times;
 
 	nb_swaps = 0;
-	//printf"\n------forwards b--------------\n");
-	print_stack(stack->stack_b,  stack->size_b);
-	//printf"\n--------------------\n");
 	pivot = get_pivot(stack->stack_b, 0, stack->size_b);
-	set_size = *tam_set;
-	while (set_size > 0)
+	pushed_times = *tam_set;//j = pushed_times, *tam_set = *current_set_size, i = nb_swaps
+	while (pushed_times > 0)
 	{
-		//printf"\n------STACK A: forwards dentro while--------------\n");
-		print_stack(stack->stack_a,  stack->size_a);
-		//printf"\n------STACK B: forwards dentro while--------------\n");
-		print_stack(stack->stack_b,  stack->size_b);
-		//printf"\n--------------------\n");
-		// //printf"Pivote be like: %i; %i, %i\n", pivot, *tam_set, stack->sorted_elem_b);
 		if (!special_permutations(stack, tam_set, &nb_swaps))
 		{
 			if(stack->size_b > 1 && *(int*)stack->stack_b->content >= pivot)
 			{
 				push_a(stack, true);
-				//printf"\n------ stack a SPECIAL PERMUT DENTRO IF--------------\n");
-				print_stack(stack->stack_a,  stack->size_a);
-				//printf"\n--------------------\n");
 				(*tam_set)--;
 			}
 			else
@@ -145,12 +131,9 @@ int	push_rotate_forwards_b(int *tam_set, t_stacks *stack)
 				rotate_b(&stack->stack_b, true);
 				nb_swaps++;
 			}
-			set_size--;
+			pushed_times--;
 		}
 	}
-	//printf"\n------despues de forwards b--------------\n");
-	print_stack(stack->stack_b,  stack->size_b);
-	//printf"\n--------------------\n");
 	return (nb_swaps);
 }
 
@@ -158,23 +141,27 @@ void	sort_b(t_list *subdivisions, t_stacks *stack)
 {
 	int		elem_cola_stack;
 	int		tam_set;
+	int		pushed_times;
 	t_list	*aux;
 
+	pushed_times = 0;
 	while (subdivisions)
 	{
-		tam_set = (int)((long int)subdivisions->content);
+		tam_set = *((int *)subdivisions->content);
 		elem_cola_stack = 0;
 		while (stack->size_b >= 1 && tam_set)
 		{
 			if (elem_cola_stack == 0)
-				elem_cola_stack = push_rotate_forwards_b(&tam_set, stack);//SEGFAULT
+				elem_cola_stack = push_rotate_forwards_b(&tam_set, stack);
 			else
 				elem_cola_stack = push_rotate_backwards_b(stack, &tam_set,
-					elem_cola_stack);
+					elem_cola_stack, pushed_times);
+			if (elem_cola_stack == -1)
+				elem_cola_stack = 0;
 			sort_a(stack);
 		}
 		aux = subdivisions;
 		subdivisions = subdivisions->next;
-		ft_lstdelone(aux, 0);
+		ft_lstdelone(aux, free);
 	}
 }

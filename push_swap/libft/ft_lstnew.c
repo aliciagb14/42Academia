@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 12:56:29 by agonzale          #+#    #+#             */
-/*   Updated: 2021/05/25 12:56:32 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/28 11:29:06 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list	*ft_lstnew(void *content)
 		free(content);
 		return (NULL);
 	}
-	new_elem->content = (void *)content;
+	new_elem->content = content;
 	new_elem->next = NULL;
 	return (new_elem);
 }

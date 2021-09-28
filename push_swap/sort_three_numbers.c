@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 14:28:48 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/24 15:12:43 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/28 08:45:44 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	sort_three_numbers(t_list_dbl *stack_a, int size_a)
 	// // //printf"\n ---nos salimos de ordenar 3 ---\n");
 }
 
-void sort_three_numbers_full_stack_a(t_list_dbl *stack_a, int size)
+void	sort_three_numbers_full_stack_a(t_list_dbl *stack_a, int size)
 {
 	if (size < 2 || is_sorted(stack_a, size))
 		return ;

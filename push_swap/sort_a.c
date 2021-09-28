@@ -6,16 +6,17 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 10:49:50 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/24 15:12:33 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:38:35 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 /*
 ** Numeros ordenados se encuentran abajo del stack
 ** nb_swaps son los numeros q pusea a b, esta variable luego nos sirve
 ** 			para saber cuantos numeros componen la subdivision (tam)
-** rotated times, numero de veces que pasa un numero (> pivote) a la cola del stack 
+** rotated times, num de veces que pasa un num (> pivote) a la cola del stack 
 */
 int	push_rotate_forwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 {
@@ -26,7 +27,7 @@ int	push_rotate_forwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 	pivot = get_pivot(stack->stack_a, 0, stack->size_a - stack->sorted_elem_a);
 	while (rotated_times < stack->size_a - stack->sorted_elem_a)
 	{
-		if (*(int*)stack->stack_a->content <= pivot)
+		if (*(int *)stack->stack_a->content <= pivot)
 		{
 			push_b(stack, true);
 			(*nb_swaps)++;
@@ -37,10 +38,6 @@ int	push_rotate_forwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 			rotated_times++;
 		}
 	}
-	// // // // //printf"\n------despues de forwards a--------------\n");
-	// // //print-stack("\n(stack->stack_a,  stack->size_a);
-	// // //print-stack("\n(stack->stack_b,  stack->size_b);
-	// // // // //printf"\n--------------------\n");
 	return (rotated_times);
 }
 
@@ -53,11 +50,11 @@ int	push_rotate_forwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 int	push_rotate_backwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 {
 	int	pivot;
-	int rotated_times;
+	int	rotated_times;
 
-	if (stack->sorted_elem_a && stack->sorted_elem_a < stack->size_a - stack->sorted_elem_a)
+	if (stack->sorted_elem_a
+		&& stack->sorted_elem_a < stack->size_a - stack->sorted_elem_a)
 	{
-		// //printf"Señora\n");
 		while (stack->sorted_elem_a)
 			rotate_a(&stack->stack_a, true);
 		return (0);
@@ -67,16 +64,13 @@ int	push_rotate_backwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 	while (rotated_times)
 	{
 		rev_rotate_a(&stack->stack_a, true);
-		if (*(int*)stack->stack_a->content <= pivot)
+		if (*(int *)stack->stack_a->content <= pivot)
 		{
 			push_b(stack, true);
 			(*nb_swaps)++;
 		}
 		rotated_times--;
 	}
-	// // // // //printf"\n------despues de backwards a--------------\n");
-	// // //print-stack("\n(stack->stack_a,  stack->size_a);
-	// // // // //printf"\n--------------------\n");
 	return (rotated_times);
 }
 
@@ -89,12 +83,13 @@ int	push_rotate_backwards_a(unsigned long int *nb_swaps, t_stacks *stack)
 */
 void	sort_a(t_stacks *stack)
 {
-	unsigned long int		nb_swaps;
-	t_list	*subdivisions;
-	int		rotated_times;
+	unsigned long int	nb_swaps;
+	t_list				*subdivisions;
+	int					rotated_times;
 
 	rotated_times = 0;
 	subdivisions = NULL;
+	print_stack(stack->stack_a,  stack->size_a);
 	while (stack->size_a - stack->sorted_elem_a > 3 || rotated_times)
 	{
 		nb_swaps = 0;
@@ -102,10 +97,13 @@ void	sort_a(t_stacks *stack)
 			rotated_times = push_rotate_forwards_a(&nb_swaps, stack);
 		else
 			rotated_times = push_rotate_backwards_a(&nb_swaps, stack);
+		// if (nb_swaps)
+		// 	ft_lstadd_front(&subdivisions, ft_lstnew((void *)nb_swaps));
 		if (nb_swaps)
-			ft_lstadd_front(&subdivisions, ft_lstnew((void*)nb_swaps));
+			ft_lstadd_front(&subdivisions, ft_lstnew(get_number(nb_swaps)));
 	}
-	sort_three_numbers_full_stack_a(stack->stack_a, stack->size_a - stack->sorted_elem_a);
+	sort_three_numbers_full_stack_a(stack->stack_a,
+		stack->size_a - stack->sorted_elem_a);
 	stack->sorted_elem_a = stack->size_a;
 	sort_b(subdivisions, stack);
 }

@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 12:57:51 by agonzale          #+#    #+#             */
-/*   Updated: 2021/08/09 12:00:03 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/28 07:57:39 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_lstdbl_size(t_list_dbl *lst)
 {
-	int	size;
+	int			size;
 	t_list_dbl	*aux;
 
 	aux = lst;

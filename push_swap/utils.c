@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 11:22:36 by agonzale          #+#    #+#             */
-/*   Updated: 2021/09/24 16:01:39 by agonzale         ###   ########.fr       */
+/*   Updated: 2021/09/28 08:00:09 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	print_stack(t_list_dbl *list, int size)
 {
-	return ;
 	t_list_dbl	*aux;
-	int i;
+	int			i;
 
 	i = 0;
 	aux = list;
@@ -29,11 +28,12 @@ void	print_stack(t_list_dbl *list, int size)
 	}
 	while ((aux != list || i == 0) && size > 1)
 	{
-		printf("%i (prev = %i) \n", (*(int *)(aux)->content), (*(int *)(aux)->prev->content));
+		printf("%i (prev = %i) \n", (*(int *)(aux)->content),
+			(*(int *)(aux)->prev->content));
 		aux = aux->next;
 		i++;
 	}
-	//printf"size = %d ", size);
+	printf("size = %d ", size);
 }
 
 void	circular_fun(t_list_dbl *list)
@@ -85,8 +85,8 @@ hasta que aux de next = list*/
 t_bool	is_sorted(t_list_dbl *list, int length)
 {
 	t_list_dbl	*aux;
-	t_bool first_iteration;
-	int	i;
+	t_bool		first_iteration;
+	int			i;
 
 	i = 1;
 	first_iteration = false;
