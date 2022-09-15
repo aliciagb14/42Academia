@@ -6,14 +6,17 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 08:52:05 by agonzale          #+#    #+#             */
-/*   Updated: 2022/09/15 10:46:16 by agonzale         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:10:49 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char get_command(){
-	
+char get_command(t_pipex pipex){
+	char *aux;
+	while (pipex.cmd_paths){
+		aux = ft_strjoin(pipex.fd_outfile, '/');
+	}
 }
 
 
