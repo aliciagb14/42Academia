@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 08:18:16 by agonzale          #+#    #+#             */
-/*   Updated: 2022/09/15 13:10:48 by agonzale         ###   ########.fr       */
+/*   Updated: 2022/09/19 12:03:06 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PIPEX_H
 # define ERR_INFILE "Cant open infile"
 # define ERR_OUTFILE "Cant open outfile"
-# define ERR_ARGS "Invalid number of args"
+# define ERR_ARGS "Usage: ./pipex infile \"cmd1\" \"cmd2\" outfile\n"
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>

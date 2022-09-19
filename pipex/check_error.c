@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:39:39 by agonzale          #+#    #+#             */
-/*   Updated: 2022/09/15 11:44:40 by agonzale         ###   ########.fr       */
+/*   Updated: 2022/09/19 08:29:56 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,10 @@ int check_error(pid_t pid){
 void close_fd(t_pipex *tube){
 	if(close(tube->pipefd[0]) == 0 && close(tube->pipefd[1]) == 0)
 		printf("Files closed correctly");
+}
+
+void	msg_error(char *error)
+{
+	perror(error);
+	exit (1);
 }
