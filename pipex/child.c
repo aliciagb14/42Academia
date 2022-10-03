@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 08:52:05 by agonzale          #+#    #+#             */
-/*   Updated: 2022/09/19 12:10:07 by agonzale         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:24:00 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ If the file doesn’t exist or doesn’t have the correct permissions, it return
 char get_command(t_pipex *pipex, int argc, char **envp){
 	char *aux;
 	while (pipex->cmd_paths){
-		aux = ft_strjoin(pipex->fd_outfile, '/');
+		aux = ft_strjoin(&pipex->fd_outfile, "/");
 		if (access(aux, F_OK | X_OK) == 0) // testear si el path es testeable y ejecutable
-			return aux;
+			return *aux;
 	}
 }
 
@@ -55,13 +55,15 @@ char *envp_path(int argc, char **envp){
 ** We are going to call fork function to make a copy to the parent process for avoid overwrite the process with execve
 ** execve executes the program that makes reference the pathname
 ** First child is goint to work with the first command that we receives for console.
-** Later, should close our pipes in children process to avoid future problems
+** Later, should close our pipes in children process to avoid future problems.
+
+** With the first split we are going to catch the first command
 */
 
 void child_work(int argc, char **argv, int identifier_child, char **envp)
 {
 	t_pipex pipex;
-	if (identifier_child == 1) { //primer hijo
+	if (identifier_child == 1) {
 		dup2(pipex.fd_infile, STDIN_FILENO);
 		dup2(pipex.pipefd[1], STDOUT_FILENO);
 		close(pipex.pipefd[0]);

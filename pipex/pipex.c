@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:01:27 by agonzale          #+#    #+#             */
-/*   Updated: 2022/09/19 12:05:35 by agonzale         ###   ########.fr       */
+/*   Updated: 2022/10/03 08:13:47 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void start_pipe(int argc, char **argv, char **envp){
 	pipe.pid_second_child = fork();
 	if (pipe.pid_second_child == 0)
 		child_work(argc, argv, 2, envp);
-	frees_process();
+	frees_process(pipe);
 }
 
