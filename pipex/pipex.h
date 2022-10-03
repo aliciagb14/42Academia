@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 08:18:16 by agonzale          #+#    #+#             */
-/*   Updated: 2022/10/03 14:19:38 by agonzale         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:40:50 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/wait.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include "libft/libft.h"
 
 typedef struct s_pipex
 {
@@ -40,10 +41,18 @@ void	close_fd(t_pipex *tube);
 void	frees_process(t_pipex pipex);
 void	parent_work(t_pipex tube);
 void	start_pipe(int argc, char **argv, char **envp);
-void	child_work(int argc, char **argv, int identifier_child, char **envp);
+void	child_work(char **argv, int identifier_child, char **envp);
 char	*envp_path(int argc, char **envp);
-char	get_command(t_pipex *pipex, int argc, char **envp);
+char	*get_command(char **paths, char *cmd_args);
 
+unsigned int	ft_strlen(const char *s);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+unsigned int	get_word_count(char *string, char delimiter);
+unsigned int	word_length(char *string, unsigned int index, char delimiter);
+char	*get_next_word(char *string, unsigned int *index, char delimiter, unsigned int *word_size);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	**ft_split(char const *s, char c);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-//void	error_cmd_args(t_pipex pipex);
+void	error_cmd_args(t_pipex pipex);
 # endif

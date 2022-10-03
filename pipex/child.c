@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 08:52:05 by agonzale          #+#    #+#             */
-/*   Updated: 2022/10/03 14:24:00 by agonzale         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:31:55 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,19 @@ This function will return 0 if all is well.
 If the file doesn’t exist or doesn’t have the correct permissions, it returns -1 instead.
 
 */
-char get_command(t_pipex *pipex, int argc, char **envp){
+char *get_command(char **paths, char *cmd_args){
 	char *aux;
-	while (pipex->cmd_paths){
-		aux = ft_strjoin(&pipex->fd_outfile, "/");
-		if (access(aux, F_OK | X_OK) == 0) // testear si el path es testeable y ejecutable
-			return *aux;
+	char *command;
+	while (*paths){
+		aux = ft_strjoin(*paths, "/");
+		command = ft_strjoin(aux, cmd_args);
+		free(aux);
+		if (access(command, F_OK | X_OK) == 0) // testear si el path es testeable y ejecutable
+			return command;
+		free(command);
+		paths++;
 	}
+	return (NULL);
 }
 
 char *envp_path(int argc, char **envp){
@@ -60,7 +66,7 @@ char *envp_path(int argc, char **envp){
 ** With the first split we are going to catch the first command
 */
 
-void child_work(int argc, char **argv, int identifier_child, char **envp)
+void child_work(char **argv, int identifier_child, char **envp)
 {
 	t_pipex pipex;
 	if (identifier_child == 1) {
@@ -68,24 +74,24 @@ void child_work(int argc, char **argv, int identifier_child, char **envp)
 		dup2(pipex.pipefd[1], STDOUT_FILENO);
 		close(pipex.pipefd[0]);
 		pipex.cmd_args = ft_split(argv[2], ' '); //catch the first command
-		pipex.cmd = get_command(pipex.cmd_args, argc, envp);
+		pipex.cmd = get_command(pipex.cmd_paths, pipex.cmd_args[0]);
 		error_cmd_args(pipex);
-		execve(pipex.cmd_paths, argv[1], envp);
+		execve(*pipex.cmd_paths, &argv[1], envp);
 	}
 	else if (identifier_child == 2){
 		dup2(pipex.fd_outfile, STDOUT_FILENO);
 		dup2(pipex.pipefd[0], STDIN_FILENO);
 		close(pipex.pipefd[1]);
 		pipex.cmd_args = ft_split(argv[3], ' '); //catch the second command
-		pipex.cmd = get_command(pipex.cmd_args, argc, envp);
+		pipex.cmd = get_command(pipex.cmd_paths, pipex.cmd_args[0]);
 		error_cmd_args(pipex);
-		execve(pipex.cmd_paths, argv[4], envp); //envp is an array of pointers to environment variables
+		execve(*pipex.cmd_paths, &argv[4], envp); //envp is an array of pointers to environment variables
 	}
 }
 
 void error_cmd_args(t_pipex pipex){
 	if (!pipex.cmd_args){
-		free_child();
+		frees_process(pipex);
 		printf("Failed, introduce a valid arg");
 		exit(1);
 	}

@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:01:27 by agonzale          #+#    #+#             */
-/*   Updated: 2022/10/03 08:13:47 by agonzale         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:46:15 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void start_pipe(int argc, char **argv, char **envp){
 	pipe.cmd_paths = ft_split(pipe.paths, ':');
 	pipe.pid_first_child = fork();
 	if (pipe.pid_first_child == 0)
-		child_work(argc, argv, 1, envp);
+		child_work(argv, 1, envp);
 	pipe.pid_second_child = fork();
 	if (pipe.pid_second_child == 0)
-		child_work(argc, argv, 2, envp);
+		child_work(argv, 2, envp);
 	frees_process(pipe);
 }
 
