@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 08:52:05 by agonzale          #+#    #+#             */
-/*   Updated: 2022/10/03 15:31:55 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:30:39 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ This function will return 0 if all is well.
 If the file doesn’t exist or doesn’t have the correct permissions, it returns -1 instead.
 
 */
+
 char *get_command(char **paths, char *cmd_args){
 	char *aux;
 	char *command;
@@ -70,22 +71,24 @@ void child_work(char **argv, int identifier_child, char **envp)
 {
 	t_pipex pipex;
 	if (identifier_child == 1) {
-		dup2(pipex.fd_infile, STDIN_FILENO);
 		dup2(pipex.pipefd[1], STDOUT_FILENO);
 		close(pipex.pipefd[0]);
+		dup2(pipex.fd_infile, STDIN_FILENO);
 		pipex.cmd_args = ft_split(argv[2], ' '); //catch the first command
+		free(argv[2]);
 		pipex.cmd = get_command(pipex.cmd_paths, pipex.cmd_args[0]);
 		error_cmd_args(pipex);
-		execve(*pipex.cmd_paths, &argv[1], envp);
+		execve(*pipex.cmd_paths, pipex.cmd_args, envp); //&argv[1]
 	}
-	else if (identifier_child == 2){
+	else if (identifier_child == 2) {
 		dup2(pipex.fd_outfile, STDOUT_FILENO);
 		dup2(pipex.pipefd[0], STDIN_FILENO);
 		close(pipex.pipefd[1]);
 		pipex.cmd_args = ft_split(argv[3], ' '); //catch the second command
+		free(argv[3]);
 		pipex.cmd = get_command(pipex.cmd_paths, pipex.cmd_args[0]);
 		error_cmd_args(pipex);
-		execve(*pipex.cmd_paths, &argv[4], envp); //envp is an array of pointers to environment variables
+		execve(*pipex.cmd_paths, pipex.cmd_args, envp); //&argv[4] //envp is an array of pointers to environment variables
 	}
 }
 
@@ -94,5 +97,10 @@ void error_cmd_args(t_pipex pipex){
 		frees_process(pipex);
 		printf("Failed, introduce a valid arg");
 		exit(1);
+	} else{
+		write(2, "-bash: ", 7);
+		write(2, pipex.cmd, ft_strlen(pipex.cmd));
+		write(2, ": ", 2);
+		write(2, ERR_ARGS, ft_strlen(ERR_ARGS));
 	}
 }

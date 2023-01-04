@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 09:01:27 by agonzale          #+#    #+#             */
-/*   Updated: 2022/10/03 15:46:15 by agonzale         ###   ########.fr       */
+/*   Created: 2023/01/04 08:17:07 by agonzale          #+#    #+#             */
+/*   Updated: 2023/01/04 11:47:05 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@
 **	We are going to read file1 command1 command2 file2" that traduces like:
 **	<file1 command1 | file2 command2>
 */
+void	valgrind(void)
+{
+	system("leaks pipex");
+}
 
 int main(int argc, char **argv, char **envp)
 {
-	char *string_aux1;
+	atexit(valgrind);
+	//char *string_aux1;
 	char *path;
 	t_pipex pipe;
 	
@@ -41,7 +46,6 @@ int main(int argc, char **argv, char **envp)
 
 void start_pipe(int argc, char **argv, char **envp){
 	t_pipex pipe;
-	int status;
 
 	pipe.paths = envp_path(argc, envp);
 	pipe.cmd_paths = ft_split(pipe.paths, ':');
