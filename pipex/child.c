@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 08:52:05 by agonzale          #+#    #+#             */
-/*   Updated: 2023/01/04 11:30:39 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:38:56 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ char *get_command(char **paths, char *cmd_args){
 	while (*paths){
 		aux = ft_strjoin(*paths, "/");
 		command = ft_strjoin(aux, cmd_args);
-		free(aux);
-		if (access(command, F_OK | X_OK) == 0) // testear si el path es testeable y ejecutable
+		//free(aux);
+		if (access(command, F_OK | X_OK) == 0) // devuelve 0 si se ha permitido acceso, testear si el path es testeable y ejecutable
 			return command;
 		free(command);
 		paths++;
@@ -75,7 +75,6 @@ void child_work(char **argv, int identifier_child, char **envp)
 		close(pipex.pipefd[0]);
 		dup2(pipex.fd_infile, STDIN_FILENO);
 		pipex.cmd_args = ft_split(argv[2], ' '); //catch the first command
-		free(argv[2]);
 		pipex.cmd = get_command(pipex.cmd_paths, pipex.cmd_args[0]);
 		error_cmd_args(pipex);
 		execve(*pipex.cmd_paths, pipex.cmd_args, envp); //&argv[1]
@@ -85,7 +84,6 @@ void child_work(char **argv, int identifier_child, char **envp)
 		dup2(pipex.pipefd[0], STDIN_FILENO);
 		close(pipex.pipefd[1]);
 		pipex.cmd_args = ft_split(argv[3], ' '); //catch the second command
-		free(argv[3]);
 		pipex.cmd = get_command(pipex.cmd_paths, pipex.cmd_args[0]);
 		error_cmd_args(pipex);
 		execve(*pipex.cmd_paths, pipex.cmd_args, envp); //&argv[4] //envp is an array of pointers to environment variables

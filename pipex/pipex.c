@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 08:17:07 by agonzale          #+#    #+#             */
-/*   Updated: 2023/01/04 11:47:05 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:03:15 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,32 @@
 **	We are going to read file1 command1 command2 file2" that traduces like:
 **	<file1 command1 | file2 command2>
 */
+
 void	valgrind(void)
 {
 	system("leaks pipex");
 }
 
+/*static void init_cmd(t_pipex *pipex, int status){
+	pipex->status = status;
+	pipex->paths = 0;
+	pipex->cmd = 0;
+	pipex->cmd_args[0] = 0;
+}*/
+
 int main(int argc, char **argv, char **envp)
 {
-	atexit(valgrind);
-	//char *string_aux1;
+	//atexit(valgrind);
 	char *path;
-	t_pipex pipe;
-	
+	msg_error(ERR_ARGS);
 	path = envp_path(argc, envp);
-    if (argc != 5)
+    error_number_args(argc, argv);
+	start_pipe(argc, argv, envp);
+}
+
+void error_number_args(int argc, char **argv){
+	t_pipex pipe;
+	if (argc != 5)
 		msg_error(ERR_ARGS);
 	pipe.fd_infile = open(argv[1], O_RDONLY);
 	if (pipe.fd_infile < 0){
@@ -41,7 +53,6 @@ int main(int argc, char **argv, char **envp)
 		msg_error(ERR_OUTFILE);
 		close(pipe.fd_outfile);
 	}
-	start_pipe(argc, argv, envp);
 }
 
 void start_pipe(int argc, char **argv, char **envp){
