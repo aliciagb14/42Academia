@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 08:52:05 by agonzale          #+#    #+#             */
-/*   Updated: 2023/01/04 13:38:56 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/01/25 09:04:44 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,42 @@ If the file doesn’t exist or doesn’t have the correct permissions, it return
 
 */
 
+int check_command(char *cmd_args){
+	if (access(cmd_args, F_OK) < 0){
+		msg_error(ERR_F_OK);
+		exit(126);
+	}
+	if (access(cmd_args, X_OK) < 0){
+		msg_error(ERR_X_OK);
+		exit(126);
+	}
+	return (1);
+}
+
 char *get_command(char **paths, char *cmd_args){
 	char *aux;
 	char *command;
+	if (cmd_args[0] == '.'){
+		if (check_command(cmd_args) == 1)
+			return cmd_args;
+	}
+	if (cmd_args[0] == '/')
+	{
+		cmd_args = ft_strrchr(cmd_args, '/'); //devuelve un ptr a la ultima aparicion del caracter en la cadena
+		if (cmd_args == NULL)
+			return (0);
+	}
 	while (*paths){
 		aux = ft_strjoin(*paths, "/");
 		command = ft_strjoin(aux, cmd_args);
-		//free(aux);
-		if (access(command, F_OK | X_OK) == 0) // devuelve 0 si se ha permitido acceso, testear si el path es testeable y ejecutable
+
+		if (access(command, F_OK)) // devuelve 0 si se ha permitido acceso, testear si el path es testeable y ejecutable
 			return command;
 		free(command);
 		paths++;
 	}
 	return (NULL);
 }
-
-char *envp_path(int argc, char **envp){
-	int i;
-
-	i = 0;
-	while (envp != NULL){
-		if(ft_strncmp(envp[i], "PATH", 4) == 0)
-			return (&envp[i][argc]);
-		i++;
-	}
-	return (0);
-}
-
 
 /*
 ** Redirects standard output of the first command to the standard input of second command
@@ -67,38 +76,56 @@ char *envp_path(int argc, char **envp){
 ** With the first split we are going to catch the first command
 */
 
-void child_work(char **argv, int identifier_child, char **envp)
+void child_work(char **argv, int identifier_child, char **envp, int argc)
 {
 	t_pipex pipex;
+
 	if (identifier_child == 1) {
 		dup2(pipex.pipefd[1], STDOUT_FILENO);
 		close(pipex.pipefd[0]);
 		dup2(pipex.fd_infile, STDIN_FILENO);
 		pipex.cmd_args = ft_split(argv[2], ' '); //catch the first command
-		pipex.cmd = get_command(pipex.cmd_paths, pipex.cmd_args[0]);
-		error_cmd_args(pipex);
-		execve(*pipex.cmd_paths, pipex.cmd_args, envp); //&argv[1]
+		//pipex.cmd = get_command(&pipex.cmd_path, pipex.cmd_args[0]);
+		printf("El cmd es: %s", pipex.cmd);
+		error_cmd_args(pipex, argv, argc);
+		//execve(pipex.cmd, pipex.cmd_args, envp);
+		ft_exec(argv[pipex.position_path], envp);
+		identifier_child = 2;
 	}
-	else if (identifier_child == 2) {
+	if (identifier_child == 2) {
+		close(pipex.pipefd[1]);
 		dup2(pipex.fd_outfile, STDOUT_FILENO);
 		dup2(pipex.pipefd[0], STDIN_FILENO);
-		close(pipex.pipefd[1]);
 		pipex.cmd_args = ft_split(argv[3], ' '); //catch the second command
-		pipex.cmd = get_command(pipex.cmd_paths, pipex.cmd_args[0]);
-		error_cmd_args(pipex);
-		execve(*pipex.cmd_paths, pipex.cmd_args, envp); //&argv[4] //envp is an array of pointers to environment variables
+		//pipex.cmd = get_command(&pipex.cmd_path, pipex.cmd_args[0]);
+		//printf("El cmd es: %s", pipex.cmd);
+		error_cmd_args(pipex, argv, argc);
+		//execve(pipex.cmd, pipex.cmd_args, envp); //argv[cmd_pos], envp //&argv[4] //envp is an array of pointers to environment variables
+		ft_exec(argv[pipex.position_path], envp);
+	}
+	exit(1);
+}
+
+void error_cmd_args(t_pipex pipex, char **argv, int argc)
+{
+	if (!pipex.cmd_args){
+		frees_process(pipex);
+		printf("pipex %s: command not found", argv[argc - 1]);
+		exit(127);
 	}
 }
 
-void error_cmd_args(t_pipex pipex){
-	if (!pipex.cmd_args){
-		frees_process(pipex);
-		printf("Failed, introduce a valid arg");
-		exit(1);
-	} else{
-		write(2, "-bash: ", 7);
-		write(2, pipex.cmd, ft_strlen(pipex.cmd));
-		write(2, ": ", 2);
-		write(2, ERR_ARGS, ft_strlen(ERR_ARGS));
+int envp_path(char **envp)
+{
+	int i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if(ft_strncmp(envp[i], "PATH=", 5) == 0)
+			return (i);
+		i++;
 	}
+	msg_error(ERR_PATH_UNDEFINED);
+	return (i);
 }

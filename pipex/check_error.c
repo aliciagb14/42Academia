@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:39:39 by agonzale          #+#    #+#             */
-/*   Updated: 2022/10/03 14:52:41 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/01/25 08:10:35 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ void	msg_error(char *error)
 	exit (1);
 }
 
+void	print_msg_error(char *error){
+	ft_putstr_fd(error, 2);
+	exit(EXIT_FAILURE);
+}
+
 void	frees_process(t_pipex pipex){
-	while(pipex.paths){
-		free(pipex.paths);
+	while(pipex.path){
+		free(pipex.path);
 	}
 }

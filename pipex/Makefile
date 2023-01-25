@@ -2,7 +2,7 @@ NAME = pipex
 LIBFT_A = libft.a
 EXTRA = pipex.a
 
-SRCS = check_error.c child.c parent.c pipex.c
+SRCS = check_error.c child.c pipex.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -23,7 +23,7 @@ clean:
 		# ${RM} ${OBJS} libft.a
 
 fclean:	clean
-		${RM} ${NAME} ${OBJS} *.dSYM outfile
+		${RM} ${NAME} ${OBJS} *.dSYM *.gch outfile
 
 re: fclean all
 .PHONY:     all clean fclean
