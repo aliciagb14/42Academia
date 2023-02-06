@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:07:13 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/06 14:57:49 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:05:01 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	get_position_smaller_number(t_list *stack_a)
 
 	i = 0;
 	min_index = 0;
-	min = *(int*)stack_a->content;
+	min = get_biggest_number_a(stack_a);
 	aux = stack_a;
 	while (stack_a != aux || i == 0)
 	{
-		if (min > *(int*)stack_a->content)
+		if (*(int *)stack_a->content < min)
 		{
-			min = *(int*)stack_a->content;
+			min = *(int *)stack_a->content;
 			min_index = i;
 		}
 		stack_a = stack_a->next;
@@ -42,18 +42,12 @@ int	get_position_smaller_number(t_list *stack_a)
 
 void	push_smallest_number(int min_index, t_stacks *stack)
 {
-	t_list *aux;
-
-	if (stack->stack_a == min_index)
+	if (*(int *)stack->stack_a->content == min_index)
 		push_b(stack, true);
 	else if (min_index > stack->size_a / 2)
 			rev_rotate_a(&stack->stack_a, true);
 	else if (min_index <= stack->size_a / 2)
 		rotate_a(&stack->stack_a, true);
-}
-
-int hola(){
-		
 }
 
 /*
@@ -69,11 +63,11 @@ void	five_numbers(t_stacks *stack)
 		min_index = get_position_smaller_number(stack->stack_a);
 		push_smallest_number(min_index, stack);
 	}
-	sort_three_numbers(stack->stack_a, stack->size_a);
+	sort_three_numbers(stack->stack_a);
 	if (stack->stack_b->next == 0)
 		push_a(stack, true);
 	else if (stack->stack_b->next->content > stack->stack_b->content)
-		swap_b(stack->stack_b, true);
+		swap_b(&stack->stack_b, true);
 	while(stack->stack_b)
 		push_a(stack, true);
 }

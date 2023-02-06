@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:07:51 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/06 15:07:43 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:55:36 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main(int argc, char **argv){
 	stack.size_b = ft_lstsize(stack.stack_b);
 
 	if (stack.size_a <= 3)
-		sort_three_numbers(stack.stack_a, stack.size_a);
+		sort_three_numbers(stack.stack_a);
 	else if (stack.size_a <= 5)
 		five_numbers(&stack);
 	else

@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:55:09 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/06 14:08:53 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:50:16 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	get_biggest_number_a(t_list *stack_a)
 
 int	get_smallest_number_a(t_list *stack_a)
 {
-	t_list	*aux;
 	int			min;
 	int			min_index;
 	int			i;
