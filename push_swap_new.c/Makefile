@@ -1,6 +1,7 @@
 NAME = push_swap
 CC = gcc
-SRCS = push.c utils.c find_instr.c rotate.c start.c swap.c check_input.c radix_sort.c \
+SRCS = push.c rotate.c swap.c rev_rotate.c utils.c find_instr.c \
+		start.c check_input.c radix_sort.c \
 		sort_five_numbers.c sort_three_numbers.c
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf

@@ -6,16 +6,11 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:10:34 by agonzale          #+#    #+#             */
-/*   Updated: 2023/01/25 12:42:46 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/06 10:15:53 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-** reverse rotate a - desplaza hacia abajo todos los elementos del stack a una
-**	posición, de forma que el último elemento se convierte en el primero.
-*/
 
 void rev_rotate_a(t_list **stack_a, t_bool print){
 	t_list *actual;

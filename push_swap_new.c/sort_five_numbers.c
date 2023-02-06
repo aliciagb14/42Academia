@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:07:13 by agonzale          #+#    #+#             */
-/*   Updated: 2023/01/25 12:43:35 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:57:49 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,21 @@ int	get_position_smaller_number(t_list *stack_a)
 	return (min_index);
 }
 
+
 void	push_smallest_number(int min_index, t_stacks *stack)
 {
-	if (min_index >= stack->size_a / 2)
-	{
-		while (min_index < stack->size_a)
-		{
+	t_list *aux;
+
+	if (stack->stack_a == min_index)
+		push_b(stack, true);
+	else if (min_index > stack->size_a / 2)
 			rev_rotate_a(&stack->stack_a, true);
-			min_index++;
-		}
-	}
-	else
-	{
-		while (min_index)
-		{
-			rotate_a(stack, true);
-			min_index--;
-		}
-	}
-	push_b(stack, true);
+	else if (min_index <= stack->size_a / 2)
+		rotate_a(&stack->stack_a, true);
+}
+
+int hola(){
+		
 }
 
 /*
@@ -68,12 +64,16 @@ void	five_numbers(t_stacks *stack)
 {
 	int	min_index;
 
-	while (stack->size_a != 3)
+	while (stack->size_a > 3)
 	{
 		min_index = get_position_smaller_number(stack->stack_a);
 		push_smallest_number(min_index, stack);
 	}
-	sort_three_numbers(stack);
-	while (stack->size_b)
+	sort_three_numbers(stack->stack_a, stack->size_a);
+	if (stack->stack_b->next == 0)
+		push_a(stack, true);
+	else if (stack->stack_b->next->content > stack->stack_b->content)
+		swap_b(stack->stack_b, true);
+	while(stack->stack_b)
 		push_a(stack, true);
 }

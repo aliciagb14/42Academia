@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:55:09 by agonzale          #+#    #+#             */
-/*   Updated: 2023/01/25 14:17:12 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:08:53 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int is_elem_dup(t_list *list, char *str_number)
 
 /*aux que al inicio sea list, y me voy a mover con el aux,
 hasta que aux de next = list*/
-t_bool	is_sorted(t_list *list, int length)
+t_bool	is_sorted(t_list *stack_a, int length)
 {
 	t_list	*aux;
 	t_bool		first_iteration;
@@ -49,12 +49,12 @@ t_bool	is_sorted(t_list *list, int length)
 
 	i = 1;
 	first_iteration = false;
-	if (!list)
+	if (!stack_a)
 		return (0);
-	if (!list->next)
+	if (!stack_a->next)
 		return (true);
-	aux = list;
-	while (i < length && (aux->next != list || !first_iteration))
+	aux = stack_a;
+	while (i < length && (aux->next != stack_a || !first_iteration))
 	{
 		if (*(int *)aux->content > *(int *)aux->next->content)
 			return (false);
@@ -73,7 +73,7 @@ int	get_biggest_number_a(t_list *stack_a)
 
 	i = 0;
 	max = 0;
-	while (stack_a->next != NULL || i == 0)
+	while (stack_a != NULL || i == 0)
 	{
 		if (*(int*)(stack_a->content) > max)
 		{
@@ -84,6 +84,28 @@ int	get_biggest_number_a(t_list *stack_a)
 		i++;
 	}
 	return (max);
+}
+
+int	get_smallest_number_a(t_list *stack_a)
+{
+	t_list	*aux;
+	int			min;
+	int			min_index;
+	int			i;
+
+	i = 0;
+	min = *(int*)stack_a->content;
+	while (stack_a->next != NULL)
+	{
+		if (*(int*)(stack_a->next->content) < min)
+		{
+			min = *(int*)stack_a->next->content;
+			min_index = i;
+		}
+		stack_a = stack_a->next;
+		i++;
+	}
+	return (min);
 }
 
 int count_digits(int max)

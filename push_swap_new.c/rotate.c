@@ -6,32 +6,36 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:59:43 by agonzale          #+#    #+#             */
-/*   Updated: 2022/10/20 16:25:32 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/06 12:21:02 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rotate_a(t_stacks *stack, t_bool print){
-	t_list *aux;
-	if (!&(stack->stack_a))
+void rotate_a(t_list **stack_a, t_bool print)
+{
+	t_list	*act;
+
+	if (!stack_a)
 		return ;
-	aux = stack->stack_a;
-	stack->stack_a  = stack->stack_a->next;
-	if (stack->stack_a->next == NULL)
-		stack->stack_a = aux;
+	act = (*stack_a);
+	(*stack_a) = (*stack_a)->next;
+	ft_lstadd_back(stack_a, ft_lstnew(act->content));
+	free(act);
 	if (print)
 		ft_putstr_fd("ra\n", STDOUT_FILENO);
 }
 
-void rotate_b(t_stacks *stack, t_bool print){
-	t_list *aux;
-	if (!&(stack->stack_b))
+void rotate_b(t_list **stack_b, t_bool print)
+{
+	t_list	*act;
+
+	if (!stack_b)
 		return ;
-	aux = stack->stack_b;
-	stack->stack_b  = stack->stack_b->next;
-	if (stack->stack_b->next == NULL)
-		stack->stack_b = aux;
+	act = (*stack_b);
+	(*stack_b) = (*stack_b)->next;
+	ft_lstadd_back(stack_b, ft_lstnew(act->content));
+	free(act);
 	if (print)
-		ft_putstr_fd("ra\n", STDOUT_FILENO);
+		ft_putstr_fd("rb\n", STDOUT_FILENO);
 }

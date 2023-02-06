@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 07:44:07 by agonzale          #+#    #+#             */
-/*   Updated: 2023/01/25 16:22:03 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:16:45 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,57 +18,54 @@
  *  
  *  */
 
-#include <stdio.h>
-
-int main(int argc, char **argv)
+void radix_sort(t_stacks *stack)
 {
-	t_stacks stack;
-	if (argc < 2)
-		return (0);
-	ft_memset(&stack, 0, sizeof(t_stacks));
-	read_input(&stack.stack_a, argv);
-	print_stack(stack.stack_a, stack.size_a);
-	radix_sort(stack.stack_a);
-	print_stack(stack.stack_a, stack.size_a);
-	return 0;
-}
-
-void radix_sort(t_list *stack_a)
-{
-	int biggest_nb = 0;
+	/*int biggest_nb = 0;
 	int max_digits = 0;
 	int number_zeros;
+	char *str_numbers;
+	long numbers;*/
+	int j, i = 0;
 
-	biggest_nb = get_biggest_number_a(stack_a);
+	int max_bits = get_max_bits(stack->stack_a);
+	/*biggest_nb = get_biggest_number_a(stack->stack_a);
 	printf("El numero + grande es %d\n", biggest_nb);
 	max_digits = count_digits(biggest_nb);
-	printf("el numero de digitos del mayor num es %d\n", max_digits);
+	printf("el numero de digitos del mayor num es %d\n", max_digits);*/
 
-	while(stack_a)
+	while(i < max_bits)
 	{
-		number_zeros  = max_digits - count_digits(*(int*)stack_a->content);
-		int  number_digits = count_digits(*(int*)stack_a->content);
-		printf("El numero de ceros es: %d y el numero de digitos es %d\n", number_zeros, number_digits);
-		while (number_digits < max_digits && stack_a != NULL){
-			//while (number_zeros > 0){
-				//int *ptr = calloc(number_zeros, sizeof(t_list));
-				stack_a->content = ft_strjoin(calloc(number_zeros, sizeof(t_list)), stack_a->content);
-				printf("%d\n", *(int *)stack_a->content); //rellenar la cadena con 0s y almacenar
-		//		number_zeros--;
-		//	}
-			number_digits++;
+		j = 0;
+		while(j++ < ft_lstsize(stack->stack_a))
+		{
+			if ((*(int *)stack->stack_a->content >> i) % 2 != 0)
+				rotate_a(&stack->stack_a, true);
+			else
+				push_b(stack, true);
 		}
-		stack_a = stack_a->next;
+		while(ft_lstsize(stack->stack_b) != 0)
+			push_a(stack, true);
+		i++;
+		/*number_zeros  = max_digits - count_digits(*(int*)stack->stack_a->content);
+		int  number_digits = count_digits(*(int*)stack->stack_a->content);
+		stack->nbr_count = number_zeros + number_digits;
+		i++;
+		printf("\nEl numero de ceros es: %d y el numero de digitos es %d\n", number_zeros, number_digits);
+		while (number_digits < max_digits && stack->stack_a != NULL){
+				stack->nbr_act = ft_strncat("0", stack->stack_a->content, number_digits);
+				number_digits++;
+		}
+		printf("%d", stack->nbr_act);
+		stack->stack_a = stack->stack_a->next;
+		stack->nbr_act = ft_strjoin(str_numbers, stack->stack_a->content);
+		numbers = ft_atoi(stack->nbr_act);
+		printf("%ld", numbers);
+		numbers = *(long *)malloc(sizeof(long) * stack->nbr_count);
+		i++;
+		printf("%d\n\n", *(int *)stack->stack_a->content); *///rellenar la cadena con 0s y almacenar
 	}
 }
 
-void print_zeros(int number_zeros)
-{
-	while (number_zeros > 0){
-		ft_putstr_fd("0", number_zeros);
-		number_zeros--;
-	}
-}
 
 void	print_stack(t_list *list, int size)
 {
@@ -91,3 +88,44 @@ void	print_stack(t_list *list, int size)
 		i++;
 	}
 }
+
+int	get_max_bits(t_list *stack_a)
+{
+	int		max;
+	int		max_bits;
+
+	max = ft_lstsize(stack_a) - 1;
+	max_bits = 0;
+	while ((max >> max_bits) != 0)
+		max_bits++;
+	return (max_bits);
+}
+
+/*void	radix_sort(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*head_a;
+	int		i;
+	int		j;
+	int		size;
+	int		max_bits;
+
+	i = 0;
+	head_a = *stack_a;
+	size = ft_lstsize(head_a);
+	max_bits = get_max_bits(stack_a);
+	while (i < max_bits)
+	{
+		j = 0;
+		while (j++ < size)
+		{
+			head_a = *stack_a;
+			if (((head_a->index >> i) & 1) == 1)
+				ra(stack_a);
+			else
+				pb(stack_a, stack_b);
+		}
+		while (ft_lstsize(*stack_b) != 0)
+			pa(stack_a, stack_b);
+		i++;
+	}
+}*/
