@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:55:09 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/06 15:50:16 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/08 10:38:40 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,23 @@ int	get_biggest_number_a(t_list *stack_a)
 
 int	get_smallest_number_a(t_list *stack_a)
 {
-	int			min;
-	int			min_index;
-	int			i;
+	int	min;
+	int	min_index;
+	int	i;
+	t_list *aux;
 
 	i = 0;
-	min = *(int*)stack_a->content;
-	while (stack_a->next != NULL)
+	min_index = 0;
+	min = get_biggest_number_a(stack_a);
+	aux = stack_a;
+	while (aux)
 	{
-		if (*(int*)(stack_a->next->content) < min)
+		if (*(int*)aux->content < min)
 		{
-			min = *(int*)stack_a->next->content;
+			min = *(int*)aux->content;
 			min_index = i;
 		}
-		stack_a = stack_a->next;
+		aux = aux->next;
 		i++;
 	}
 	return (min);

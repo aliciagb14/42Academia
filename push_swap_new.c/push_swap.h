@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:23:30 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/06 15:49:53 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/08 11:35:41 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	swap_b(t_list **stack_b, t_bool print);
  * PUSH.c || push a - toma el primer elemento del stack b y lo pone encima del stack a.
  *	No hace nada si b está vacío.
  * */
-void	push_a(t_stacks *stack, t_bool print);
+void	push_a(t_stacks *stack,  t_bool print);
 void	push_b(t_stacks *stack, t_bool print);
 
 /**
@@ -89,7 +89,7 @@ int		is_elem_dup(t_list *list, char *str_number);
 void	five_numbers(t_stacks *stack);
 void	sort_three_numbers(t_list *stack_a);
 
-void	push_smallest_number(int min_index, t_stacks *stack);
+void	push_smallest_number(int min, int min_index, t_stacks *stack);
 int		get_position_smaller_number(t_list *stack_a);
 int		*get_number(int number);
 

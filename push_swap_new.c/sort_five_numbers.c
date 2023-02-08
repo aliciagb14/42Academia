@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:07:13 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/06 16:05:01 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:59:21 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,25 @@ int	get_position_smaller_number(t_list *stack_a)
 	min_index = 0;
 	min = get_biggest_number_a(stack_a);
 	aux = stack_a;
-	while (stack_a != aux || i == 0)
+	while (aux)
 	{
-		if (*(int *)stack_a->content < min)
+		if (*(int*)aux->content < min)
 		{
-			min = *(int *)stack_a->content;
+			min = *(int*)aux->content;
 			min_index = i;
 		}
-		stack_a = stack_a->next;
+		aux = aux->next;
 		i++;
 	}
 	return (min_index);
 }
 
-
-void	push_smallest_number(int min_index, t_stacks *stack)
+void	push_smallest_number(int min, int min_index, t_stacks *stack)
 {
-	if (*(int *)stack->stack_a->content == min_index)
+	if (*(int *)stack->stack_a->content == min)
 		push_b(stack, true);
 	else if (min_index > stack->size_a / 2)
-			rev_rotate_a(&stack->stack_a, true);
+		rev_rotate_a(&stack->stack_a, true);
 	else if (min_index <= stack->size_a / 2)
 		rotate_a(&stack->stack_a, true);
 }
@@ -57,14 +56,16 @@ void	push_smallest_number(int min_index, t_stacks *stack)
 void	five_numbers(t_stacks *stack)
 {
 	int	min_index;
+	int min;
 
 	while (stack->size_a > 3)
 	{
 		min_index = get_position_smaller_number(stack->stack_a);
-		push_smallest_number(min_index, stack);
+		min = get_smallest_number_a(stack->stack_a);
+		push_smallest_number(min, min_index, stack);
 	}
 	sort_three_numbers(stack->stack_a);
-	if (stack->stack_b->next == 0)
+	if (stack->stack_b)
 		push_a(stack, true);
 	else if (stack->stack_b->next->content > stack->stack_b->content)
 		swap_b(&stack->stack_b, true);

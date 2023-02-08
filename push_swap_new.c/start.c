@@ -6,20 +6,19 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:07:51 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/06 15:55:36 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:01:20 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 void	valgrind(void)
 {
 	system("leaks push_swap");
 }
 
-
-int main(int argc, char **argv){
+int main(int argc, char **argv)
+{
 	// atexit(valgrind);
 	t_stacks stack;
 	ft_memset(&stack, 0, sizeof(t_stacks));
@@ -36,8 +35,9 @@ int main(int argc, char **argv){
 		five_numbers(&stack);
 	else
 		radix_sort(&stack);
-	//ft_lstclear(&stack.stack_a, free);
-	//ft_lstclear(&stack.stack_b, free);
+	print_stack(stack.stack_a, stack.size_a);
+	ft_lstclear(&stack.stack_a, free);
+	ft_lstclear(&stack.stack_b, free);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
