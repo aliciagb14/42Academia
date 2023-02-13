@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 18:20:29 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/06 15:48:12 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:10:52 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void sort_three_numbers(t_list *stack_a)
 	if (*(int *)stack_a->content == min
 		&& *(int *)stack_a->next->content == max)
 	{
+		rev_rotate_a(&stack_a, true);
 		swap_a(&stack_a, true);
-		rotate_a(&stack_a, true);
+		/*swap_a(&stack_a, true);
+		rotate_a(&stack_a, true);*/
 	}
 	else if (*(int *)ft_lstlast(stack_a)->content == max
 		&& *(int *)stack_a->next->content == min)
