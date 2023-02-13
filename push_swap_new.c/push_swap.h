@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:23:30 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/08 11:35:41 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:31:50 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <stdio.h>
 # include "libft/libft.h"
 
-
-#endif
 /*
 typedef enum e_bool
 {
@@ -33,14 +31,14 @@ typedef struct s_list
 
 typedef struct s_stacks
 {
-	int size_a;
-	int size_b;
-	int	sorted_elem_a;
-	int sorted_elem_b;
-	int	nbr_count;
-	int *nbr_act;
-	t_list *stack_a;
-	t_list *stack_b;
+	int		size_a;
+	int		size_b;
+	int		sorted_elem_a;
+	int		sorted_elem_b;
+	int		nbr_count;
+	int		*nbr_act;
+	t_list	*stack_a;
+	t_list	*stack_b;
 }				t_stacks;
 
 /**
@@ -48,7 +46,7 @@ typedef struct s_stacks
  * */
 void	read_input(t_list **list, char **argv);
 void	check_error_line(t_list *list, int aux, int j, char *current_argv);
-void 	check_error_numbers(t_list *list, char **argv, int i, int j);
+void	check_error_numbers(t_list *list, char **argv, int i, int j);
 
 /**
  * FIND_INSTRUCTIONS.C
@@ -65,10 +63,11 @@ void	swap_a(t_list **stack_a, t_bool print);
 void	swap_b(t_list **stack_b, t_bool print);
 
 /**
- * PUSH.c || push a - toma el primer elemento del stack b y lo pone encima del stack a.
+ * PUSH.c || push a - toma el primer elemento del stack b 
+ * y lo pone encima del stack a.
  *	No hace nada si b está vacío.
  * */
-void	push_a(t_stacks *stack,  t_bool print);
+void	push_a(t_stacks *stack, t_bool print);
 void	push_b(t_stacks *stack, t_bool print);
 
 /**
@@ -84,7 +83,6 @@ void	rev_rotate_a(t_list **stack_a, t_bool print);
 void	rev_rotate_b(t_list **stack_b, t_bool print);
 void	rev_rotate_all(t_list **stack_a, t_list **stack_b, t_bool print);
 
-
 int		is_elem_dup(t_list *list, char *str_number);
 void	five_numbers(t_stacks *stack);
 void	sort_three_numbers(t_list *stack_a);
@@ -97,7 +95,10 @@ int		count_digits(int max);
 int		get_smallest_number_a(t_list *stack_a);
 int		get_biggest_number_a(t_list *stack_a);
 void	radix_sort(t_stacks *stack); //t_list  *stack_a
+void	sort_max_10_nbr(t_stacks *stack);
 void	print_stack(t_list *list, int size);
 void	print_zeros(int number_zeros);
 int		get_max_bits(t_list *stack_a);
 t_bool	is_sorted(t_list *stack_a, int length);
+int		make_pow(int num);
+#endif

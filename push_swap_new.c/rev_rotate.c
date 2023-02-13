@@ -6,15 +6,17 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 13:10:34 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/06 10:15:53 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:19:42 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rev_rotate_a(t_list **stack_a, t_bool print){
-	t_list *actual;
-	t_list *anterior;
+void	rev_rotate_a(t_list **stack_a, t_bool print)
+{
+	t_list	*actual;
+	t_list	*anterior;
+
 	if (!(stack_a))
 		return ;
 	anterior = (*stack_a);
@@ -31,9 +33,11 @@ void rev_rotate_a(t_list **stack_a, t_bool print){
 		ft_putstr_fd("rra\n", STDOUT_FILENO);
 }
 
-void rev_rotate_b(t_list **stack_b, t_bool print){
-	t_list *actual;
-	t_list *anterior;
+void	rev_rotate_b(t_list **stack_b, t_bool print)
+{
+	t_list	*actual;
+	t_list	*anterior;
+
 	if (!(stack_b))
 		return ;
 	anterior = (*stack_b);
@@ -50,7 +54,7 @@ void rev_rotate_b(t_list **stack_b, t_bool print){
 		ft_putstr_fd("rrb\n", STDOUT_FILENO);
 }
 
-void rev_rotate_all(t_list **stack_a, t_list **stack_b, t_bool print)
+void	rev_rotate_all(t_list **stack_a, t_list **stack_b, t_bool print)
 {
 	rev_rotate_a(stack_a, print);
 	rev_rotate_b(stack_b, print);

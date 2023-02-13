@@ -6,13 +6,13 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:59:43 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/08 10:49:38 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:18:19 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rotate_a(t_list **stack_a, t_bool print)
+void	rotate_a(t_list **stack_a, t_bool print)
 {
 	t_list	*act;
 
@@ -26,7 +26,7 @@ void rotate_a(t_list **stack_a, t_bool print)
 		ft_putstr_fd("ra\n", STDOUT_FILENO);
 }
 
-void rotate_b(t_list **stack_b, t_bool print)
+void	rotate_b(t_list **stack_b, t_bool print)
 {
 	t_list	*act;
 

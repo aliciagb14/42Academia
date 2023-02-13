@@ -6,28 +6,29 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:34:28 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/13 12:14:37 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:14:47 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void read_input(t_list **list, char **argv)
+void	read_input(t_list **list, char **argv)
 {
-	int i;
-	int j;
-	int aux;
+	int	i;
+	int	j;
+	int	aux;
 
 	i = 1;
-	while(argv[i])
+	while (argv[i])
 	{
 		j = 0;
-		while(argv[i][j])
+		while (argv[i][j])
 		{
 			aux = j;
 			if (argv[i][j] == '-' || argv[i][j] == '+')
 				j++;
-			while(argv[i][j] && !ft_isspace(argv[i][j])){
+			while (argv[i][j] && !ft_isspace(argv[i][j]))
+			{
 				check_error_numbers(*list, argv, i, j);
 				j++;
 			}
@@ -68,7 +69,7 @@ void	check_error_line(t_list *list, int aux, int j, char *current_argv)
 	}
 }
 
-void check_error_numbers(t_list *list, char **argv, int i, int j)
+void	check_error_numbers(t_list *list, char **argv, int i, int j)
 {
 	if (!ft_isdigit(argv[i][j]))
 	{

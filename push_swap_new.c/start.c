@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:07:51 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/13 12:16:48 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:17:10 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ void	valgrind(void)
 	system("leaks push_swap");
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
+	t_stacks	stack;
 	// atexit(valgrind);
-	t_stacks stack;
+
 	ft_memset(&stack, 0, sizeof(t_stacks));
 	if (argc < 2)
 		return (0);
@@ -32,8 +33,10 @@ int main(int argc, char **argv)
 	{
 		if (stack.size_a <= 3)
 			sort_three_numbers(stack.stack_a);
-		else if (stack.size_a <= 5)
+		else if (stack.size_a <= 45)
 			five_numbers(&stack);
+		/*else if (stack.size_a <= 45)
+			sort_max_10_nbr(&stack);*/
 		else
 			radix_sort(&stack);
 	}
