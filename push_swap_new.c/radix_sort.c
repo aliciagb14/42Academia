@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 07:44:07 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/20 12:57:03 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:02:36 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,27 @@
  * y tengo que añadir el x 0 al ppio de mi numero
  *  */
 
+/**
+ * Devuelve la posicion del primer elemento que encuentra en la lista igual
+ * al num pasado por
+ * */
+int	find_num(t_list *stack, int num)
+{
+	t_list	*ptr1;
+	int		count;
+
+	count = 0;
+	ptr1 = stack;
+	while (ptr1->next != NULL)
+	{
+		if ((int)ptr1->content == num)
+			return (count);
+		ptr1 = ptr1->next;
+		count++;
+	}
+	return (count);
+}
+
 void	sort_max_10_nbr(t_stacks *stack)
 {
 	int	min_index;
@@ -26,33 +47,53 @@ void	sort_max_10_nbr(t_stacks *stack)
 	min_index = get_position_smaller_number(stack->stack_a);
 	while (stack->stack_a && stack->size_a > 3)
 	{
-		while (min_index != 0)
+		while (get_position_smaller_number(stack->stack_a) != 0)
 		{
-			if (min_index <= (ft_lstsize(stack->stack_a) / 2))
+			if (get_position_smaller_number(stack->stack_a)
+				<= (ft_lstsize(stack->stack_a) / 2))
 				rotate_a(&stack->stack_a, true);
 			else
 				rev_rotate_a(&stack->stack_a, true);
 		}
-		if (!is_sorted(stack->stack_a, stack->size_a))
-			if (min_index == 0)
-				push_b(stack, true);
+		if (get_position_smaller_number(stack->stack_a) == 0)
+			push_b(stack, true);
 	}
 	sort_three_numbers(stack->stack_a);
 	while (stack->stack_b)
 		push_a(stack, true);
+	// int	min_index;
+
+	// min_index = get_position_smaller_number(stack->stack_a);
+	// while (stack->stack_a && stack->size_a > 3)
+	// {
+	// 	while (find_num(stack->stack_a, get_smallest_number_a(stack->stack_a)) != 0)
+	// 	{
+	// 		if (find_num(stack->stack_a, get_smallest_number_a(stack->stack_a))
+	// 			<= (ft_lstsize(stack->stack_a) / 2))
+	// 			rotate_a(&stack->stack_a, true);
+	// 		else
+	// 			rev_rotate_a(&stack->stack_a, true);
+	// 	}
+	// 	if (!is_sorted(stack->stack_a, stack->size_a))
+	// 		if (find_num(stack->stack_a, get_smallest_number_a(stack->stack_a) == 0))
+	// 			push_b(stack, true);
+	// }
+	// sort_three_numbers(stack->stack_a);
+	// while (stack->stack_b)
+	// 	push_a(stack, true);
 }
 
-// static int	get_max_bits(t_list *stack_a)
-// {
-// 	int	max;
-// 	int	max_bits;
+static int	get_max_bits(t_list *stack_a)
+{
+	int	max;
+	int	max_bits;
 
-// 	max = ft_lstsize(stack_a) - 1;
-// 	max_bits = 1;
-// 	while ((max >> max_bits) != 0)
-// 		max_bits++;
-// 	return (max_bits);
-// }
+	max = ft_lstsize(stack_a) - 1;
+	max_bits = 1;
+	while ((max >> max_bits) != 0)
+		max_bits++;
+	return (max_bits);
+}
 
 int	make_pow(int num)
 {
@@ -65,6 +106,33 @@ int	make_pow(int num)
 		i++;
 	}
 	return (i);
+}
+
+void	radix_sort(t_stacks *stacks)
+{
+	int		i;
+	int		j;
+	int		max_bits;
+	int		size;
+	int		nbr_head_stack;
+
+	i = -1;
+	max_bits = get_max_bits(stacks->stack_a);
+	size = ft_lstsize(stacks->stack_a);
+	while (++i < max_bits)
+	{
+		j = -1;
+		while (++j < size)
+		{
+			nbr_head_stack = *(int*)stacks->stack_a->content;
+			if ((nbr_head_stack >> i & 1) == 1)
+				push_b(stacks, true);
+			else if (!is_sorted(stacks->stack_a, stacks->size_a))
+				rotate_a(&stacks->stack_a, true);
+		}
+		while (stacks->stack_b)
+			push_a(stacks, true);
+	}
 }
 
 /** se usa para comprobar si el iesimo bit del numero entero almacenado en el
@@ -96,31 +164,31 @@ int	make_pow(int num)
 // }
 
 
-void	radix_sort(t_stacks *stacks)
-{
-	int		i;
-	int		bpos;
-	int		l;
+// void	radix_sort(t_stacks *stacks)
+// {
+// 	int		i;
+// 	int		bpos;
+// 	int		size;
 
-	bpos = 0;
-	l = ft_lstsize(stacks->stack_a);
-	while (bpos < make_pow(l))
-	{
-		i = 0;
-		while (i < l)
-		{
-			if ((((stacks->stack_a)->pos) >> bpos) % 2 != 0)
-				rotate_a(&stacks->stack_a, true);
-			else
-				push_b(stacks, true);
-			i++;
-		}
-		while (stacks->stack_b)
-			push_a(stacks, true);
-		bpos++;
-	}
-	bpos = 0;
-}
+// 	bpos = 0;
+// 	size = ft_lstsize(stacks->stack_a);
+// 	while (bpos < make_pow(size))
+// 	{
+// 		i = 0;
+// 		while (i < size)
+// 		{
+// 			if ((((stacks->stack_a)->pos) >> bpos) % 2 != 0)
+// 				rotate_a(&stacks->stack_a, true);
+// 			else
+// 				push_b(stacks, true);
+// 			i++;
+// 		}
+// 		while (stacks->stack_b)
+// 			push_a(stacks, true);
+// 		bpos++;
+// 	}
+// 	bpos = 0;
+// }
 // void radix_sort(t_stacks *stacks)
 // {
 //     int max_bits;

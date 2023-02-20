@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aiglesia <aiglesia@student.42.fr>          +#+  +:+       +#+         #
+#    By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/21 18:09:12 by rprieto-          #+#    #+#              #
-#    Updated: 2021/03/31 10:04:59 by aiglesia         ###   ########.fr        #
+#    Updated: 2023/02/20 13:33:45 by agonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ SRCS =	ft_atoi.c					\
 		ft_lstdbl_delone.c			\
 		ft_lstdbl_last.c			\
 		ft_lstdbl_move_backwards.c	\
+		ft_lstnew_aux.c				\
 		ft_lstdbl_new.c				\
 		ft_lstdbl_size.c
 

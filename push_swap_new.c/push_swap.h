@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:23:30 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/20 12:03:20 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:45:11 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		is_elem_dup(t_list *list, char *str_number);
 void	five_numbers(t_stacks *stack);
 void	sort_three_numbers(t_list *stack_a);
 
-void	push_smallest_number(int min, int min_index, t_stacks *stack);
+void	push_smallest_number(int min, t_stacks *stack); //int min, int min_index, t_stacks *stack
 int		get_position_smaller_number(t_list *stack_a);
 int		*get_number(int number);
 
@@ -97,7 +97,8 @@ void	radix_sort(t_stacks *stack); //t_list  *stack_a
 void	sort_max_10_nbr(t_stacks *stack);
 void	print_stack(t_list *list, int size);
 void	print_zeros(int number_zeros);
-t_bool	is_sorted(t_list *stack_a, int length);
+t_bool	is_sorted(t_list *stack_a, int length); //, int length
 int		make_pow(int num);
+int		find_num(t_list *stack, int num);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:55:09 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/20 12:28:14 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:25:32 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,21 @@ hasta que aux de next = list*/
 
 t_bool is_sorted(t_list *stack_a, int length)
 {
+	// t_list	*ptr1;
+	// t_list	*ptr2;
+
+	// if (stack_a->next == NULL)
+	// 	return (1);
+	// ptr1 = stack_a;
+	// ptr2 = stack_a->next;
+	// while (ptr2 != NULL)
+	// {
+	// 	if ((int)ptr1->content > (int)ptr2->content)
+	// 		return (0);
+	// 	ptr2 = ptr2->next;
+	// 	ptr1 = ptr1->next;
+	// }
+	// return (1);
     t_list  *aux;
     t_bool  first_iteration;
     int     i;
@@ -78,7 +93,7 @@ t_bool is_sorted(t_list *stack_a, int length)
     if (!stack_a->next)
         return (true);
     aux = stack_a;
-    while (i < length && (aux->next != stack_a || !first_iteration))
+    while (i < length && (aux->next != stack_a)) // || !first_iteration
     {
         if (!aux || (aux->next && *(int *)aux->content > *(int *)aux->next->content))
             return (false);

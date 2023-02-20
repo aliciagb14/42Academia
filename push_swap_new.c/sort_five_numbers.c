@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:07:13 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/13 14:33:25 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:44:54 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	get_position_smaller_number(t_list *stack_a)
 	return (min_index);
 }
 
-void	push_smallest_number(int min, int min_index, t_stacks *stack)
+void	push_smallest_number(int min, t_stacks *stack) //int min, int min_index, t_stacks *stack
 {
 	if (*(int *)stack->stack_a->content == min)
 		push_b(stack, true);
-	else if (min_index > stack->size_a / 2)
+	else if (stack->stack_a->pos > stack->size_a / 2)
 		rev_rotate_a(&stack->stack_a, true);
-	else if (min_index <= stack->size_a / 2)
+	else if (stack->stack_a->pos <= stack->size_a / 2)
 		rotate_a(&stack->stack_a, true);
 }
 
@@ -62,7 +62,7 @@ void	five_numbers(t_stacks *stack)
 	{
 		min_index = get_position_smaller_number(stack->stack_a);
 		min = get_smallest_number_a(stack->stack_a);
-		push_smallest_number(min, min_index, stack);
+		push_smallest_number(min, stack);//min, min_index, stack
 	}
 	sort_three_numbers(stack->stack_a);
 	if (stack->stack_b)

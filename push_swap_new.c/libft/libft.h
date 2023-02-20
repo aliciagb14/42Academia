@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:42:43 by rprieto-          #+#    #+#             */
-/*   Updated: 2023/02/20 12:02:27 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:32:36 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void				*ft_alloc(size_t count, size_t size);
 char				*ft_buffer_fd(int fd);
 char				*ft_strncpy(char *s2, int n);
 t_bool				ft_str_checkset(char *string, char *set);
+t_list				*ft_lstnew_aux(int num, int pos);
 
 /*
 **				FT_PRINTF.C
