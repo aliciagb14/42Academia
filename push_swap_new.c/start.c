@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:07:51 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/13 15:17:10 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/20 11:55:02 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 void	valgrind(void)
 {
 	system("leaks push_swap");
+}
+
+int	find_num(t_list *stack, int num)
+{
+	t_list	*ptr1;
+	int		count;
+
+	count = 0;
+	ptr1 = stack;
+	while (ptr1->next != NULL)
+	{
+		if ((int)ptr1->content == num)
+			return (count);
+		ptr1 = ptr1->next;
+		count++;
+	}
+	return (count);
 }
 
 int	main(int argc, char **argv)
@@ -29,14 +46,15 @@ int	main(int argc, char **argv)
 	stack.size_a = ft_lstsize(stack.stack_a);
 	stack.sorted_elem_a = 0;
 	stack.size_b = ft_lstsize(stack.stack_b);
+	
 	if (!is_sorted(stack.stack_a, stack.size_a))
 	{
 		if (stack.size_a <= 3)
 			sort_three_numbers(stack.stack_a);
-		else if (stack.size_a <= 45)
+		else if (stack.size_a <= 5)
 			five_numbers(&stack);
-		/*else if (stack.size_a <= 45)
-			sort_max_10_nbr(&stack);*/
+		// else if (stack.size_a <= 45)
+		// 	sort_max_10_nbr(&stack);
 		else
 			radix_sort(&stack);
 	}

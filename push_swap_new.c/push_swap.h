@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:23:30 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/13 14:31:50 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:03:20 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_stacks
 	int		sorted_elem_a;
 	int		sorted_elem_b;
 	int		nbr_count;
-	int		*nbr_act;
 	t_list	*stack_a;
 	t_list	*stack_b;
 }				t_stacks;
@@ -98,7 +97,7 @@ void	radix_sort(t_stacks *stack); //t_list  *stack_a
 void	sort_max_10_nbr(t_stacks *stack);
 void	print_stack(t_list *list, int size);
 void	print_zeros(int number_zeros);
-int		get_max_bits(t_list *stack_a);
 t_bool	is_sorted(t_list *stack_a, int length);
 int		make_pow(int num);
+
 #endif

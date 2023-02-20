@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:34:28 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/13 14:14:47 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/20 10:22:35 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ void	check_error_line(t_list *list, int aux, int j, char *current_argv)
 			is_error = true;
 	}
 	if (is_elem_dup(list, &current_argv[aux]))
+	{
 		is_error = true;
+		ft_putstr_fd("Elements duplicated\n", STDOUT_FILENO);
+	}
 	if (is_error)
 	{
-		ft_putstr_fd("Error", STDERR_FILENO);
-		//ft_lstclear(&list, free);
+		ft_putstr_fd("Number out of range", STDERR_FILENO);
 		exit(-1);
 	}
 }

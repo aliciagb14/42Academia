@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:55:09 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/13 14:24:47 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:28:14 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,51 @@ int	is_elem_dup(t_list *list, char *str_number)
 
 /*aux que al inicio sea list, y me voy a mover con el aux,
 hasta que aux de next = list*/
-t_bool	is_sorted(t_list *stack_a, int length)
-{
-	t_list	*aux;
-	t_bool	first_iteration;
-	int		i;
+// t_bool	is_sorted(t_list *stack_a, int length)
+// {
+// 	t_list	*aux;
+// 	t_bool	first_iteration;
+// 	int		i;
 
-	i = 1;
-	first_iteration = false;
-	if (!stack_a)
-		return (0);
-	if (!stack_a->next)
-		return (true);
-	aux = stack_a;
-	while (i < length && (aux->next != stack_a || !first_iteration))
-	{
-		if (*(int *)aux->content > *(int *)aux->next->content)
-			return (false);
-		aux = aux->next;
-		first_iteration = true;
-		i++;
-	}
-	return (true);
+// 	i = 1;
+// 	first_iteration = false;
+// 	if (!stack_a)
+// 		return (0);
+// 	if (!stack_a->next)
+// 		return (true);
+// 	aux = stack_a;
+// 	while (i < length && (aux->next != stack_a || !first_iteration))
+// 	{
+// 		if (aux->next && *(int *)aux->content > *(int *)aux->next->content)
+// 			return (false);
+// 		aux = aux->next;
+// 		first_iteration = true;
+// 		i++;
+// 	}
+// 	return (true);
+// }
+
+t_bool is_sorted(t_list *stack_a, int length)
+{
+    t_list  *aux;
+    t_bool  first_iteration;
+    int     i;
+    i = 1;
+    first_iteration = false;
+    if (!stack_a)
+        return (0);
+    if (!stack_a->next)
+        return (true);
+    aux = stack_a;
+    while (i < length && (aux->next != stack_a || !first_iteration))
+    {
+        if (!aux || (aux->next && *(int *)aux->content > *(int *)aux->next->content))
+            return (false);
+        aux = aux->next;
+        first_iteration = true;
+        i++;
+    }
+    return (true);
 }
 
 int	get_biggest_number_a(t_list *stack_a)

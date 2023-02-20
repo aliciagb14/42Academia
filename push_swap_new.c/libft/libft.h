@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:42:43 by rprieto-          #+#    #+#             */
-/*   Updated: 2023/02/13 14:12:28 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:02:27 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
+	int				pos;
 }					t_list;
 
 typedef struct s_list_dbl
