@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:07:51 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/20 14:49:39 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:25:35 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 			sort_three_numbers(stack.stack_a);
 		else if (stack.size_a <= 5)
 			five_numbers(&stack);
-		else if (stack.size_a <= 45)
+		else if (stack.size_a <= 100)
 			sort_max_10_nbr(&stack);
 		else
 			radix_sort(&stack);
@@ -47,3 +47,4 @@ int	main(int argc, char **argv)
 	exit(EXIT_SUCCESS);
 	return (0);
 }
+

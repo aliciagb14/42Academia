@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:34:49 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/13 14:17:47 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:42:10 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,12 @@ void	swap_b(t_list **stack_b, t_bool print)
 	if (print)
 		ft_putstr_fd("sb\n", STDOUT_FILENO);
 }
+
+// static void	swap_ab(t_list **stack_a, t_list **stack_b)
+// {
+// 	if (!stack_a || !stack_b)
+// 		return ;
+// 	swap_a(stack_a, true);
+// 	swap_b(stack_b, true);
+// 	ft_putstr_fd("ss\n", STDOUT_FILENO);
+// }

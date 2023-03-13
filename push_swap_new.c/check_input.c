@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:34:28 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/20 10:22:35 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:04:14 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,3 +79,74 @@ void	check_error_numbers(t_list *list, char **argv, int i, int j)
 		ft_lstclear(&list, free);
 	}
 }
+
+// static void	ft_free_matrix(char **matrix)
+// {
+// 	int	i;
+
+// 	i = -1;
+// 	while (matrix[++i])
+// 		;
+// 	while (--i >= 0)
+// 		free(matrix[i]);
+// 	free(matrix);
+// }
+
+// static int	ft_matrix_len(char **matrix)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (matrix[i])
+// 		i++;
+// 	return (i);
+// }
+
+// int	ft_nbr_count(int argc, char **argv)
+// {
+// 	char	**numbers;
+// 	int		nbr_count;
+// 	int		i;
+
+// 	i = 1;
+// 	numbers = NULL;
+// 	nbr_count = 0;
+// 	while (i < argc)
+// 	{
+// 		numbers = ft_split(argv[i], ' ');
+// 		nbr_count = nbr_count + ft_matrix_len(numbers);
+// 		ft_free_matrix(numbers);
+// 		i++;
+// 	}
+// 	return (nbr_count);
+// }
+
+// long	*store_numbers(t_stacks *stacks, int argc, char **argv)
+// {
+// 	long	*numbers;
+
+// 	int k = 1;
+// 	int i = 0;
+// 	int j;
+// 	stacks->nbr_count = ft_nbr_count(argc, argv);
+// 	numbers = (long *)malloc(sizeof(long) * stacks->nbr_count);
+// 	if (!numbers)
+// 		ft_putstr_fd("Malloc KO.\n", STDOUT_FILENO);
+// 	while (i < stacks->nbr_count)
+// 	{
+// 		stacks->matrix = ft_split(argv[k], ' ');
+// 		if (stacks->matrix == NULL)
+// 			ft_putstr_fd("Malloc KO.\n", STDOUT_FILENO);
+// 		j = 0;
+// 		while (stacks->matrix && stacks->matrix[j] != NULL)
+// 		{
+// 			if (ft_strlen(stacks->matrix[j]) <= 12)
+// 				numbers[i++] = ft_atoi(stacks->matrix[j++]);//ft_atoi_long(stacks->matrix[j++]);
+// 			else
+// 				ft_putstr_fd("Number out of range.\n", STDOUT_FILENO);
+// 		}
+// 		ft_free_matrix(stacks->matrix);
+// 		k++;
+// 	}
+// 	return (numbers);
+// }

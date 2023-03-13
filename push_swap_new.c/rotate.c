@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:59:43 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/20 13:51:43 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:58:29 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,13 @@ void	rotate_b(t_list **stack_b, t_bool print)
 	//free(act);
 	if (print)
 		ft_putstr_fd("rb\n", STDOUT_FILENO);
+}
+
+
+void	rotate_all(t_list **stack_a, t_list **stack_b, t_bool print)
+{
+	rotate_a(stack_a, print);
+	rotate_b(stack_b, print);
+	if (print)
+		ft_putstr_fd("rr\n", STDOUT_FILENO);
 }

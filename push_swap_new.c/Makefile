@@ -2,7 +2,7 @@ NAME = push_swap
 CC = gcc
 SRCS = push.c rotate.c swap.c rev_rotate.c utils.c find_instr.c \
 		start.c check_input.c radix_sort.c \
-		sort_five_numbers.c sort_three_numbers.c
+		sort_five_numbers.c sort_three_numbers.c tabs.c
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 all: ${NAME}

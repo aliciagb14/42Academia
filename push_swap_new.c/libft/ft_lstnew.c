@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aiglesia <aiglesia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 18:40:23 by rprieto-          #+#    #+#             */
-/*   Updated: 2021/03/30 21:06:12 by aiglesia         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:13:39 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_list	*ft_lstnew(void *content)
 		return (NULL);
 	}
 	new_elem->content = (void *)content;
+	new_elem->pos = -1;
 	new_elem->next = NULL;
 	return (new_elem);
 }

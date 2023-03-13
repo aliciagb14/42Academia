@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:23:30 by agonzale          #+#    #+#             */
-/*   Updated: 2023/02/20 14:45:11 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:43:21 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_stacks
 	int		sorted_elem_a;
 	int		sorted_elem_b;
 	int		nbr_count;
+	char	**matrix;
 	t_list	*stack_a;
 	t_list	*stack_b;
 }				t_stacks;
@@ -101,4 +102,19 @@ t_bool	is_sorted(t_list *stack_a, int length); //, int length
 int		make_pow(int num);
 int		find_num(t_list *stack, int num);
 
+
+void	ft_bubble_sort(long *tab, int size);
+void	ft_reorder_tab(long *tab, long *numbers, long *result, int size);
+void	ft_copy_tab(long *tab, long *numbers, int size);
+void	ft_sort_tab(long *numbers, int size);
+
+
+long	*store_numbers(t_stacks *stacks, int argc, char **argv);
+int		ft_nbr_count(int argc, char **argv);
+void	rotate_all(t_list **stack_a, t_list **stack_b, t_bool print);
+
+t_list	*ft_get_next_max(t_list *list);
+void	ft_setposition(t_list **list);
+t_list	*ft_get_next_min(t_list *list);
+void	ft_next_min(t_list **list, int pos);
 #endif
