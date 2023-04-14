@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:07:13 by agonzale          #+#    #+#             */
-/*   Updated: 2023/03/13 11:40:53 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:04:37 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_position_smaller_number(t_list *stack_a)
 	return (min_index);
 }
 
-void	push_smallest_number(int min, t_stacks *stack) //int min, int min_index, t_stacks *stack
+void	push_smallest_number(int min, t_stacks *stack)
 {
 	if (*(int *)stack->stack_a->content == min)
 		push_b(stack, true);
@@ -62,7 +62,7 @@ void	five_numbers(t_stacks *stack)
 	{
 		min_index = get_position_smaller_number(stack->stack_a);
 		min = get_smallest_number_a(stack->stack_a);
-		push_smallest_number(min, stack);//min, min_index, stack
+		push_smallest_number(min, stack);
 	}
 	sort_three_numbers(stack->stack_a);
 	if (stack->stack_b)

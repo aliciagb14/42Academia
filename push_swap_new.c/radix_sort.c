@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 07:44:07 by agonzale          #+#    #+#             */
-/*   Updated: 2023/03/13 13:29:21 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:08:20 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,6 @@
  * que añadir a la izq segun el numero
  * y tengo que añadir el x 0 al ppio de mi numero
  *  */
-
-/**
- * Devuelve la posicion del primer elemento que encuentra en la lista igual
- * al num pasado por
- * */
-int	find_num(t_list *stack, int num)
-{
-	t_list	*ptr1;
-	int		count;
-
-	count = 0;
-	ptr1 = stack;
-	while (ptr1->next != NULL)
-	{
-		if ((int)ptr1->content == num)
-			return (count);
-		ptr1 = ptr1->next;
-		count++;
-	}
-	return (count);
-}
 
 void	sort_max_10_nbr(t_stacks *stack)
 {

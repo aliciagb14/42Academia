@@ -9,7 +9,6 @@
 // 	int length = 10;
 // 	if (argc == 2)
 // 		length = atoi(argv[1]);
-	
 // 	int array[length];
 
 // 	//Gets time in milliseconds
@@ -17,7 +16,6 @@
 // 	gettimeofday(&tv, NULL);
 // 	double time_in_mill = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000 ;
 // 	srand(time_in_mill);
-	
 // 	for (int i = 0; i < length;)
 // 	{
 // 		int number = rand() % 1000 + 1;

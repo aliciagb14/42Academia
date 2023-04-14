@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:55:09 by agonzale          #+#    #+#             */
-/*   Updated: 2023/03/13 13:23:40 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:11:35 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	*get_number(int number)
 	ptr = (int *)malloc(sizeof(int));
 	if (ptr == NULL)
 		return (NULL);
+	free(ptr);
 	*ptr = number;
 	return (ptr);
 }
@@ -40,74 +41,30 @@ int	is_elem_dup(t_list *list, char *str_number)
 	return (false);
 }
 
-/*aux que al inicio sea list, y me voy a mover con el aux,
-hasta que aux de next = list*/
-// t_bool	is_sorted(t_list *stack_a, int length)
-// {
-// 	t_list	*aux;
-// 	t_bool	first_iteration;
-// 	int		i;
-
-// 	i = 1;
-// 	first_iteration = false;
-// 	if (!stack_a)
-// 		return (0);
-// 	if (!stack_a->next)
-// 		return (true);
-// 	aux = stack_a;
-// 	while (i < length && (aux->next != stack_a || !first_iteration))
-// 	{
-// 		if (aux->next && *(int *)aux->content > *(int *)aux->next->content)
-// 			return (false);
-// 		aux = aux->next;
-// 		first_iteration = true;
-// 		i++;
-// 	}
-// 	return (true);
-// }
-
-t_bool is_sorted(t_list *stack_a, int length)
+t_bool	is_sorted(t_list *stack_a, int length)
 {
-	// t_list	*ptr1;
-	// t_list	*ptr2;
+	t_list	*aux;
+	int		i;
 
-	// if (stack_a->next == NULL)
-	// 	return (1);
-	// ptr1 = stack_a;
-	// ptr2 = stack_a->next;
-	// while (ptr2 != NULL)
-	// {
-	// 	if ((int)ptr1->content > (int)ptr2->content)
-	// 		return (0);
-	// 	ptr2 = ptr2->next;
-	// 	ptr1 = ptr1->next;
-	// }
-	// return (1);
-    t_list  *aux;
-    t_bool  first_iteration;
-    int     i;
-    i = 1;
-    first_iteration = false;
-    if (!stack_a)
-        return (0);
-    if (!stack_a->next)
-        return (true);
-    aux = stack_a;
-    while (i < length && (aux->next != stack_a)) // || !first_iteration
-    {
-        if (!aux || (aux->next && *(int *)aux->content > *(int *)aux->next->content))
-            return (false);
-        aux = aux->next;
-        first_iteration = true;
-        i++;
-    }
-    return (true);
+	i = 0;
+	aux = stack_a;
+	if (!stack_a)
+		return (0);
+	if (!stack_a->next)
+		return (true);
+	while (++i < length && (aux->next != stack_a))
+	{
+		if (!aux
+			|| (aux->next && *(int *)aux->content > *(int *)aux->next->content))
+			return (false);
+		aux = aux->next;
+	}
+	return (true);
 }
 
 int	get_biggest_number_a(t_list *stack_a)
 {
 	int	max;
-	int	max_index;
 	int	i;
 
 	i = 0;
@@ -115,10 +72,7 @@ int	get_biggest_number_a(t_list *stack_a)
 	while (stack_a != NULL || i == 0)
 	{
 		if (*(int *)(stack_a->content) > max)
-		{
 			max = *(int *)stack_a->content;
-			max_index = i;
-		}
 		stack_a = stack_a->next;
 		i++;
 	}
@@ -147,39 +101,4 @@ int	get_smallest_number_a(t_list *stack_a)
 		i++;
 	}
 	return (min);
-}
-
-int	count_digits(int max)
-{
-	int	count;
-
-	count = 1;
-	while (max / 10)
-	{
-		max /= 10;
-		count++;
-	}
-	return (count);
-}
-
-void	print_stack(t_list *list, int size)
-{
-	t_list	*aux;
-	int		i;
-
-	i = 0;
-	aux = list;
-	if (list == NULL)
-		return ;
-	if (list->next == NULL)
-	{
-		printf("%d \n", (*(int *)(list->content)));
-		return ;
-	}
-	while ((aux || i == 0) && size > 1) //aux != list 
-	{
-		printf("%d \n", (*(int *)(aux)->content));
-		aux = aux->next;
-		i++;
-	}
 }

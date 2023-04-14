@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:23:30 by agonzale          #+#    #+#             */
-/*   Updated: 2023/03/13 10:43:21 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:31:54 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,6 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "libft/libft.h"
-
-/*
-typedef enum e_bool
-{
-	false,
-	true
-}				t_bool;
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;*/
 
 typedef struct s_stacks
 {
@@ -47,6 +34,8 @@ typedef struct s_stacks
 void	read_input(t_list **list, char **argv);
 void	check_error_line(t_list *list, int aux, int j, char *current_argv);
 void	check_error_numbers(t_list *list, char **argv, int i, int j);
+void	check_errors(t_bool is_error, t_list *list,
+			char *current_argv, int aux);
 
 /**
  * FIND_INSTRUCTIONS.C
@@ -75,6 +64,7 @@ void	push_b(t_stacks *stack, t_bool print);
  * */
 void	rotate_a(t_list **stack_a, t_bool print);
 void	rotate_b(t_list **stack_b, t_bool print);
+void	rotate_all(t_list **stack_a, t_list **stack_b, t_bool print);
 
 /**
  * REV_ROTATE = último elemento se convierte en el primero
@@ -83,38 +73,39 @@ void	rev_rotate_a(t_list **stack_a, t_bool print);
 void	rev_rotate_b(t_list **stack_b, t_bool print);
 void	rev_rotate_all(t_list **stack_a, t_list **stack_b, t_bool print);
 
-int		is_elem_dup(t_list *list, char *str_number);
-void	five_numbers(t_stacks *stack);
+/**
+ * SORT THREE NUMBERS = 
+ * 
+ * */
 void	sort_three_numbers(t_list *stack_a);
 
-void	push_smallest_number(int min, t_stacks *stack); //int min, int min_index, t_stacks *stack
+/**
+ * SORT FIVE NUMBERS = 
+ * 
+ * */
 int		get_position_smaller_number(t_list *stack_a);
+void	push_smallest_number(int min, t_stacks *stack);
+void	five_numbers(t_stacks *stack);
+
+/**
+ * UTILS
+ * */
 int		*get_number(int number);
-
-int		count_digits(int max);
-int		get_smallest_number_a(t_list *stack_a);
+int		is_elem_dup(t_list *list, char *str_number);
+t_bool	is_sorted(t_list *stack_a, int length);
 int		get_biggest_number_a(t_list *stack_a);
-void	radix_sort(t_stacks *stack); //t_list  *stack_a
-void	sort_max_10_nbr(t_stacks *stack);
+int		get_smallest_number_a(t_list *stack_a);
+
+/**
+ * UTILS2.C
+ * 
+ * */
 void	print_stack(t_list *list, int size);
-void	print_zeros(int number_zeros);
-t_bool	is_sorted(t_list *stack_a, int length); //, int length
-int		make_pow(int num);
-int		find_num(t_list *stack, int num);
 
+/**
+ * RADIX  SORT
+ * */
+void	sort_max_10_nbr(t_stacks *stack);
+void	radix_sort(t_stacks *stack);
 
-void	ft_bubble_sort(long *tab, int size);
-void	ft_reorder_tab(long *tab, long *numbers, long *result, int size);
-void	ft_copy_tab(long *tab, long *numbers, int size);
-void	ft_sort_tab(long *numbers, int size);
-
-
-long	*store_numbers(t_stacks *stacks, int argc, char **argv);
-int		ft_nbr_count(int argc, char **argv);
-void	rotate_all(t_list **stack_a, t_list **stack_b, t_bool print);
-
-t_list	*ft_get_next_max(t_list *list);
-void	ft_setposition(t_list **list);
-t_list	*ft_get_next_min(t_list *list);
-void	ft_next_min(t_list **list, int pos);
 #endif

@@ -6,7 +6,7 @@
 /*   By: agonzale <agonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:07:51 by agonzale          #+#    #+#             */
-/*   Updated: 2023/03/13 13:25:35 by agonzale         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:38:52 by agonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	valgrind(void)
 
 int	main(int argc, char **argv)
 {
+	atexit(valgrind);
 	t_stacks	stack;
-	// atexit(valgrind);
 
 	ft_memset(&stack, 0, sizeof(t_stacks));
 	if (argc < 2)
@@ -29,7 +29,6 @@ int	main(int argc, char **argv)
 	stack.size_a = ft_lstsize(stack.stack_a);
 	stack.sorted_elem_a = 0;
 	stack.size_b = ft_lstsize(stack.stack_b);
-	
 	if (!is_sorted(stack.stack_a, stack.size_a))
 	{
 		if (stack.size_a <= 3)
@@ -41,10 +40,8 @@ int	main(int argc, char **argv)
 		else
 			radix_sort(&stack);
 	}
-	//print_stack(stack.stack_a, stack.size_a);
-	//ft_lstclear(&stack.stack_a, free);
-	//ft_lstclear(&stack.stack_b, free);
+	// free(stack.stack_a);
+	// free(stack.stack_b);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
-
